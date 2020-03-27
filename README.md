@@ -27,10 +27,10 @@
 
 ### Developers:
 
-*Altug Altetmek
-*Dia Istanbuly
-*Emil Gustafsson
-*Filip Lewenhagen
-*Leith Hobson
-*Martin Esfahani
-*Max Remmiz
+-Altug Altetmek
+-Dia Istanbuly
+-Emil Gustafsson
+-Filip Lewenhagen
+-Leith Hobson
+-Martin Esfahani
+-Max Remmiz
