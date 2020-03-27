@@ -1,4 +1,4 @@
-# group-03
+# group-03 - TeamNull
 
 ## What is our project?
 
