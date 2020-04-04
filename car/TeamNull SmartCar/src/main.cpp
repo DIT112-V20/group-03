@@ -26,4 +26,9 @@ void setup() {
 
 void loop() {
     collisionAvoidance();
+    // Serial.print("Front Distance: ");
+    // Serial.println(getFrontDistance());
+    // Serial.print("Rear Distance: ");
+    // Serial.println(getRearDistance());
+    // sleep(1);
 }
