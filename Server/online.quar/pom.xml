@@ -8,11 +8,11 @@
         <version>2.2.2.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>online.quar</groupId>
     <artifactId>securing-web</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>securing-web</name>
-    <description>Demo project for Spring Boot</description>
+    <version>0.0.1a-SNAPSHOT</version>
+    <name>Quar Application</name>
+    <description>Reference implementation of QuarOnline</description>
 
     <properties>
         <java.version>1.8</java.version>
