@@ -61,12 +61,16 @@ void initialiseSensors() {
   delay(150);
   // Serial.println("00");
   frontSensor.setTimeout(500);
-  if (!frontSensor.init()) {
+  while (!frontSensor.init()) {
     Serial.println("Failed to initialise FRONT sensor");
-    blink(15);
-    while (1) {
-    }
+    blink(2);
+    pinMode(frontSensorPin, OUTPUT);
+    digitalWrite(frontSensorPin, LOW);
+
+    delay(1500);
+    pinMode(frontSensorPin, INPUT);
   }
+
   delay(100);
   frontSensor.setAddress((uint8_t)01);
 
@@ -77,11 +81,14 @@ void initialiseSensors() {
   delay(150);
   rearSensor.setTimeout(500);
   // rearSensor.setAddress((uint8_t)01);
-  if (!rearSensor.init()) {
+  while (!rearSensor.init()) {
     Serial.println("Failed to initialise REAR sensor");
-    blink(10);
-    while (1) {
-    }
+    blink(2);
+    pinMode(frontSensorPin, OUTPUT);
+    digitalWrite(frontSensorPin, LOW);
+
+    delay(1500);
+    pinMode(frontSensorPin, INPUT);
   }
   rearSensor.setAddress((uint8_t)02);
 
