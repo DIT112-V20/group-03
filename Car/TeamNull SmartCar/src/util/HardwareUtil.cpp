@@ -68,6 +68,8 @@ void initialiseSensors() {
     digitalWrite(frontSensorPin, LOW);
 
     delay(1500);
+    digitalWrite(frontSensorPin, HIGH);
+    delay(200);
     pinMode(frontSensorPin, INPUT);
   }
 
@@ -88,6 +90,8 @@ void initialiseSensors() {
     digitalWrite(frontSensorPin, LOW);
 
     delay(1500);
+    digitalWrite(frontSensorPin, HIGH);
+    delay(200);
     pinMode(frontSensorPin, INPUT);
   }
   rearSensor.setAddress((uint8_t)02);
