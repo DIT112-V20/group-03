@@ -1,6 +1,6 @@
 package online.quar.application;
 
-import online.quar.application.manager.DataManager;
+import online.quar.application.manager.ApplicationManager;
 import online.quar.application.util.Logger;
 
 /**
@@ -9,14 +9,14 @@ import online.quar.application.util.Logger;
  */
 public class Singleton {
 
-    private static DataManager instance;
+    private static ApplicationManager instance;
     private static IO ioInstance;
     private static Logger logInstance;
 
-    public static synchronized DataManager getDataManager() {
+    public static synchronized ApplicationManager getApplicationManager() {
         //if there is no existing instance, we first create one, before returning it
         if(instance == null){
-            instance = new DataManager();
+            instance = new ApplicationManager();
         }
         //otherwise return the known instance
         return instance;
