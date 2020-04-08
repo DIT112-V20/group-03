@@ -1,8 +1,13 @@
 {
   "properties": [
     {
-      "name": "trust.store",
+      "name": "key-store-type",
       "type": "java.lang.String",
-      "description": "Description for trust.store."
-  }
-] }
+      "description": "Description for key-store-type."
+    },
+    {
+      "name": "key-store-password",
+      "type": "java.lang.String",
+      "description": "Description for key-store-password."
+    }
+  ] }

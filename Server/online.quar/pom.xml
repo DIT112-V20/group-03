@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>online.quar</groupId>
-    <artifactId>securing-web</artifactId>
+    <artifactId>application</artifactId>
     <version>0.0.1a-SNAPSHOT</version>
     <name>Quar Application</name>
     <description>Reference implementation of QuarOnline</description>
@@ -19,6 +19,10 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-rest</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
@@ -58,5 +62,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
