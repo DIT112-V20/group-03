@@ -7,7 +7,7 @@ The system utilizes a web application to let the user drive the car through the 
 Once the car detects any obstacles it stops and chooses a new free direction.
 
 
-## Why are we making it? What prooblems does it solve?
+## Why are we making it? What problems does it solve?
 
 It is often the case that we must be somewhere, but it is not safe for humans. Examples such as land mine detection, exploring mars, or, in 2020, for the elderly to go to the supermarket.
 We believe that these situations could be improved if an affordable remotely controlled vehicle can carry out a task, in the place of a human. 
