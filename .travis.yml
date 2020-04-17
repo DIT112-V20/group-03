@@ -1,3 +1,9 @@
+language: java
+jdk:
+  - 13
+os:
+ - linux
+
 language: c
 os:
   - linux
@@ -9,8 +15,3 @@ install:
   - arduino --install-library "Smartcar shield"
 script:
   - build_platform esp32
-  #language: java
-  #jdk:
-  #  - 13
-  #os:
-  #  - linux
