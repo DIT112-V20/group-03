@@ -10,24 +10,24 @@ int gyroscopeOffset = 0;
 
 void setDesiredVehicleSpeed (int speed) {
     carSpeedSet = speed;
-    setSpeed(carSpeedSet);
-    carSpeedActual = carSpeedSet;
+    // setSpeed(carSpeedSet);
+    // carSpeedActual = carSpeedSet;
 }
 
 void setDesireTurnAngle (int heading) {
-    carSpeedSet = heading;
-    setSpeed(carSpeedSet);
-    carSpeedActual = carSpeedSet;
+    turnAngleSet = heading;
+    setAngle(turnAngleSet);
+    turnAngleActual = turnAngleSet;
 }
 
 void collisionAvoidance() {
     int distanceFromObstacle = 0;
     if(carSpeedSet >= 0) {
         distanceFromObstacle = getFrontDistance();
-    } else {
-        distanceFromObstacle = getRearDistance();
+    // } else {
+    //     distanceFromObstacle = getRearDistance();
     }
-    if(distanceFromObstacle < 275) {
+    if(distanceFromObstacle < 275 && distanceFromObstacle != 0) {
         setSpeed(0);
         carSpeedActual = 0;
         Serial.print("COLLISION AVOIDANCE: distance from obstacle: ");
