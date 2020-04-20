@@ -1,11 +1,15 @@
 package online.quar.application.manager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import online.quar.application.Singleton;
+import online.quar.application.helper.QueryHelper;
+import online.quar.application.util.Logger;
+import org.postgresql.util.PSQLException;
+
+import java.sql.*;
 
 public class DatabaseManager {
+    Logger log = Singleton.getLogger();
+
     // DB connection configuration
     private static String DRIVER_CLASS = "org.postgresql.Driver";
     private static String DB_USER = "quaronline";
@@ -40,13 +44,24 @@ public class DatabaseManager {
             return;
         }
 
-        ResultSet rs = executeQuery(c, "SELECT 15 AS retval;");
-        if(rs.next()) {
-
+        PreparedStatement intializeDataBaseStatement;
+        try {
+            intializeDataBaseStatement = c.prepareStatement(QueryHelper.sqlQuery("sql/sql_initialisation.sql"));
+            intializeDataBaseStatement.execute();
         }
 
-        rs.close();
+        catch (SQLException e){
+            log.c(e.getMessage());
+        }
+
+      //  ResultSet rs = executeQuery(c, "SELECT 15 AS retval;");
+//        if(rs.next()) {
+//
+//        }
+//
+//        rs.close();
         c.close();
     }
+
 
 }
