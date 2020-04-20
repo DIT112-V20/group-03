@@ -44,10 +44,14 @@ public class DatabaseManager {
             return;
         }
 
-        PreparedStatement intializeDataBaseStatement;
+        PreparedStatement initialiseDataBaseStatement;
+        PreparedStatement updateDataBaseStatement;
         try {
-            intializeDataBaseStatement = c.prepareStatement(QueryHelper.sqlQuery("sql/sql_initialisation.sql"));
-            intializeDataBaseStatement.execute();
+            initialiseDataBaseStatement = c.prepareStatement(QueryHelper.sqlQuery("sql/sql_initialisation.sql"));
+            initialiseDataBaseStatement.execute();
+
+            updateDataBaseStatement = c.prepareStatement(QueryHelper.sqlQuery("sql/sql_update.sql"));
+            updateDataBaseStatement.execute();
         }
 
         catch (SQLException e){

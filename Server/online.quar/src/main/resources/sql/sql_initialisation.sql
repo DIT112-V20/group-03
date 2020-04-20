@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user(
+CREATE TABLE IF NOT EXISTS users(
     id       serial primary key ,
     username VARCHAR(100) not null ,
     password bytea not null
