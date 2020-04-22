@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS users(
     id       serial primary key ,
-    username VARCHAR(100) not null ,
+    username VARCHAR(100) not null , --make this unique on the server side
     password bytea not null
 );
 
