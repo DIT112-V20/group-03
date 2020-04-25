@@ -3,7 +3,7 @@ package online.quar.application.model;
 import online.quar.application.Singleton;
 
 public class User {
-    private long id;
+    private long id = -1;
     private String username;
     private byte[] password;
     private String fullname;
