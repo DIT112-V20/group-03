@@ -21,9 +21,9 @@ void setup() {
 
     // Connect to WiFi - commented out do to location specific WiFi credentials
     // - Yes, I am aware that I am giving out my Wifi details :p
-    //   char* WiFiSSID = "TheMancave";
-    //   char* WiFiPassword = "tagedirtybumpaberra";
-    //   connectToWiFi(WiFiSSID, WiFiPassword);
+    char* WiFiSSID = "TheMancave";
+    char* WiFiPassword = "tagedirtybumpaberra";
+    connectToWiFi(WiFiSSID, WiFiPassword);
     blink(3);
 
     Serial.println("Returned from connectToWiFi");
