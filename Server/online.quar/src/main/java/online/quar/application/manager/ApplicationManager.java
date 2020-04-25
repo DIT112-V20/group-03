@@ -11,5 +11,8 @@ public class ApplicationManager {
     public void initialiseDatabase() throws SQLException {
         dm.initialise();
     }
+    public DatabaseManager getDatabaseManager(){
+        return dm;
+    }
 
 }

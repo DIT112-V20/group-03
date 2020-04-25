@@ -1,0 +1,1 @@
+update car set description = ? where id = ?;
