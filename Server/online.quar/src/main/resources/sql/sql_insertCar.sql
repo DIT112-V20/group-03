@@ -1,0 +1,1 @@
+insert into car (description) values (?);

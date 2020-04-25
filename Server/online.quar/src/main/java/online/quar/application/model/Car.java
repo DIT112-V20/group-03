@@ -8,16 +8,18 @@ public class Car {
     private int actualSpeed;
     private int setAngle;
     private int actualAngle;
+    private String description;
 
     public Car() {
     }
 
-    public Car(long id, int setSpeed, int actualSpeed, int setAngle, int actualAngle) {
+    public Car(long id, int setSpeed, int actualSpeed, int setAngle, int actualAngle, String description) {
         this.id = id;
         this.setSpeed = setSpeed;
         this.actualSpeed = actualSpeed;
         this.setAngle = setAngle;
         this.actualAngle = actualAngle;
+        this.description = description;
     }
 
     public void save(){
@@ -62,5 +64,13 @@ public class Car {
 
     public void setActualAngle(int actualAngle) {
         this.actualAngle = actualAngle;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

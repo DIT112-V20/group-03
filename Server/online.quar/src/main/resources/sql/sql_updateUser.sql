@@ -1,0 +1,1 @@
+update users set username = ?, password = ?, fullname = ? where id = ?;
