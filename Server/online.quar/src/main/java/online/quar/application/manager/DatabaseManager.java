@@ -2,6 +2,8 @@ package online.quar.application.manager;
 
 import online.quar.application.Singleton;
 import online.quar.application.helper.QueryHelper;
+import online.quar.application.model.Car;
+import online.quar.application.model.User;
 import online.quar.application.util.Logger;
 import org.postgresql.util.PSQLException;
 
@@ -65,6 +67,16 @@ public class DatabaseManager {
 //
 //        rs.close();
         c.close();
+    }
+
+    public User save(User user){
+        //TODO: Fix this for user.
+        return user;
+    }
+
+    public Car save(Car car){
+        //TODO: Fix this for car.
+        return car;
     }
 
 
