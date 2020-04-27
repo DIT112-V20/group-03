@@ -6,8 +6,6 @@ import online.quar.application.model.User;
 import java.util.ArrayList;
 
 public class UserManager {
-    private long userId;
-
     ArrayList<User> users = new ArrayList<>();
 
     public User addUser(User user) {
@@ -35,7 +33,7 @@ public class UserManager {
     }
 
     public User findUser(User user) {
-        userId = user.getId();
+        Long userId = user.getId();
 
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == userId) {
@@ -45,11 +43,4 @@ public class UserManager {
         return null;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
 }

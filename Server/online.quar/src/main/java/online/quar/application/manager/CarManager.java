@@ -6,8 +6,6 @@ import online.quar.application.model.Car;
 import java.util.ArrayList;
 
 public class CarManager {
-    private long carId;
-
     ArrayList<Car> cars = new ArrayList<>();
 
     public Car addCar(Car car) {
@@ -34,7 +32,7 @@ public class CarManager {
     }
 
     public Car findCar(Car car) {
-        carId = car.getId();
+        long carId = car.getId();
 
         for (int i = 0; i < cars.size(); i++) {
             if (cars.get(i).getId() == carId) {
@@ -42,13 +40,5 @@ public class CarManager {
             }
         }
         return null;
-    }
-
-    public long getCarId() {
-        return carId;
-    }
-
-    public void setCarId(long carId) {
-        this.carId = carId;
     }
 }
