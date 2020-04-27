@@ -42,7 +42,7 @@ public class AuthenticationManager {
             throw new UnsupportedOperationException("Password could not be hashed");
     }
 
-    private byte[] getPasswordHash(String passwordToHash, String salt) {
+    public byte[] getPasswordHash(String passwordToHash, String salt) {
         String generatedPassword = null;
         byte[] passwordHash = null;
         try {
