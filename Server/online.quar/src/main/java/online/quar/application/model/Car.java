@@ -24,7 +24,7 @@ public class Car {
         this.active = active;
     }
 
-    public void save(){
+    public void save() {
         Singleton.getApplicationManager().getDatabaseManager().save(this);
     }
 

@@ -2,7 +2,6 @@ package online.quar.application.manager;
 
 import online.quar.application.Singleton;
 import online.quar.application.model.User;
-import online.quar.application.manager.DatabaseManager;
 
 import java.util.ArrayList;
 
@@ -12,12 +11,12 @@ public class UserManager {
     ArrayList<User> users = new ArrayList<>();
 
     public User addUser(User user) {
-       User userToAdd = findUser(user);
-       users.add(userToAdd);
+        User userToAdd = findUser(user);
+        users.add(userToAdd);
 
-       //Save the user that was just added
-       Singleton.getApplicationManager().getDatabaseManager().save(userToAdd);
-       return userToAdd;
+        //Save the user that was just added
+        Singleton.getApplicationManager().getDatabaseManager().save(userToAdd);
+        return userToAdd;
     }
 
 
@@ -29,13 +28,13 @@ public class UserManager {
         userToRemove.setActive(false);
         Singleton.getApplicationManager().getDatabaseManager().save(userToRemove);
 
-        if(findUser(userToRemove) == null){
+        if (findUser(userToRemove) == null) {
             return true;
         }
         return false;
     }
 
-    public User findUser(User user){
+    public User findUser(User user) {
         userId = user.getId();
 
         for (int i = 0; i < users.size(); i++) {
