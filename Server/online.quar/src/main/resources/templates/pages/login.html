@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="styles/login.css">
 </head>
 <body>
+<div class="outer"><div class="middle"><div class="inner">
 <div th:if="${param.error}">
     Invalid username and password.
 </div>
@@ -14,9 +15,10 @@
     You have been logged out.
 </div>
 <form th:action="@{/login}" method="post">
-    <div><label> User Name : <input type="text" name="username"/> </label></div>
-    <div><label> Password: <input type="password" name="password"/> </label></div>
-    <div><input type="submit" value="Sign In"/></div>
-</form>
+    <div class="username"><label><p> Username: <input type="text" name="username"/> </p></label></div>
+    <div class="password"><label><p><p class="passwordText"> Password: <input type="password" name="password"/> </p></p></label></div>
+    <!--<div><input type="submit" value="Sign In"/></div>-->
+    <div class="signIn"><button class="glow-on-hover" type="submit" value="Sign In">SIGN IN</button></div>
+</form></div></div></div>
 </body>
 </html>
