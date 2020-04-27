@@ -9,17 +9,19 @@ public class Car {
     private int setAngle;
     private int actualAngle;
     private String description;
+    private boolean active = true;
 
     public Car() {
     }
 
-    public Car(long id, int setSpeed, int actualSpeed, int setAngle, int actualAngle, String description) {
+    public Car(long id, int setSpeed, int actualSpeed, int setAngle, int actualAngle, String description, boolean active) {
         this.id = id;
         this.setSpeed = setSpeed;
         this.actualSpeed = actualSpeed;
         this.setAngle = setAngle;
         this.actualAngle = actualAngle;
         this.description = description;
+        this.active = active;
     }
 
     public void save(){
@@ -72,5 +74,28 @@ public class Car {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+
+        Car car = (Car) o;
+
+        return getId() == car.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (getId() ^ (getId() >>> 32));
     }
 }

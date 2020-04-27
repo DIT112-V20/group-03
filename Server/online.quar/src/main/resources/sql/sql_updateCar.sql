@@ -1,1 +1,1 @@
-update car set description = ? where id = ?;
+update car set description = ?, active = ? where id = ?;

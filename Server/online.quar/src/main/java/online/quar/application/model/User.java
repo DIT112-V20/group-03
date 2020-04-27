@@ -7,15 +7,17 @@ public class User {
     private String username;
     private byte[] password;
     private String fullname;
+    private boolean active = true;
 
     public User() {
     }
 
-    public User(long id, String username, byte[] password, String fullname) {
+    public User(long id, String username, byte[] password, String fullname, boolean active) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.fullname = fullname;
+        this.active = active;
     }
 
     public void save(){
@@ -52,5 +54,28 @@ public class User {
 
     public void setFullname(String fullname) {
         this.fullname = fullname;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+
+        User user = (User) o;
+
+        return getId() == user.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (getId() ^ (getId() >>> 32));
     }
 }
