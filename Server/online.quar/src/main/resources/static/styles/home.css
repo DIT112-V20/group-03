@@ -1,0 +1,32 @@
+body{
+    background-image: url("/images/NoAuth/Login_Background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+p{
+    text-align: center;
+    font-family: "Bookman Old Style";
+    position: center;
+    color: white;
+}
+.outer {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+.inner {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 50px;
+    padding-bottom: 100px;
+    width: 400px;
+    height: 100px;
+    background-color: rgba(0,0,0, 0.5);
+}
