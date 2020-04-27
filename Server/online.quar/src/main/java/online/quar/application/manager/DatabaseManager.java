@@ -89,11 +89,12 @@ public class DatabaseManager {
                 query = QueryHelper.sqlQuery(updateUserScript);
                 statement = connection.prepareStatement(query);
 
-                statement.setLong(4, user.getId());
+                statement.setLong(5, user.getId());
             }
             statement.setString(1, user.getUsername());
             statement.setBytes(2, user.getPassword());
             statement.setString(3, user.getFullname());
+            statement.setBoolean(4, user.isActive());
 
             statement.execute();
             try (ResultSet generatedKeys = statement.getGeneratedKeys()) {
@@ -130,10 +131,11 @@ public class DatabaseManager {
                 query = QueryHelper.sqlQuery(updateCarScript);
                 statement = connection.prepareStatement(query);
 
-                statement.setLong(2, car.getId());
+                statement.setLong(3, car.getId());
             }
 
             statement.setString(1, car.getDescription());
+            statement.setBoolean(2, car.isActive());
 
             statement.execute();
 

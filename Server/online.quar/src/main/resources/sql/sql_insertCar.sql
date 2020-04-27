@@ -1,1 +1,1 @@
-insert into car (description) values (?);
+insert into car (description, active) values (?, ?);

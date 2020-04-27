@@ -1,1 +1,1 @@
-insert into users (username, password, fullname) values (?, ?, ?);
+insert into users (username, password, fullname, active) values (?, ?, ?, ?);
