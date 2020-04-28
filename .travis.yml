@@ -1,6 +1,17 @@
-language: java
-jdk:
-  - openjdk13
+matrix:
+  include:
+  - language: java
+    jdk: openjdk13
+    # java jobs here
+  - language: c
+    before_install:
+      - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
+    install:
+      - arduino --install-library "ESP32 AnalogWrite"
+      - arduino --install-library "ServoESP32"
+      - arduino --install-library "Smartcar shield"
+    script:
+      - build_platform esp32
 os:
  - linux
 dist: bionic
@@ -13,14 +24,5 @@ addons:
 #      - redis-server
 services:
   - mysql
-language: c
 #os:
 #  - linux
-before_install:
-  - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
-install:
-  - arduino --install-library "ESP32 AnalogWrite"
-  - arduino --install-library "ServoESP32"
-  - arduino --install-library "Smartcar shield"
-script:
-  - build_platform esp32
