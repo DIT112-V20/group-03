@@ -2,6 +2,8 @@ matrix:
   include:
   - language: java
     jdk: openjdk13
+    script:
+      - cd Server/online.quar/
     # java jobs here
   - language: c
     before_install:
