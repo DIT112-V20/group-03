@@ -4,6 +4,7 @@ matrix:
     jdk: openjdk13
     script:
       - cd Server/online.quar/
+      - mvn spring-boot:run
     # java jobs here
   - language: c
     before_install:
