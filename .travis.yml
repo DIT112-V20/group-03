@@ -2,8 +2,10 @@ matrix:
   include:
   - language: java
     jdk: openjdk13
+    install: travis_wait 30 mvn install
     script:
       - cd Server/online.quar/
+      # run unit test here
       - mvn spring-boot:run
     # java jobs here
   - language: c
@@ -26,6 +28,6 @@ addons:
 #      - redis-tools
 #      - redis-server
 services:
-  - mysql
+  - postgresql
 #os:
 #  - linux
