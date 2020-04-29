@@ -9,10 +9,10 @@
 <body>
 <div class="outer"><div class="middle"><div class="inner">
 <div th:if="${param.error}">
-    Invalid username and password.
+    <p>Invalid username and password.</p>
 </div>
 <div th:if="${param.logout}">
-    You have been logged out.
+    <p>You have been logged out.</p>
 </div>
 <form th:action="@{/login}" method="post">
     <div class="username"><label><p> Username: <input type="text" name="username"/> </p></label></div>
