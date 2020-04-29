@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
 <head>
-    <title>Hello World!</title>
+    <p><title>Hello World!</title></p>
     <link rel="stylesheet" type="text/css" href="styles/hello.css">
 </head>
-<body>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+<div class="outer"><div class="middle"><div class="inner">
+<h1 th:inline="text"><p>Hello [[${#httpServletRequest.remoteUser}]]!</p></h1>
 <p>Test</p>
 <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
+    <div class="signOut"> <button type="submit" class="glow-on-hover">SIGN OUT</button></div>
 </form>
+</div></div></div>
 </body>
 </html>
