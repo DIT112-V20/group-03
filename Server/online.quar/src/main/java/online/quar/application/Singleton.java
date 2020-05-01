@@ -1,6 +1,7 @@
 package online.quar.application;
 
 import online.quar.application.manager.ApplicationManager;
+import online.quar.application.manager.DatabaseManager;
 import online.quar.application.util.Logger;
 
 /**
