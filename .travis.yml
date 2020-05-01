@@ -5,7 +5,7 @@ matrix:
     script:
       - cd Server/online.quar/
       - sudo -u postgres psql -c 'create database quaronline;'
-      - sudo -u postgres psql -c 'create user quaronline with encrypted password \'#!.~A_f8gLEBM5p8\';'
+      - sudo -u postgres psql -c "create user quaronline with encrypted password '\x00\x21\x00\x23.~A_f8gLEBM5p8';"
       - sudo -u postgres psql -c 'grant all privileges on database quaronline to quaronline;'
       # run unit test here
       - mvn spring-boot:run
