@@ -4,6 +4,11 @@ matrix:
     jdk: openjdk13
     script:
       - cd Server/online.quar/
+      - sudo -u postgres psql
+      - create database quaronline;
+      - create user quaronline with encrypted password '#!.~A_f8gLEBM5p8';
+      - grant all privileges on database quaronline to quaronline;
+      - exit;
       # run unit test here
       - mvn spring-boot:run
     # java jobs here
@@ -28,5 +33,4 @@ addons:
 #      - redis-server
 services:
   - postgresql
-#os:
-#  - linux
+
