@@ -29,6 +29,7 @@ p{
     width: 400px;
     height: 100px;
     background-color: rgba(0,0,0, 0.5);
+    /*PADDING-RADIUS: 15PX*/
 }
 .signOut{
     padding-left: 90px;

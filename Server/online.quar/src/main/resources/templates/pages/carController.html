@@ -1,0 +1,80 @@
+<p>First thing first. A demo. Executed with this configuration : </p>
+<div class="dynamic active highlight highlight-javascript">
+  <pre>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
+    <span class="pl-k">var</span> dynamic <span class="pl-k">=</span> nipplejs.create({
+        zone: document.getElementById('dynamic'),
+        color: 'blue'
+    });
+<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
+</div>
+<div class="semi highlight highlight-javascript">
+  <pre>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
+    <span class="pl-k">var</span> semi <span class="pl-k">=</span> nipplejs.create({
+        zone: document.getElementById('semi'),
+        mode: 'semi',
+        catchDistance: 150,
+        color: 'white'
+    });
+<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
+</div>
+<div class="static highlight highlight-javascript">
+  <pre>
+<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
+<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
+    <span class="pl-k">var</span> static <span class="pl-k">=</span> nipplejs.create({
+        zone: document.getElementById('static'),
+        mode: 'static',
+        position: {left: '50%', top: '50%'},
+        color: 'red'
+    });
+<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
+</div>
+<p>Choose the mode you want to test.</p>
+<div id="buttons">
+    <div data-type="dynamic" class="active button dynamic">dynamic</div>
+    <div data-type="semi" class="button semi">semi</div>
+    <div data-type="static" class="button static">static</div>
+</div>
+<div id="zone_joystick">
+    <div id="debug">
+        <ul>
+            <li class="position">
+                position :
+                <ul>
+                    <li class="x">x : <span class='data'></span></li>
+                    <li class="y">y : <span class='data'></span></li>
+                </ul>
+            </li>
+            <li class="force">force : <span class='data'></span></li>
+            <li class="pressure">pressure : <span class='data'></span></li>
+            <li class="distance">distance : <span class='data'></span></li>
+            <li class="angle">
+                angle :
+                <ul>
+                    <li class="radian">radian : <span class='data'></span></li>
+                    <li class="degree">degree : <span class='data'></span></li>
+                </ul>
+            </li>
+            <li class="direction">
+                direction :
+                <ul>
+                    <li class="x">x : <span class='data'></span></li>
+                    <li class="y">y : <span class='data'></span></li>
+                    <li class="angle">angle : <span class='data'></span></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="dump"></div>
+    </div>
+    <div class="zone dynamic active"><h1>dynamic</h1></div>
+    <div class="zone semi"><h1>semi</h1></div>
+    <div class="zone static"><h1>static</h1></div>
+</div>
+<br/>
+<div>
+    <a href="https://codepen.io/YoannM/full/gapmMG" target="_blank">> Open the demo in a new window.</a>
+</div>
