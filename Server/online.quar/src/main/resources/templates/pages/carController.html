@@ -7,132 +7,14 @@
     <link rel="stylesheet" href="styles/carController.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="styles/carStyles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="styles/github-light.css" media="screen" title="no title" charset="utf-8">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            margin-top: 20px;
-            max-width: 1024px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        #buttons {
-            position: relative;
-            border: solid 1px #aaa;
-            display: inline-block;
-            width: 100%;
-            border-radius: 10px;
-            height: 50px;
-            overflow: hidden;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-        .button {
-            display: inline-block;
-            background: #ccc;
-            color: black;
-            height: 50px;
-            width: 33%;
-            margin: 0;
-            margin-right: -3px;
-            text-align: center;
-            line-height: 45px;
-            font-size: 25px;
-            cursor: pointer;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        .button:hover {
-            background: #eee;
-        }
-        .button:active {
-            background: #ddd;
-        }
-        .button.active {
-            color: white;
-            background: #888;
-        }
-        .button:nth-child(2) {
-            width: 34%;
-            border-left: solid 1px #aaa;
-            border-right: solid 1px #aaa;
-        }
-        .highlight {
-            display: none;
-        }
-        .highlight.active {
-            display: block;
-        }
-        .zone {
-            display: none;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            left: 0;
-        }
-        .zone.active {
-            display: block;
-        }
-        .zone > h1 {
-            position: absolute;
-            padding: 10px 10px;
-            margin: 0;
-            color: white;
-            right: 0;
-            bottom: 0;
-        }
-        .zone.dynamic {
-            background: rgba(0, 0, 255, 0.1);
-        }
-        .zone.semi {
-            background: rgba(255, 255, 255, 0.1);
-        }
-        .zone.static {
-            background: rgba(255, 0, 0, 0.1);
-        }
-    </style>
 </head>
 <body>
-<p>First thing first. A demo. Executed with this configuration : </p>
 <div class="dynamic active highlight highlight-javascript">
-            <pre>
-<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
-<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
-    <span class="pl-k">var</span> dynamic <span class="pl-k">=</span> nipplejs.create({
-        zone: document.getElementById('dynamic'),
-        color: 'blue'
-    });
-<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
 </div>
 <div class="semi highlight highlight-javascript">
-            <pre>
-<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
-<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
-    <span class="pl-k">var</span> semi <span class="pl-k">=</span> nipplejs.create({
-        zone: document.getElementById('semi'),
-        mode: 'semi',
-        catchDistance: 150,
-        color: 'white'
-    });
-<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
 </div>
 <div class="static highlight highlight-javascript">
-            <pre>
-<span class="pl-k">&lt;</span>script src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">"</span>./dist/nipplejs.min.js<span class="pl-pds">"</span></span><span class="pl-k">&gt;&lt;/</span>script<span class="pl-k">&gt;</span>
-<span class="pl-k">&lt;</span>script<span class="pl-k">&gt;</span>
-    <span class="pl-k">var</span> static <span class="pl-k">=</span> nipplejs.create({
-        zone: document.getElementById('static'),
-        mode: 'static',
-        position: {left: '50%', top: '50%'},
-        color: 'red'
-    });
-<span class="pl-k">&lt;/</span>script<span class="pl-k">&gt;</span></pre>
 </div>
-<p>Choose the mode you want to test.</p>
 <div id="buttons">
     <div data-type="dynamic" class="active button dynamic">dynamic</div>
     <div data-type="semi" class="button semi">semi</div>
@@ -142,11 +24,6 @@
     <div id="debug">
         <ul>
             <li class="position">
-                position :
-                <ul>
-                    <li class="x">x : <span class='data'></span></li>
-                    <li class="y">y : <span class='data'></span></li>
-                </ul>
             </li>
             <li class="force">force : <span class='data'></span></li>
             <li class="pressure">pressure : <span class='data'></span></li>
@@ -159,15 +36,8 @@
                 </ul>
             </li>
             <li class="direction">
-                direction :
-                <ul>
-                    <li class="x">x : <span class='data'></span></li>
-                    <li class="y">y : <span class='data'></span></li>
-                    <li class="angle">angle : <span class='data'></span></li>
-                </ul>
             </li>
         </ul>
-        <div class="dump"></div>
     </div>
     <div class="zone dynamic active"><h1>dynamic</h1></div>
     <div class="zone semi"><h1>semi</h1></div>
@@ -265,7 +135,7 @@
         s('.highlight.' + type).className += ' active';
         s('.button.' + type).className += ' active';
         s('.zone.' + type).className += ' active';
-        joystick = nipplejs.create(joysticks[type]);
+        joystick = nipplejs.create(joysticks['dynamic']);
         bindNipple();
     }
 
