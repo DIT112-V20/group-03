@@ -3,10 +3,10 @@
 
 // #include <Smartcar.h>
 
-#include "manager/wifiManager.hpp" // My WiFi configuration.
+#include "manager/WifiManager.hpp" // My WiFi configuration.
 #include "util/HardwareUtil.hpp"
 #include <Wire.h>
-#include "manager/movementManager.hpp"
+#include "manager/MovementManager.hpp"
 
 
 void driveUntilObstacle();
