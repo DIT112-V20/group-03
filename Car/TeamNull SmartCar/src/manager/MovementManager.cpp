@@ -1,4 +1,4 @@
-#include "movementManager.hpp"
+#include "MovementManager.hpp"
 
 int carSpeedSet = 0;
 int carSpeedActual = 0;
@@ -37,4 +37,8 @@ void collisionAvoidance() {
         setSpeed(carSpeedSet);
         carSpeedActual = carSpeedSet;
     }
+}
+
+void obstacleAvoidance() {
+
 }
