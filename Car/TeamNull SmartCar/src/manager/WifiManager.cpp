@@ -1,4 +1,4 @@
-#include "wifiManager.hpp" // ESP32 WiFi include
+#include "WifiManager.hpp" // ESP32 WiFi include
 
 char* WiFiSSID = "";
 char* WiFiPassword = "";

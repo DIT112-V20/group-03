@@ -127,3 +127,19 @@ int getFrontDistance() {
 //   }
 //   // return 10;
 // }
+
+// int getLeftFrontDistance() {
+//   return rearSensor.readRangeContinuousMillimeters();
+//   if(rearSensor.timeoutOccurred()) {
+//     Serial.println("RearSensor TIMEOUT");
+//   }
+//   // return 10;
+// }
+
+// int getRightFrontDistance() {
+//   return rearSensor.readRangeContinuousMillimeters();
+//   if(rearSensor.timeoutOccurred()) {
+//     Serial.println("RearSensor TIMEOUT");
+//   }
+//   // return 10;
+// }
