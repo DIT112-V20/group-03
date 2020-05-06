@@ -24,8 +24,8 @@ void collisionAvoidance() {
     int distanceFromObstacle = 0;
     if(carSpeedSet >= 0) {
         distanceFromObstacle = getFrontDistance();
-    // } else {
-    //     distanceFromObstacle = getRearDistance();
+    } else {
+        distanceFromObstacle = getRearDistance();
     }
     if(distanceFromObstacle < 275 && distanceFromObstacle != 0) {
         setSpeed(0);
