@@ -1,6 +1,6 @@
 package online.quar.application.model;
 
-public class CarControllInput {
+public class CarControlInput {
     private long carId;
     private int carSetSpeed;
     private int carSetAngle;
@@ -8,16 +8,16 @@ public class CarControllInput {
     private int carActualSpeed;
     private int carActualAngle;
 
-    public CarControllInput() {
+    public CarControlInput() {
     }
 
-    public CarControllInput(long carId, int carSetSpeed, int carSetAngle) {
+    public CarControlInput(long carId, int carSetSpeed, int carSetAngle) {
         this.carId = carId;
         this.carSetSpeed = carSetSpeed;
         this.carSetAngle = carSetAngle;
     }
 
-    public CarControllInput(long carId, int carSetSpeed, int carSetAngle, int carActualSpeed, int carActualAngle) {
+    public CarControlInput(long carId, int carSetSpeed, int carSetAngle, int carActualSpeed, int carActualAngle) {
         this.carId = carId;
         this.carSetSpeed = carSetSpeed;
         this.carSetAngle = carSetAngle;
@@ -64,5 +64,15 @@ public class CarControllInput {
     public void setCarActualAngle(int carActualAngle) {
         this.carActualAngle = carActualAngle;
     }
-    
+
+    @Override
+    public String toString() {
+        return "CarControlInput{" +
+                "carId=" + carId +
+                ", carSetSpeed=" + carSetSpeed +
+                ", carSetAngle=" + carSetAngle +
+                ", carActualSpeed=" + carActualSpeed +
+                ", carActualAngle=" + carActualAngle +
+                '}';
+    }
 }
