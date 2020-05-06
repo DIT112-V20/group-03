@@ -120,26 +120,14 @@ int getFrontDistance() {
   // return 10;
 }
 
-// int getRearDistance() {
-//   return rearSensor.readRangeContinuousMillimeters();
-//   if(rearSensor.timeoutOccurred()) {
-//     Serial.println("RearSensor TIMEOUT");
-//   }
-//   // return 10;
-// }
+int getLeftFrontDistance() {
+  return 100;
+}
 
-// int getLeftFrontDistance() {
-//   return rearSensor.readRangeContinuousMillimeters();
-//   if(rearSensor.timeoutOccurred()) {
-//     Serial.println("RearSensor TIMEOUT");
-//   }
-//   // return 10;
-// }
+int getRightFrontDistance() {
+  return 100;
+}
 
-// int getRightFrontDistance() {
-//   return rearSensor.readRangeContinuousMillimeters();
-//   if(rearSensor.timeoutOccurred()) {
-//     Serial.println("RearSensor TIMEOUT");
-//   }
-//   // return 10;
-// }
+int getRearDistance() {
+  return 100;
+}

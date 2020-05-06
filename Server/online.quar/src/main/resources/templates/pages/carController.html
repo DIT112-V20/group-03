@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles/carController.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="styles/carStyles.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="styles/github-light.css" media="screen" title="no title" charset="utf-8">
+<!--    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 </head>
 <body>
 <div class="dynamic active highlight highlight-javascript">
@@ -22,28 +23,32 @@
 </div>
 <div id="zone_joystick">
     <div id="debug">
-        <ul>
-            <li class="position">
-            </li>
-            <li class="force">force : <span class='data'></span></li>
-            <li class="pressure">pressure : <span class='data'></span></li>
-            <li class="distance">distance : <span class='data'></span></li>
-            <li class="angle">
-                angle :
-                <ul>
-                    <li class="radian">radian : <span class='data'></span></li>
-                    <li class="degree">degree : <span class='data'></span></li>
-                </ul>
-            </li>
-            <li class="direction">
-            </li>
-        </ul>
+<!--        <ul>-->
+<!--            <li class="position">-->
+<!--            </li>-->
+<!--            <li class="force">force : <span class='data'></span></li>-->
+<!--            <li class="pressure">pressure : <span class='data'></span></li>-->
+<!--            <li class="distance">distance : <span class='data'></span></li>-->
+<!--            <li class="angle">-->
+<!--                angle :-->
+<!--                <ul>-->
+<!--                    <li class="radian">radian : <span class='data'></span></li>-->
+<!--                    <li class="degree">degree : <span class='data'></span></li>-->
+<!--                </ul>-->
+<!--            </li>-->
+<!--            <li class="direction">-->
+<!--            </li>-->
+<!--        </ul>-->
     </div>
-    <div class="zone dynamic active"><h1>dynamic</h1></div>
+    <div class="zone dynamic active"><h1>Quar.Online</h1></div>
     <div class="zone semi"><h1>semi</h1></div>
     <div class="zone static"><h1>static</h1></div>
 </div>
 <br/>
+
+<script src="/webjars/sockjs-client/sockjs.min.js"></script>
+<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/script/carControlApp.js"></script>
 <script src="/dist/nipplejs.js"></script>
 <script>
     var s = function (sel) { return document.querySelector(sel); };
@@ -56,25 +61,14 @@
             zone: s('.zone.dynamic'),
             color: 'blue',
             multitouch: true
-        },
-        semi: {
-            zone: s('.zone.semi'),
-            mode: 'semi',
-            catchDistance: 150,
-            color: 'white'
-        },
-        static: {
-            zone: s('.zone.static'),
-            mode: 'static',
-            position: {left: '50%', top: '50%'},
-            color: 'red'
         }
     };
     var joystick;
+    var carControlApp;
 
     // Get debug elements and map them
     var elDebug = sId('debug');
-    var elDump = elDebug.querySelector('.dump');
+    // var elDump = elDebug.querySelector('.dump');
     var els = {
         position: {
             x: elDebug.querySelector('.position .x .data'),
@@ -107,11 +101,16 @@
     createNipple('dynamic');
 
     function bindNipple () {
-        joystick.on('start end', function (evt, data) {
+        joystick.on('start', function (evt, data) {
             dump(evt.type);
             debug(data);
+        }).on('end', function (evt, data) {
+            dump(evt.type);
+            debug(data);
+            sendJoystickInput(null);
         }).on('move', function (evt, data) {
             debug(data);
+            sendJoystickInput(data);
         }).on('dir:up plain:up dir:left plain:left dir:down ' +
             'plain:down dir:right plain:right',
             function (evt, data) {
@@ -119,6 +118,10 @@
             }
         ).on('pressure', function (evt, data) {
             debug({pressure: data});
+        // }).on('end', function (evt, data) {
+        //     sendJoystickInput(null)
+        // }).on('move', function (evt, data) {
+        //     sendJoystickInput(data);
         });
     }
 
@@ -136,6 +139,7 @@
         s('.button.' + type).className += ' active';
         s('.zone.' + type).className += ' active';
         joystick = nipplejs.create(joysticks['dynamic']);
+        connect();
         bindNipple();
     }
 
@@ -157,19 +161,19 @@
 
     var nbEvents = 0;
 
-    // Dump data
-    function dump (evt) {
-        setTimeout(function () {
-            if (elDump.children.length > 4) {
-                elDump.removeChild(elDump.firstChild);
-            }
-            var newEvent = document.createElement('div');
-            newEvent.innerHTML = '#' + nbEvents + ' : <span class="data">' +
-                evt + '</span>';
-            elDump.appendChild(newEvent);
-            nbEvents += 1;
-        }, 0);
-    }
+    // // Dump data
+    // function dump (evt) {
+    //     setTimeout(function () {
+    //         if (elDump.children.length > 4) {
+    //             elDump.removeChild(elDump.firstChild);
+    //         }
+    //         var newEvent = document.createElement('div');
+    //         newEvent.innerHTML = '#' + nbEvents + ' : <span class="data">' +
+    //             evt + '</span>';
+    //         elDump.appendChild(newEvent);
+    //         nbEvents += 1;
+    //     }, 0);
+    // }
 </script>
 </body>
 </html>
