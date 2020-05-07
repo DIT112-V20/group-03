@@ -4,8 +4,8 @@
 char* WiFiSSID = "TheMancave";
 char* WiFiPassword = "tagedirtybumpaberra";
 
-char path[] = "/";
-char host[] = "echo.websocket.org";
+char path[] = "/carClient";
+char host[] = "quar.online";
   
 WebSocketClient webSocketClient;
 
@@ -34,7 +34,8 @@ void connectToWiFi() {
     Serial.println(WiFi.localIP());
 
      // Connect to the websocket server
-  if (client.connect("echo.websocket.org", 80)) {
+     // TODO: change this port to 80
+  if (client.connect("quar.online", 8080)) {
     Serial.println("Connected");
   } else {
     Serial.println("Connection failed.");
@@ -80,7 +81,7 @@ void getInstructionsFromServer() {
     // pinMode(1, INPUT);
     // data = String(analogRead(1));
 
-    data = "Hi there!";
+    data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":10,\"carActualAngle\":70}";
     
     webSocketClient.sendData(data);
     
