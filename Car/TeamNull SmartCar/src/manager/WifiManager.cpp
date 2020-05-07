@@ -63,3 +63,36 @@ void connectToWiFi(char* SSID, char* password) {
     WiFiPassword = password;
     connectToWiFi();
 }
+
+void getInstructionsFromServer() {
+
+    String data;
+
+  if (client.connected()) {
+    
+    webSocketClient.getData(data);
+    if (data.length() > 0) {
+      Serial.print("Received data: ");
+      Serial.println(data);
+    }
+    
+    // capture the value of analog 1, send it along
+    // pinMode(1, INPUT);
+    // data = String(analogRead(1));
+
+    data = "Hi there!";
+    
+    webSocketClient.sendData(data);
+    
+  } else {
+    Serial.println("Client disconnected.");
+    //TODO: Car should stop driving until re-connected to server
+    connectToWiFi();
+    // while (1) {
+    //   // Hang on disconnect.
+    // }
+  }
+  
+  // wait to fully let the client disconnect
+ // delay(3000);
+}
