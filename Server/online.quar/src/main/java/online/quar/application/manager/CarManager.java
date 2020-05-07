@@ -76,5 +76,30 @@ public class CarManager {
     }
 
 
+    public CarControlInput processCarClientControlRequest(CarControlInput carClientControlRequest) {
 
+        log.d(carClientControlRequest.toString());
+
+        Car car = findCar(carClientControlRequest.getCarId());
+
+        if(car == null) {
+            return null;
+        }
+
+        if(!car.isOnline()) {
+            car.setOnline(true);
+        }
+
+        carClientControlRequest.setCarSetSpeed(car.getSetSpeed());
+        carClientControlRequest.setCarSetAngle(car.getSetAngle());
+
+        car.setActualSpeed(carClientControlRequest.getCarActualSpeed());
+        car.setActualAngle(carClientControlRequest.getCarActualAngle());
+
+        log.d(car.toString());
+        log.d(carClientControlRequest.toString());
+
+        return carClientControlRequest;
+
+    }
 }
