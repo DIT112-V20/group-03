@@ -21,7 +21,7 @@ public class RestfulController {
 //        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
 //    }
 
-    @PostMapping(path= "/", consumes = "application/json", produces = "application/json")
+    @PostMapping(path= "/carClient", consumes = "application/json", produces = "application/json")
     public String addEmployee(
 //            @RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
 //            @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
