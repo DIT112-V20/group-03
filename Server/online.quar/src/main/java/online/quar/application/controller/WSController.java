@@ -30,10 +30,10 @@ public class WSController {
         return applicationManager.getCarManager().processCarControlInput(carControlInput);
     }
 
-    @MessageMapping("/carClient")
-    @SendTo("/topic/carClient")
-    public CarControlInput carClientOutput(CarControlInput carClientControlRequest) throws Exception {
-        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
-    }
+//    @MessageMapping("/carClient")
+//    @SendTo("/topic/carClient")
+//    public CarControlInput carClientOutput(CarControlInput carClientControlRequest) throws Exception {
+//        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
+//    }
 
 }
