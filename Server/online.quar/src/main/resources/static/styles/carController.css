@@ -9,7 +9,8 @@ body {
 
 #buttons {
     position: relative;
-    border: solid 1px #aaa;
+    /*border: solid 1px #aaa;*/
+    border: none !important;
     display: inline-block;
     width: 100%;
     border-radius: 10px;
@@ -20,7 +21,7 @@ body {
 }
 
 .button {
-    display: inline-block;
+    /*display: inline-block;
     background: #ccc;
     color: black;
     height: 50px;
@@ -36,20 +37,40 @@ body {
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;*/
+    display: inline-block;
+    border: none !important;
+    font-size: 0;
+    background: transparent;
+    height: 50px;
+    width: 33%;
+    margin: 0;
+    margin-right: -3px;
+    text-align: center;
+    line-height: 45px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
 .button:hover {
-    background: #eee;
+    /*background: #eee;*/
+    background: transparent;
 }
 
 .button:active {
-    background: #ddd;
+    /*background: #ddd;*/
+    background: transparent;
 }
 
 .button.active {
-    color: white;
-    background: #888;
+    /*color: white;
+    background: #888;*/
+    background: transparent;
 }
 
 .button:nth-child(2) {
@@ -73,6 +94,7 @@ body {
     height: 100%;
     left: 0;
 }
+
 
 .zone.active {
     display: block;
