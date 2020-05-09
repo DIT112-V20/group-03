@@ -54,4 +54,4 @@ which the car can reach, so long as it has a WiFi connection.
 - Filip Lewenhagen
 - Leith Hobson
 - Martin Esfahani
-- Max Remmiz
+- Max Zimmer
