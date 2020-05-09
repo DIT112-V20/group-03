@@ -41,10 +41,12 @@ public class UserManager {
 
         //User was not found in memory, check database
         DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
-        User ret = databaseManager.getUser(userId, true);
+        User user = databaseManager.getUser(userId, true);
+
+        users.add(user);
 
         //If the user is not found in the database, null will be returned
-        return ret;
+        return user;
     }
 
 

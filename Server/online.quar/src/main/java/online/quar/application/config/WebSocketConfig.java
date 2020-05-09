@@ -20,6 +20,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/test-websocket").withSockJS();
         registry.addEndpoint("/carWebControl").withSockJS();
+        registry.addEndpoint("/carClient").withSockJS();
     }
 
 }

@@ -1,7 +1,16 @@
 #include "WifiManager.hpp" // ESP32 WiFi include
+#include "util/WebSocketClient.h"
 
-char* WiFiSSID = "";
-char* WiFiPassword = "";
+char* WiFiSSID = "TheMancave";
+char* WiFiPassword = "tagedirtybumpaberra";
+
+char path[] = "/";
+char host[] = "echo.websocket.org";
+  
+WebSocketClient webSocketClient;
+
+// Use WiFiClient class to create TCP connections
+WiFiClient client;
 
 void connectToWiFi() {
 
@@ -23,6 +32,29 @@ void connectToWiFi() {
 
     Serial.print(F("Connected to the WiFi network. My IP address is: "));
     Serial.println(WiFi.localIP());
+
+     // Connect to the websocket server
+  if (client.connect("echo.websocket.org", 80)) {
+    Serial.println("Connected");
+  } else {
+    Serial.println("Connection failed.");
+    
+    // while(1) {
+    //   // Hang on failure
+    // }
+  }
+
+  // Handshake with the server
+  webSocketClient.path = path;
+  webSocketClient.host = host;
+  if (webSocketClient.handshake(client)) {
+    Serial.println("Handshake successful");
+  } else {
+    Serial.println("Handshake failed.");
+   // while(1) {
+      // Hang on failure
+   // }  
+  }
 }
 
 void connectToWiFi(char* SSID, char* password) {
@@ -30,4 +62,37 @@ void connectToWiFi(char* SSID, char* password) {
     WiFiSSID = SSID;
     WiFiPassword = password;
     connectToWiFi();
+}
+
+void getInstructionsFromServer() {
+
+    String data;
+
+  if (client.connected()) {
+    
+    webSocketClient.getData(data);
+    if (data.length() > 0) {
+      Serial.print("Received data: ");
+      Serial.println(data);
+    }
+    
+    // capture the value of analog 1, send it along
+    // pinMode(1, INPUT);
+    // data = String(analogRead(1));
+
+    data = "Hi there!";
+    
+    webSocketClient.sendData(data);
+    
+  } else {
+    Serial.println("Client disconnected.");
+    //TODO: Car should stop driving until re-connected to server
+    connectToWiFi();
+    // while (1) {
+    //   // Hang on disconnect.
+    // }
+  }
+  
+  // wait to fully let the client disconnect
+ // delay(3000);
 }

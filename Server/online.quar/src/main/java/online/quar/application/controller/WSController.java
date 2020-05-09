@@ -21,16 +21,19 @@ public class WSController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Greeting greeting(HelloMessage message) throws Exception {
-//        Thread.sleep(1000); // simulated delay
         return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
     }
 
     @MessageMapping("/carControl")
     @SendTo("/topic/car")
     public CarControlInput carControlInput(CarControlInput carControlInput) throws Exception {
-
         return applicationManager.getCarManager().processCarControlInput(carControlInput);
+    }
 
+    @MessageMapping("/carClient")
+    @SendTo("/topic/carClient")
+    public CarControlInput carClientOutput(CarControlInput carClientControlRequest) throws Exception {
+        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
     }
 
 }
