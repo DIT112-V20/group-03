@@ -63,7 +63,17 @@ function sendJoystickInput(data) {
     if(data != null) {
         carId = 1;
         carSetAngle = data.angle.degree > 270? ( - data.angle.degree + 450) : (- data.angle.degree + 90);
+
         carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? data.distance * 2 : -(data.distance * 2);
+
+        if(carSetSpeed <= 0){
+            if(carSetAngle <= 0) {
+                carSetAngle += 180;
+            } else {
+                carSetAngle -= 180;
+            }
+        }
+        console.log("carSetAngle: " + carSetAngle);
     }
 
     stompClient.send("/app/carControl", {}, JSON.stringify({'carId': carId, 'carSetSpeed': carSetSpeed, 'carSetAngle': carSetAngle}));

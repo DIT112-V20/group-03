@@ -26,7 +26,6 @@ public class RestfulController {
         CarControlInput carClientRequest = new CarControlInput(carId, 0, 0, carActualSpeed, carActualAngle);
         carClientRequest = applicationManager.getCarManager().processCarClientControlRequest(carClientRequest);
         return carClientRequest.toString();
-
     }
 
 }
