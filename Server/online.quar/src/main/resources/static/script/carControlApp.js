@@ -68,9 +68,9 @@ function sendJoystickInput(data) {
 
         if(carSetSpeed <= 0){
             if(carSetAngle <= 0) {
-                carSetAngle += 180;
+                carSetAngle = - (carSetAngle + 180);
             } else {
-                carSetAngle -= 180;
+                carSetAngle = - (carSetAngle - 180);
             }
         }
         console.log("carSetAngle: " + carSetAngle);
