@@ -21,17 +21,16 @@ public class RestfulController {
 //        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
 //    }
 
-    @PostMapping(path= "/carClient", consumes = "application/json", produces = "application/json")
+    @RequestMapping(path= "/carClient", method = RequestMethod.GET)
     public String addEmployee(
-//            @RequestHeader(name = "X-COM-PERSIST", required = true) String headerPersist,
-//            @RequestHeader(name = "X-COM-LOCATION", required = false, defaultValue = "ASIA") String headerLocation,
             @RequestBody CarControlInput carClientControlRequest)
                  throws Exception {
 
-        carClientControlRequest = applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
-
-        //Send location in response
-        return carClientControlRequest.toString();
-    }
+//        carClientControlRequest = applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
+//
+//        //Send location in response
+//        return carClientControlRequest.toString();
+        return "Hello World :)";
+        }
 
 }
