@@ -1,8 +1,11 @@
 #include "WifiManager.hpp" // ESP32 WiFi include
 #include <HTTPClient.h>
+#include "manager/MovementManager.hpp"
 
 char* WiFiSSID = "TheMancave";
 char* WiFiPassword = "tagedirtybumpaberra";
+
+HTTPClient http;
 
 // // char path[] = "/carClient";
 // // char host[] = "leith.quar.online";
@@ -75,8 +78,6 @@ const char* root_ca= \
 // "GDeAU/7dIOA1mjbRxwG55tzd8/8dLDoWV9mSOdY=\n" \
 // "-----END CERTIFICATE-----\n";
 
-HTTPClient http;
-
 void connectToWiFi() {
 
     //WiFi.mode(WIFI_STA);
@@ -98,7 +99,7 @@ void connectToWiFi() {
     Serial.print(F("Connected to the WiFi network. My IP address is: "));
     Serial.println(WiFi.localIP());
 
-    http.begin("https://quar.online:8443/controllerTest", root_ca); //Specify the URL and certificate
+    // http.begin("https://quar.online:8443/carClient?json=", root_ca); //Specify the URL and certificate
 
 }
 
@@ -112,12 +113,17 @@ void connectToWiFi(char* SSID, char* password) {
 void getInstructionsFromServer() {
 
     String data;
-    data = "{\\\"carId\\\":1,\\\"carSetSpeed\\\":-100,\\\"carSetAngle\\\":168.8400561349672,\\\"carActualSpeed\\\":-100,\\\"carActualAngle\\\":168.8400561349672}";
+    data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
+    
 
 
   if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
- 
-    int httpCode = http.GET();                                                  //Make the request
+    // String url = "https://quar.online:8443/carClient?json=" + data;
+    // String url = "https://quar.online:8443/carClient?json={\\\"carId\\\":1,\\\"carSetSpeed\\\":0,\\\"carSetAngle\\\":0,\\\"carActualSpeed\\\":45,\\\"carActualAngle\\\":168}";
+    String url = "https://quar.online:8443/carClient?" + getActualCarStatus();//carId=1&carActualSpeed=20&carActualAngle=10";
+    http.begin(url, root_ca);
+    int httpCode = http.GET();  //Make the request
+    // int httpCode = http.POST(data);  //Make the request
  
     if (httpCode > 0) { //Check for the returning code
  
@@ -130,9 +136,9 @@ void getInstructionsFromServer() {
       Serial.println("Error on HTTP request");
     }
  
-    // http.end(); //Free the resources
+    http.end(); //Free the resources
   }
  
-  // delay(10000);
+  delay(300);
 }
 
