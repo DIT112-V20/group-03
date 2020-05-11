@@ -210,7 +210,6 @@ public class DatabaseManager {
                     user = new User(r.getLong("id"), r.getString("username"), r.getBytes("password"), r.getString("fullname"), r.getBoolean("active"));
                 }
             }
-            connection.commit();
             statement.close();
             connection.close();
         } catch (SQLException e) {
