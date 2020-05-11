@@ -34,4 +34,5 @@ void loop() {
     // Serial.print("Rear Distance: ");
     // Serial.println(getRearDistance());
     // sleep(1);
+    getInstructionsFromServer();
 }
