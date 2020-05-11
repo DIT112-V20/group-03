@@ -17,8 +17,6 @@ public class CarControlInput {
         this.carSetAngle = carSetAngle;
     }
 
-
-
     public CarControlInput(long carId, int carSetSpeed, int carSetAngle, int carActualSpeed, int carActualAngle) {
         this.carId = carId;
         this.carSetSpeed = carSetSpeed;

@@ -106,7 +106,6 @@ void connectToWiFi() {
     String url = "https://quar.online:8443/carClient?" + getActualCarStatus();//carId=1&carActualSpeed=20&carActualAngle=10";
     http.begin(url, root_ca);
 
-
 }
 
 void connectToWiFi(char* SSID, char* password) {
@@ -120,8 +119,6 @@ void getInstructionsFromServer() {
 
     // String data;
     // data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
-    
-
 
   if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
     String url = "https://quar.online:8443/carClient?" + getActualCarStatus();//carId=1&carActualSpeed=20&carActualAngle=10";
@@ -183,6 +180,7 @@ void getInstructionsFromServer() {
           // Serial.println(setSpeed);
           // Serial.print("setAngle: ");
           // Serial.println(setAngle);
+
   } else {
       Serial.println("Error on HTTP request");
       ESP.restart();
