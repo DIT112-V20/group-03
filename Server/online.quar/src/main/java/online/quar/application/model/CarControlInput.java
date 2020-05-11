@@ -75,4 +75,13 @@ public class CarControlInput {
                 ", carActualAngle=" + carActualAngle +
                 '}';
     }
+    public String toJSON() {
+        return "{" +
+                 "\"id\":" + carId +
+                ",\"setSpeed\":" + carSetSpeed +
+                ",\"setAngle\":" + carSetAngle +
+                ",\"actualSpeed\":" + carActualSpeed +
+                ",\"actualAngle\":" + carActualAngle +
+                '}';
+    }
 }

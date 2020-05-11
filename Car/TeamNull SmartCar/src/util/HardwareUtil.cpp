@@ -129,5 +129,5 @@ int getRightFrontDistance() {
 }
 
 int getRearDistance() {
-  return 100;
+  return 300;
 }

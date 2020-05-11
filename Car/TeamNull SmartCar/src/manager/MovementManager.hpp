@@ -6,5 +6,9 @@
 void setDesiredVehicleSpeed (int speed);
 void setDesireTurnAngle (int heading);
 void collisionAvoidance();
+int getActualCarSpeed();
+int getActualCarAngle();
+String getActualCarStatus();
+
 
 #endif // movementManager_H_

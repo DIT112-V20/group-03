@@ -1,6 +1,6 @@
 package online.quar.application;
 
-import online.quar.application.controller.TestController;
+import online.quar.application.controller.TestRestfulController;
 import online.quar.application.model.TestCar;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -9,7 +9,7 @@ import org.junit.runners.Suite;
 
 @Suite.SuiteClasses({
         TestCar.class,
-        TestController.class
+        TestRestfulController.class
 //        TestJunit2.class
 })
 
