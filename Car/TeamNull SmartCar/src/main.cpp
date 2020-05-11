@@ -9,7 +9,7 @@ void setup() {
     Wire.begin();
     pinMode(LED_BUILTIN, OUTPUT);
 
-    blink(2);
+    blink(1);
 
     initialiseSensors();
 
@@ -18,7 +18,7 @@ void setup() {
     char* WiFiSSID = "TheMancave";
     char* WiFiPassword = "tagedirtybumpaberra";
     connectToWiFi(WiFiSSID, WiFiPassword);
-    blink(3);
+    blink(1);
 
     Serial.println("Returned from connectToWiFi");
 
@@ -28,9 +28,11 @@ void setup() {
 }
 
 void loop() {
-    // collisionAvoidance();
+    collisionAvoidance();
 
-    Serial.println("loop");
+    // delay(1000);
+
+    // Serial.println("loop");
 
     getInstructionsFromServer();
 }
