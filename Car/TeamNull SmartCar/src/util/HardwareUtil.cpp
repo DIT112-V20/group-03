@@ -9,9 +9,18 @@ VL53L0X frontSensor;
 const int frontSensorPin = 33;
 const int rearSensorPin = 32;
 
+const int FR_TRIGGER_PIN = 19;
+const int FR_ECHO_PIN = 23;
+const int FL_TRIGGER_PIN = 5;
+const int FL_ECHO_PIN = 18;
+const unsigned int MAX_DISTANCE = 300;
+
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
 DifferentialControl control(leftMotor, rightMotor);
+
+SR04 frontRight(FR_TRIGGER_PIN, FR_ECHO_PIN, MAX_DISTANCE);
+SR04 frontLeft(FL_TRIGGER_PIN, FL_ECHO_PIN, MAX_DISTANCE);
 
 SimpleCar car(control);
 
@@ -103,6 +112,10 @@ void initialiseSensors() {
   // }
   // rearSensor.setAddress((uint8_t)02);
 
+  SR04 frontRight(FR_TRIGGER_PIN, FR_ECHO_PIN, MAX_DISTANCE);
+  SR04 frontLeft(FL_TRIGGER_PIN, FL_ECHO_PIN, MAX_DISTANCE);
+
+
   frontSensor.startContinuous();
   Serial.print("Front distance: ");
   Serial.println(frontSensor.readRangeContinuousMillimeters());
@@ -121,11 +134,11 @@ int getFrontDistance() {
 }
 
 int getLeftFrontDistance() {
-  return 100;
+  return frontLeft.getMedianDistance(3);
 }
 
 int getRightFrontDistance() {
-  return 100;
+  return frontRight.getMedianDistance(3);
 }
 
 int getRearDistance() {

@@ -28,9 +28,18 @@ void setup() {
 }
 
 void loop() {
-    collisionAvoidance();
+    // collisionAvoidance();
 
-    // delay(1000);
+    Serial.print("Front: ");
+    Serial.print(getFrontDistance());
+    Serial.print(" FL: ");
+    Serial.print(getLeftFrontDistance());
+    Serial.print(" FR: ");
+    Serial.print(getRightFrontDistance());
+    Serial.print(" Rear: ");
+    Serial.println(getRearDistance());
+
+    delay(1000);
 
     // Serial.println("loop");
 
