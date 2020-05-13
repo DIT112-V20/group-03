@@ -144,7 +144,7 @@ void getInstructionsFromServer() {
         
         // char json[] = "{\"id\":1,\"setSpeed\":15,\"setAngle\":15,\"actualSpeed\":20,\"actualAngle\":10}";
 
-        // Serial.println(json);
+        Serial.println(json);
         
         // Deserialize the JSON document
         DeserializationError error = deserializeJson(doc, json);

@@ -27,7 +27,7 @@ void collisionAvoidance() {
     } else {
         distanceFromObstacle = getRearDistance();
     }
-    if(distanceFromObstacle < 275 && distanceFromObstacle != 0) {
+    if(distanceFromObstacle < 300 && distanceFromObstacle != 0) {
         setSpeed(0);
         carSpeedActual = 0;
         Serial.print("COLLISION AVOIDANCE: distance from obstacle: ");

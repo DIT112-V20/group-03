@@ -4,7 +4,7 @@
 unsigned long BLINK_INTERVAL = 200;
 
 VL53L0X frontSensor;
-// VL53L0X rearSensor;
+VL53L0X rearSensor;
 
 const int frontSensorPin = 33;
 const int rearSensorPin = 32;
@@ -57,6 +57,10 @@ void blink(int toBlink, unsigned long blinkDuration) {
 
 void initialiseSensors() {
 
+  setSpeed(0);
+  setAngle(0);
+
+  //Gyro pre-calibrated
   // GY50 gyro(0); // Provide the gyroscope with a random offset
   // Serial.println("Calibrating gyroscope, this might take some seconds");
   // int offset = gyro.getOffset();
@@ -67,49 +71,49 @@ void initialiseSensors() {
   // Serial.println("); or another similar value that works better according to your experimentation.");
   GY50 gyro(12);
 
-  // pinMode(rearSensorPin, OUTPUT);
-  // pinMode(frontSensorPin, OUTPUT);
-  // digitalWrite(rearSensorPin, LOW);
-  // digitalWrite(frontSensorPin, LOW);
+  pinMode(rearSensorPin, OUTPUT);
+  pinMode(frontSensorPin, OUTPUT);
+  digitalWrite(rearSensorPin, LOW);
+  digitalWrite(frontSensorPin, LOW);
 
-  // delay(1000);
+  delay(1000);
 
-  // //Set front sensor address
-  // // digitalWrite(frontSensorPin, HIGH);
-  // pinMode(frontSensorPin, INPUT);
-  // delay(150);
+  //Set front sensor address
+  // digitalWrite(frontSensorPin, HIGH);
+  pinMode(frontSensorPin, INPUT);
+  delay(150);
   // Serial.println("00");
   frontSensor.setTimeout(500);
   while (!frontSensor.init()) {
     Serial.println("Failed to initialise FRONT sensor");
     blink(2);
-    // car.set
-    // pinMode(frontSensorPin, OUTPUT);
-    // digitalWrite(frontSensorPin, LOW);
 
-    // delay(1500);
-    // pinMode(frontSensorPin, INPUT);
+    pinMode(frontSensorPin, OUTPUT);
+    digitalWrite(frontSensorPin, LOW);
+
+    delay(1500);
+    pinMode(frontSensorPin, INPUT);
   }
 
   delay(100);
-  // frontSensor.setAddress((uint8_t)01);
-
-  //Set rear sensor address
+  frontSensor.setAddress((uint8_t)01);
+  
   // Serial.println("01");
+  //Set rear sensor address
   // digitalWrite(rearSensorPin, HIGH);
   pinMode(rearSensorPin, INPUT);
   delay(150);
   // rearSensor.setTimeout(500);
   // // rearSensor.setAddress((uint8_t)01);
-  // while (!rearSensor.init()) {
-  //   Serial.println("Failed to initialise REAR sensor");
-  //   blink(2);
-  //   pinMode(frontSensorPin, OUTPUT);
-  //   digitalWrite(frontSensorPin, LOW);
+  while (!rearSensor.init()) {
+    Serial.println("Failed to initialise REAR sensor");
+    blink(2);
+    pinMode(rearSensorPin, OUTPUT);
+    digitalWrite(rearSensorPin, LOW);
 
-  //   delay(1500);
-  //   pinMode(frontSensorPin, INPUT);
-  // }
+    delay(1500);
+    pinMode(rearSensorPin, INPUT);
+  }
   // rearSensor.setAddress((uint8_t)02);
 
   SR04 frontRight(FR_TRIGGER_PIN, FR_ECHO_PIN, MAX_DISTANCE);
@@ -120,9 +124,9 @@ void initialiseSensors() {
   Serial.print("Front distance: ");
   Serial.println(frontSensor.readRangeContinuousMillimeters());
 
-  // rearSensor.startContinuous();
-  // Serial.print("Rear distance: ");
-  // Serial.println(rearSensor.readRangeContinuousMillimeters());
+  rearSensor.startContinuous();
+  Serial.print("Rear distance: ");
+  Serial.println(rearSensor.readRangeContinuousMillimeters());
 }
 
 int getFrontDistance() {
@@ -134,13 +138,16 @@ int getFrontDistance() {
 }
 
 int getLeftFrontDistance() {
-  return frontLeft.getMedianDistance(3);
+  return frontLeft.getMedianDistance(2);
 }
 
 int getRightFrontDistance() {
-  return frontRight.getMedianDistance(3);
+  return frontRight.getMedianDistance(2);
 }
 
 int getRearDistance() {
-  return 300;
+  return rearSensor.readRangeContinuousMillimeters();
+  if(rearSensor.timeoutOccurred()) {
+    Serial.println("RearSensor TIMEOUT");
+  }
 }
