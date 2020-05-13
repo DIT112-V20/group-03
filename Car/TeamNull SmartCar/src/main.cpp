@@ -5,7 +5,7 @@ unsigned long loadTime = 0;
 void setup() {
 
     // Open Serial Connection
-    Serial.begin(9600);
+    Serial.begin(115200);
     Wire.begin();
     pinMode(LED_BUILTIN, OUTPUT);
 

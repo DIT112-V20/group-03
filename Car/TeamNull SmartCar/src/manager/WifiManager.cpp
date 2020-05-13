@@ -138,7 +138,7 @@ void getInstructionsFromServer() {
         StaticJsonDocument<200> doc;
         String payload = http.getString();
 
-        Serial.println("payload: " + payload);
+        // Serial.println("payload: " + payload);
 
         char json[payload.length() + 1];
 
@@ -147,7 +147,7 @@ void getInstructionsFromServer() {
         
         // char json[] = "{\"id\":1,\"setSpeed\":15,\"setAngle\":15,\"actualSpeed\":20,\"actualAngle\":10}";
 
-        Serial.println(json);
+        // Serial.println(json);
         
         // Deserialize the JSON document
         DeserializationError error = deserializeJson(doc, json);
