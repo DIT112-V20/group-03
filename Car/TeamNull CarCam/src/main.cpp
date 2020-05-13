@@ -27,6 +27,7 @@
 //Replace with your network credentials
 char* WiFiSSID = "TheMancave";
 char* WiFiPassword = "tagedirtybumpaberra";
+#define SERVER_SET_PORT       88
 
 #define PART_BOUNDARY "123456789000000000000987654321"
 
@@ -118,7 +119,8 @@ static esp_err_t stream_handler(httpd_req_t *req){
 
 void startCameraServer(){
   httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.server_port = 80;
+  // config.server_port = 80;
+  config.server_port = SERVER_SET_PORT;
 
   httpd_uri_t index_uri = {
     .uri       = "/",
@@ -127,7 +129,7 @@ void startCameraServer(){
     .user_ctx  = NULL
   };
   
-  //Serial.printf("Starting web server on port: '%d'\n", config.server_port);
+  Serial.printf("Starting web server on port: '%d'\n", config.server_port);
   if (httpd_start(&stream_httpd, &config) == ESP_OK) {
     httpd_register_uri_handler(stream_httpd, &index_uri);
   }
@@ -160,17 +162,16 @@ void setup() {
   config.pin_pwdn = PWDN_GPIO_NUM;
   config.pin_reset = RESET_GPIO_NUM;
   config.xclk_freq_hz = 20000000;
-  // config.pixel_format = PIXFORMAT_JPEG; 
   config.pixel_format = PIXFORMAT_JPEG; 
   
   //Set stream quality
   if(psramFound()){
   //  config.frame_size = FRAMESIZE_UXGA;
-    config.frame_size = FRAMESIZE_XGA;
+    config.frame_size = FRAMESIZE_SVGA;
     config.jpeg_quality = 10;
     config.fb_count = 2;
   } else {
-    config.frame_size = FRAMESIZE_XGA;
+    config.frame_size = FRAMESIZE_SVGA;
     config.jpeg_quality = 12;
     config.fb_count = 1;
   }
@@ -184,7 +185,7 @@ void setup() {
 
     //drop down frame size for higher initial frame rate
   sensor_t * s = esp_camera_sensor_get();
-  s->set_framesize(s, FRAMESIZE_XGA);
+  s->set_framesize(s, FRAMESIZE_SVGA);
   s->set_vflip(s, 1);
   s->set_hmirror(s, 1);
 
@@ -204,6 +205,8 @@ void setup() {
     Serial.println("WiFi connected");
     Serial.print("Camera Stream Ready! Go to: http://");
     Serial.print(WiFi.localIP());
+    Serial.print(":");
+    Serial.print(SERVER_SET_PORT);
     Serial.println("' to connect");
   } else {
     Serial.println("");
