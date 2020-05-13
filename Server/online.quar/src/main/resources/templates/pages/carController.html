@@ -11,28 +11,31 @@
 </head>
 <body>
 
-<div id="zone_joystick">
-    <div id="debug">
-<!--        <ul>-->
-<!--            <li class="position">-->
-<!--            </li>-->
-<!--            <li class="force">force : <span class='data'></span></li>-->
-<!--            <li class="pressure">pressure : <span class='data'></span></li>-->
-<!--            <li class="distance">distance : <span class='data'></span></li>-->
-<!--            <li class="angle">-->
-<!--                angle :-->
-<!--                <ul>-->
-<!--                    <li class="radian">radian : <span class='data'></span></li>-->
-<!--                    <li class="degree">degree : <span class='data'></span></li>-->
-<!--                </ul>-->
-<!--            </li>-->
-<!--            <li class="direction">-->
-<!--            </li>-->
-<!--        </ul>-->
+<div data-gr-c-s-loaded="true">
+<!--    <img src="http://hobson.ros.sgsnet.se:88/" alt="http://hobson.ros.sgsnet.se:88/">-->
+    <div id="zone_joystick" style="background-image: url('http://hobson.ros.sgsnet.se:88/'); background-repeat: no-repeat; background-size: cover">
+        <div id="debug">
+    <!--        <ul>-->
+    <!--            <li class="position">-->
+    <!--            </li>-->
+    <!--            <li class="force">force : <span class='data'></span></li>-->
+    <!--            <li class="pressure">pressure : <span class='data'></span></li>-->
+    <!--            <li class="distance">distance : <span class='data'></span></li>-->
+    <!--            <li class="angle">-->
+    <!--                angle :-->
+    <!--                <ul>-->
+    <!--                    <li class="radian">radian : <span class='data'></span></li>-->
+    <!--                    <li class="degree">degree : <span class='data'></span></li>-->
+    <!--                </ul>-->
+    <!--            </li>-->
+    <!--            <li class="direction">-->
+    <!--            </li>-->
+    <!--        </ul>-->
+        </div>
+        <div class="zone dynamic active"><h1>Quar.Online</h1></div>
+        <div class="zone semi"><h1>Quar.Online</h1></div>
+        <div class="zone static"><h1>Quar.Online</h1></div>
     </div>
-    <div class="zone dynamic active"><h1>Quar.Online</h1></div>
-    <div class="zone semi"><h1>Quar.Online</h1></div>
-    <div class="zone static"><h1>Quar.Online</h1></div>
 </div>
 <div class="dynamic active highlight highlight-javascript">
 </div>
@@ -49,6 +52,7 @@
 
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
 <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+<script src="/script/joystick.js"></script>
 <script src="/script/carControlApp.js"></script>
 <script src="/dist/nipplejs.js"></script>
 <script>
@@ -108,6 +112,9 @@
         }).on('end', function (evt, data) {
             dump(evt.type);
             debug(data);
+            sendJoystickInput(null);
+            //Sometimes these messages seem to get lost =D
+            sendJoystickInput(null);
             sendJoystickInput(null);
         }).on('move', function (evt, data) {
             debug(data);

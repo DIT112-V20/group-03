@@ -102,23 +102,4 @@ public class CarManager {
         return carClientControlRequest;
     }
 
-    public CarControlInput processCarControlInput(CarControlInput controlInput) {
-//        Car car = findCar(controlInput.getCarId());
-//
-//        if(car == null || !car.isOnline()) {
-//            return null;
-//        }
-//
-//        car.setSetSpeed(controlInput.getCarSetSpeed());
-//        car.setSetAngle(controlInput.getCarSetAngle());
-//
-//        controlInput.setCarActualSpeed(car.getActualSpeed());
-//        controlInput.setCarActualAngle(car.getActualAngle());
-
-        log.d(controlInput.toString());
-
-        return controlInput;
-    }
-
-
 }
