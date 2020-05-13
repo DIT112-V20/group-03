@@ -24,12 +24,49 @@ SR04 frontLeft(FL_TRIGGER_PIN, FL_ECHO_PIN, MAX_DISTANCE);
 
 SimpleCar car(control);
 
+// //To find pulses per meter...
+// #include <Smartcar.h>
+// const unsigned short odometerPin   = 2;
+// const unsigned long pulsesPerMeter = 100;
+// DirectionlessOdometer odometer(
+//     odometerPin, []() { odometer.update(); }, pulsesPerMeter);
+// void setup()
+// {
+//     Serial.begin(9600);
+// }
+// void loop()
+// {
+//     // Manually roll the vehicle for one meter
+//     // and note down the printed out value. That is the
+//     // correct pulses:centimeters ratio for your odometer
+//     // that you should use when initializing the odometer
+//     // in its constructor
+//     Serial.println(odometer.getDistance());
+//     delay(100);
+// }
+
+const unsigned long LEFT_PULSES_PER_METER  = 600;
+const unsigned long RIGHT_PULSES_PER_METER = 740;
+DirectionalOdometer leftOdometer(smartcarlib::pins::v2::leftOdometerPins, []() {
+  leftOdometer.update(); }, LEFT_PULSES_PER_METER);
+DirectionalOdometer rightOdometer(smartcarlib::pins::v2::rightOdometerPins, []() {
+  rightOdometer.update(); }, RIGHT_PULSES_PER_METER);
+unsigned long lastSpeedCheck = millis();
+
 void setSpeed(int speed) {
   car.setSpeed(speed);
 }
 
 void setAngle(int angle) {
   car.setAngle(angle);
+}
+
+int getCarCurrentSpeed() {
+  unsigned long currentTime = millis();
+
+
+  lastSpeedCheck = millis();
+  return 21;
 }
 
 void blink(int toBlink){

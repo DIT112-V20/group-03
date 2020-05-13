@@ -4,5 +4,5 @@
 #include "WiFi.h" // ESP32 WiFi include
 
 void connectToWiFi(char* SSID, char* password);
-void getInstructionsFromServer();
+void syncWithServer();
 #endif // WiFiManager_H_

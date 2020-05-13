@@ -29,20 +29,20 @@ void setup() {
 
 void loop() {
     collisionAvoidance();
-
-    Serial.print("Front: ");
-    Serial.print(getFrontDistance());
-    Serial.print(" FL: ");
-    Serial.print(getLeftFrontDistance());
-    Serial.print(" FR: ");
-    Serial.print(getRightFrontDistance());
-    Serial.print(" Rear: ");
-    Serial.println(getRearDistance());
-    Serial.println("-----------------------");
-
-    delay(1000);
+    
+    // Sensor debugging
+    // Serial.print("Front: ");
+    // Serial.print(getFrontDistance());
+    // Serial.print(" FL: ");
+    // Serial.print(getLeftFrontDistance());
+    // Serial.print(" FR: ");
+    // Serial.print(getRightFrontDistance());
+    // Serial.print(" Rear: ");
+    // Serial.println(getRearDistance());
+    // Serial.println("-----------------------");
+    // delay(1000);
 
     // Serial.println("loop");
 
-    getInstructionsFromServer();
+    syncWithServer();
 }

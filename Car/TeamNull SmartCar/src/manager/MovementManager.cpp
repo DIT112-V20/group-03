@@ -40,20 +40,16 @@ void collisionAvoidance() {
 }
 
 int getActualCarSpeed() {
-    return 7;
-}
-
-int getActualCarAngle() {
-    return 21;
+    return getCarCurrentSpeed();
 }
 
 String getActualCarStatus() {
     String result = "carId=";
     result += "1";
     result += "&carActualSpeed=";
-    result += "20";
+    result += getActualCarSpeed();
     result += "&carActualAngle=";
-    result += "10";
+    result += turnAngleActual;
 
     return result;
 }

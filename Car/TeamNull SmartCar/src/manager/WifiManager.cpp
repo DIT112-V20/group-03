@@ -115,7 +115,7 @@ void connectToWiFi(char* SSID, char* password) {
     connectToWiFi();
 }
 
-void getInstructionsFromServer() {
+void syncWithServer() {
 
     // String data;
     // data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
@@ -144,7 +144,7 @@ void getInstructionsFromServer() {
         
         // char json[] = "{\"id\":1,\"setSpeed\":15,\"setAngle\":15,\"actualSpeed\":20,\"actualAngle\":10}";
 
-        Serial.println(json);
+        // Serial.println(json);
         
         // Deserialize the JSON document
         DeserializationError error = deserializeJson(doc, json);
