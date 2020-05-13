@@ -174,7 +174,7 @@ public class DatabaseManager {
                     car = new Car(r.getLong("id"), r.getString("description"), r.getBoolean("active"));
                 }
             }
-            connection.commit();
+//            connection.commit();
             statement.close();
             connection.close();
         } catch (SQLException e) {
