@@ -42,7 +42,6 @@ void collisionAvoidance() {
 void obstacleAvoidance() {
 
 }
-
 //returns false if the obstacle in front is closer than safeFrontDistance
 boolean checkFront(int safeFrontDistance) {
 
