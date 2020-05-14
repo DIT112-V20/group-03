@@ -99,6 +99,19 @@ distanceFromObstacle= getRightFrontDistance();
     return true;
 }
 
-void turnRight(){}
+//returns false if the obstacle on rear is closer than safeFrontDistance
+boolean checkRear(int safeDistance) {
+int distanceFromObstacle = 0 ;
+distanceFromObstacle= getRearDistance();
+    if (distanceFromObstacle < safeDistance){
+    return false;
+    }
+    else 
+    return true;
+}
+
+void turnRight(){
+   setAngle(90); 
+}
 void turnLeft(){}
 void chooseNewDirection(){}
