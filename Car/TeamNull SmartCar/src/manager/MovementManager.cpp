@@ -83,7 +83,7 @@ void obstacleAvoidance(int safeDistance)
 {
     if (carSpeedActual > 0)
     {
-        logging("checkFront output =" + booleanToString(checkFront(safeDistance)));
+        logging("checkFrontOutput_" + booleanToString(checkFront(safeDistance)));
         if (checkFront(safeDistance) == false)
         {
             if (checkRight(safeDistance))
