@@ -9,6 +9,15 @@ int turnAngleActual = 0;
 //TODO: Calculate gyroscope offset
 int gyroscopeOffset = 0;
 
+//This is a helper method for logging purposes only
+String booleanToString(boolean boolean) {
+    if(boolean){
+        return "true";
+    } else {
+        return "false";
+    }
+}
+
 void setDesiredVehicleSpeed (int speed) {
     carSpeedSet = speed;
     // setSpeed(carSpeedSet);
@@ -58,7 +67,7 @@ String getActualCarStatus() {
 
 void obstacleAvoidance(int safeDistance) {
    if(carSpeedActual >0){
-       logging ("checkFront output =" + checkFront);
+       logging ("checkFront output =" + booleanToString(checkFront(safeDistance)));
     if (checkFront(safeDistance) == false ){
         if( checkRight(safeDistance)) {
             turnRight();
@@ -78,50 +87,56 @@ void obstacleAvoidance(int safeDistance) {
 
 //returns false if the obstacle in front is closer than safeFrontDistance
 boolean checkFront(int safeDistance) {
-      int  distanceFromObstacle = getFrontDistance();
-        if (distanceFromObstacle < safeDistance){
+    int  distanceFromObstacle = getFrontDistance();
+    if (distanceFromObstacle < safeDistance){
         return false;
-        }
-    else {return true;}
+    } else {
+        return true;
+    }
 }
 
 //returns false if the obstacle on right is closer than safeFrontDistance
 boolean checkRight(int safeDistance) {
-int distanceFromObstacle = 0 ;
-distanceFromObstacle= getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0){
-    return false;
-    }
-    else 
-    return true;
+    int distanceFromObstacle = 0 ;
+    distanceFromObstacle = getRightFrontDistance();
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0) {
+        return false;
+    } else {
+        return true;
+}
 }
 
 //returns false if the obstacle on left is closer than safeFrontDistance
 boolean checkLeft(int safeDistance) {
-int distanceFromObstacle = 0 ;
-distanceFromObstacle= getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0){
-    return false;
+    int distanceFromObstacle = 0 ;
+    distanceFromObstacle = getRightFrontDistance();
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0) {
+        return false;
     }
-    else 
-    return true;
+    else {
+        return true;
+    }
 }
 
 //returns false if the obstacle on rear is closer than safeFrontDistance
 boolean checkRear(int safeDistance) {
-int distanceFromObstacle = 0 ;
-distanceFromObstacle= getRearDistance();
-    if (distanceFromObstacle < safeDistance < safeDistance && distanceFromObstacle !=0){
-    return false;
+    int distanceFromObstacle = 0 ;
+    distanceFromObstacle = getRearDistance();
+    if (distanceFromObstacle < safeDistance < safeDistance && distanceFromObstacle !=0) {
+        return false;
+    } else {
+        return true;
     }
-    else 
-    return true;
 }
 
 void turnRight(){
-   setAngle(90); 
+   setAngle(90);
 }
+
 void turnLeft(){
-      setAngle(-45);
+    setAngle(-45);
 }
-void chooseNewDirection(){}
+
+void chooseNewDirection(){
+
+}

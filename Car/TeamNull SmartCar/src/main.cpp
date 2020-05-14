@@ -30,7 +30,7 @@ void setup() {
 void loop() {
     //collisionAvoidance();
     obstacleAvoidance(safeDistance);
-    // Sensor debugging
+    // // Sensor debugging
     // Serial.print("Front: ");
     // Serial.print(getFrontDistance());
     // Serial.print(" FL: ");
