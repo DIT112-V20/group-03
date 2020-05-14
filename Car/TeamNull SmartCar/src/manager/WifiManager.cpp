@@ -120,6 +120,7 @@ void logging (String message){
     int httpCode = http.GET();  //Make the request
     // int httpCode = http.POST(data);  //Make the request
     http.end(); //Free the resources
+    Serial.println(message);
   }
 
 }
