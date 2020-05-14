@@ -56,6 +56,7 @@ String getActualCarStatus() {
 }
 
 void obstacleAvoidance(int safeDistance) {
+   if(carSpeedActual >0){
     if (checkFront == false ){
         if( checkRight(safeDistance)) {
             turnRight();
@@ -65,16 +66,20 @@ void obstacleAvoidance(int safeDistance) {
         }
         else collisionAvoidance();
     }
+   }
+    else {
+    if (checkRear == false ){
+        collisionAvoidance();
+   }
 }
 
 //returns false if the obstacle in front is closer than safeFrontDistance
 boolean checkFront(int safeDistance) {
-int distanceFromObstacle = 0 ;
-distanceFromObstacle = getFrontDistance();
-    if (distanceFromObstacle < safeDistance){
-    return false;
-    }
-else return true;
+      int  distanceFromObstacle = getFrontDistance();
+        if (distanceFromObstacle < safeDistance){
+        return false;
+        }
+    else {return true;}
 }
 
 //returns false if the obstacle on right is closer than safeFrontDistance
