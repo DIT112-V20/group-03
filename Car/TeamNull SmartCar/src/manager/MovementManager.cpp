@@ -10,51 +10,65 @@ int turnAngleActual = 0;
 int gyroscopeOffset = 0;
 
 //This is a helper method for logging purposes only
-String booleanToString(boolean boolean) {
-    if(boolean){
+String booleanToString(boolean boolean)
+{
+    if (boolean)
+    {
         return "true";
-    } else {
+    }
+    else
+    {
         return "false";
     }
 }
 
-void setDesiredVehicleSpeed (int speed) {
+void setDesiredVehicleSpeed(int speed)
+{
     carSpeedSet = speed;
     // setSpeed(carSpeedSet);
     // carSpeedActual = carSpeedSet;
 }
 
-void setDesireTurnAngle (int heading) {
+void setDesireTurnAngle(int heading)
+{
     turnAngleSet = heading;
     setAngle(turnAngleSet);
     turnAngleActual = turnAngleSet;
 }
 
-void collisionAvoidance() {
+void collisionAvoidance()
+{
     int distanceFromObstacle = 0;
-    if(carSpeedSet >= 0) {
+    if (carSpeedSet >= 0)
+    {
         distanceFromObstacle = getFrontDistance();
-    } else {
+    }
+    else
+    {
         distanceFromObstacle = getRearDistance();
     }
-    if(distanceFromObstacle < 300 && distanceFromObstacle != 0) {
+    if (distanceFromObstacle < 300 && distanceFromObstacle != 0)
+    {
         setSpeed(0);
         carSpeedActual = 0;
         Serial.print("COLLISION AVOIDANCE: distance from obstacle: ");
         Serial.print(distanceFromObstacle);
         Serial.println("mm");
-    } else  if (carSpeedActual != carSpeedSet) {
+    }
+    else if (carSpeedActual != carSpeedSet)
+    {
         setSpeed(carSpeedSet);
         carSpeedActual = carSpeedSet;
     }
 }
 
-int getActualCarSpeed() {
+int getActualCarSpeed()
+{
     return getCarCurrentSpeed();
 }
 
-
-String getActualCarStatus() {
+String getActualCarStatus()
+{
     String result = "carId=";
     result += "1";
     result += "&carActualSpeed=";
@@ -65,78 +79,104 @@ String getActualCarStatus() {
     return result;
 }
 
-void obstacleAvoidance(int safeDistance) {
-   if(carSpeedActual >0){
-       logging ("checkFront output =" + booleanToString(checkFront(safeDistance)));
-    if (checkFront(safeDistance) == false ){
-        if( checkRight(safeDistance)) {
-            turnRight();
+void obstacleAvoidance(int safeDistance)
+{
+    if (carSpeedActual > 0)
+    {
+        logging("checkFront output =" + booleanToString(checkFront(safeDistance)));
+        if (checkFront(safeDistance) == false)
+        {
+            if (checkRight(safeDistance))
+            {
+                turnRight();
+            }
+            else if (checkLeft(safeDistance) == false)
+            {
+                turnLeft();
+            }
+            else
+                collisionAvoidance();
         }
-        else if (checkLeft(safeDistance)==false){
-            turnLeft();
-        }
-        else collisionAvoidance();
     }
-   }
-    else {
-    if (checkRear(safeDistance) == false ){
-        collisionAvoidance();
-   }
-}
+    else
+    {
+        if (checkRear(safeDistance) == false)
+        {
+            collisionAvoidance();
+        }
+    }
+    collisionAvoidance();
 }
 
 //returns false if the obstacle in front is closer than safeFrontDistance
-boolean checkFront(int safeDistance) {
-    int  distanceFromObstacle = getFrontDistance();
-    if (distanceFromObstacle < safeDistance){
+boolean checkFront(int safeDistance)
+{
+    int distanceFromObstacle = getFrontDistance();
+    if (distanceFromObstacle < safeDistance)
+    {
         return false;
-    } else {
+    }
+    else
+    {
         return true;
     }
 }
 
 //returns false if the obstacle on right is closer than safeFrontDistance
-boolean checkRight(int safeDistance) {
-    int distanceFromObstacle = 0 ;
+boolean checkRight(int safeDistance)
+{
+    int distanceFromObstacle = 0;
     distanceFromObstacle = getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0) {
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0)
+    {
         return false;
-    } else {
+    }
+    else
+    {
         return true;
-}
+    }
 }
 
 //returns false if the obstacle on left is closer than safeFrontDistance
-boolean checkLeft(int safeDistance) {
-    int distanceFromObstacle = 0 ;
+boolean checkLeft(int safeDistance)
+{
+    int distanceFromObstacle = 0;
     distanceFromObstacle = getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0) {
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0)
+    {
         return false;
     }
-    else {
+    else
+    {
         return true;
     }
 }
 
 //returns false if the obstacle on rear is closer than safeFrontDistance
-boolean checkRear(int safeDistance) {
-    int distanceFromObstacle = 0 ;
+boolean checkRear(int safeDistance)
+{
+    int distanceFromObstacle = 0;
     distanceFromObstacle = getRearDistance();
-    if (distanceFromObstacle < safeDistance < safeDistance && distanceFromObstacle !=0) {
+    if (distanceFromObstacle < safeDistance < safeDistance && distanceFromObstacle != 0)
+    {
         return false;
-    } else {
+    }
+    else
+    {
         return true;
     }
 }
 
-void turnRight(){
-   setAngle(90);
+void turnRight()
+{
+    setAngle(90);
 }
 
-void turnLeft(){
+void turnLeft()
+{
     setAngle(-45);
 }
 
-void chooseNewDirection(){
-
+void chooseNewDirection()
+{
 }
