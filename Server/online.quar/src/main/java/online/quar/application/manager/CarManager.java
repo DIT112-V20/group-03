@@ -45,29 +45,61 @@ public class CarManager {
 
         //Car was not found in memory, check database
         DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
-        Car ret = databaseManager.getCar(carId, true);
+        Car car = databaseManager.getCar(carId, true);
+        cars.add(car);
+
+        log.d("Found car: " + car.toString());
 
         //If the car is not found in the database, null will be returned
-        return ret;
+        return car;
     }
 
     public CarControlInput processCarControlInput(CarControlInput controlInput) {
-//        Car car = findCar(controlInput.getCarId());
-//
-//        if(car == null || !car.isOnline()) {
-//            return null;
-//        }
-//
-//        car.setSetSpeed(controlInput.getCarSetSpeed());
-//        car.setSetAngle(controlInput.getCarSetAngle());
-//
-//        controlInput.setCarActualSpeed(car.getActualSpeed());
-//        controlInput.setCarActualAngle(car.getActualAngle());
 
-        log.d(controlInput.toString());
+//        log.d(controlInput.toString());
+
+        Car car = findCar(controlInput.getCarId());
+
+        if(car == null || !car.isOnline()) {
+            return null;
+        }
+
+        car.setSetSpeed(controlInput.getCarSetSpeed());
+        car.setSetAngle(controlInput.getCarSetAngle());
+
+        controlInput.setCarActualSpeed(car.getActualSpeed());
+        controlInput.setCarActualAngle(car.getActualAngle());
+
+//        log.d(car.toString());
 
         return controlInput;
     }
 
+
+    public CarControlInput processCarClientControlRequest(CarControlInput carClientControlRequest) {
+
+        log.d(carClientControlRequest.toString());
+
+        Car car = findCar(carClientControlRequest.getCarId());
+
+        if(car == null) {
+            return null;
+        }
+
+        if(!car.isOnline()) {
+            car.setOnline(true);
+        }
+
+        carClientControlRequest.setCarSetSpeed(car.getSetSpeed());
+        carClientControlRequest.setCarSetAngle(car.getSetAngle());
+
+        car.setActualSpeed(carClientControlRequest.getCarActualSpeed());
+        car.setActualAngle(carClientControlRequest.getCarActualAngle());
+
+        log.d(car.toString());
+        log.d(carClientControlRequest.toString());
+
+        return carClientControlRequest;
+    }
 
 }

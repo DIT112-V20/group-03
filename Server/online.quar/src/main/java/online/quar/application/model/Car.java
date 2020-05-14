@@ -114,4 +114,18 @@ public class Car {
     public int hashCode() {
         return (int) (getId() ^ (getId() >>> 32));
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", setSpeed=" + setSpeed +
+                ", actualSpeed=" + actualSpeed +
+                ", setAngle=" + setAngle +
+                ", actualAngle=" + actualAngle +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                ", online=" + online +
+                '}';
+    }
 }

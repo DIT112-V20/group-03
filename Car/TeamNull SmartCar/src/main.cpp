@@ -5,11 +5,11 @@ unsigned long loadTime = 0;
 void setup() {
 
     // Open Serial Connection
-    Serial.begin(9600);
+    Serial.begin(115200);
     Wire.begin();
     pinMode(LED_BUILTIN, OUTPUT);
 
-    blink(2);
+    blink(1);
 
     initialiseSensors();
 
@@ -18,7 +18,7 @@ void setup() {
     char* WiFiSSID = "TheMancave";
     char* WiFiPassword = "tagedirtybumpaberra";
     connectToWiFi(WiFiSSID, WiFiPassword);
-    blink(3);
+    blink(1);
 
     Serial.println("Returned from connectToWiFi");
 
@@ -29,10 +29,10 @@ void setup() {
 
 void loop() {
     collisionAvoidance();
-    // Serial.print("Front Distance: ");
-    // Serial.println(getFrontDistance());
-    // Serial.print("Rear Distance: ");
-    // Serial.println(getRearDistance());
-    // sleep(1);
+
+    // delay(1000);
+
+    // Serial.println("loop");
+
     getInstructionsFromServer();
 }

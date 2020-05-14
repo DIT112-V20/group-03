@@ -7,11 +7,11 @@
     <link rel="stylesheet" type="text/css" href="styles/hello.css">
 </head>
 <div class="outer"><div class="middle"><div class="inner">
-<h1 th:inline="text"><p>Hello [[${#httpServletRequest.remoteUser}]]!</p></h1>
-<p>Test</p>
-<form th:action="@{/logout}" method="post">
-    <div class="signOut"> <button type="submit" class="glow-on-hover">SIGN OUT</button></div>
-</form>
+    <h1 th:inline="text"><p>Hello [[${#httpServletRequest.remoteUser}]]!</p></h1>
+    <p>Test</p>
+    <form th:action="@{/logout}" method="post">
+        <div class="signOut"> <button type="submit" class="glow-on-hover">SIGN OUT</button></div>
+    </form>
 </div></div></div>
 </body>
 </html>
