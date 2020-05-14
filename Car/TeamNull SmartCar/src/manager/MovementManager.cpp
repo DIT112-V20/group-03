@@ -169,7 +169,7 @@ boolean checkRear(int safeDistance)
 
 void turnRight()
 {
-    setAngle(90);
+    setAngle(45);
 }
 
 void turnLeft()
