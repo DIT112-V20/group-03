@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 unsigned long loadTime = 0;
-
+int safeDistance = 750;
 void setup() {
 
     // Open Serial Connection
@@ -28,8 +28,8 @@ void setup() {
 }
 
 void loop() {
-    collisionAvoidance();
-    
+    //collisionAvoidance();
+    obstacleAvoidance(safeDistance);
     // Sensor debugging
     // Serial.print("Front: ");
     // Serial.print(getFrontDistance());

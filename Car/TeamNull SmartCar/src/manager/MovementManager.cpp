@@ -1,4 +1,5 @@
 #include "MovementManager.hpp"
+#include "WifiManager.hpp"
 
 int carSpeedSet = 0;
 int carSpeedActual = 0;
@@ -57,7 +58,8 @@ String getActualCarStatus() {
 
 void obstacleAvoidance(int safeDistance) {
    if(carSpeedActual >0){
-    if (checkFront == false ){
+       logging ("checkFront output =" + checkFront);
+    if (checkFront(safeDistance) == false ){
         if( checkRight(safeDistance)) {
             turnRight();
         }
@@ -68,9 +70,10 @@ void obstacleAvoidance(int safeDistance) {
     }
    }
     else {
-    if (checkRear == false ){
+    if (checkRear(safeDistance) == false ){
         collisionAvoidance();
    }
+}
 }
 
 //returns false if the obstacle in front is closer than safeFrontDistance
@@ -86,7 +89,7 @@ boolean checkFront(int safeDistance) {
 boolean checkRight(int safeDistance) {
 int distanceFromObstacle = 0 ;
 distanceFromObstacle= getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance){
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0){
     return false;
     }
     else 
@@ -97,7 +100,7 @@ distanceFromObstacle= getRightFrontDistance();
 boolean checkLeft(int safeDistance) {
 int distanceFromObstacle = 0 ;
 distanceFromObstacle= getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance){
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle !=0){
     return false;
     }
     else 
@@ -108,7 +111,7 @@ distanceFromObstacle= getRightFrontDistance();
 boolean checkRear(int safeDistance) {
 int distanceFromObstacle = 0 ;
 distanceFromObstacle= getRearDistance();
-    if (distanceFromObstacle < safeDistance){
+    if (distanceFromObstacle < safeDistance < safeDistance && distanceFromObstacle !=0){
     return false;
     }
     else 
@@ -118,5 +121,7 @@ distanceFromObstacle= getRearDistance();
 void turnRight(){
    setAngle(90); 
 }
-void turnLeft(){}
+void turnLeft(){
+      setAngle(-45);
+}
 void chooseNewDirection(){}
