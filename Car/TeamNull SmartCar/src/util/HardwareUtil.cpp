@@ -26,32 +26,40 @@ SimpleCar car(control);
 
 // //To find pulses per meter...
 // #include <Smartcar.h>
-// const unsigned short odometerPin   = 2;
-// const unsigned long pulsesPerMeter = 100;
-// DirectionlessOdometer odometer(
-//     odometerPin, []() { odometer.update(); }, pulsesPerMeter);
-// void setup()
-// {
+
+// const unsigned long LEFT_PULSES_PER_METER  = 100;
+// const unsigned long RIGHT_PULSES_PER_METER = 100;
+// DirectionlessOdometer leftOdometer(
+//     smartcarlib::pins::v2::leftOdometerPin,
+//     []() { leftOdometer.update(); },
+//     LEFT_PULSES_PER_METER);
+// DirectionlessOdometer rightOdometer(
+//     smartcarlib::pins::v2::rightOdometerPin,
+//     []() { rightOdometer.update(); },
+//     RIGHT_PULSES_PER_METER);
+// void setup() {
 //     Serial.begin(9600);
 // }
-// void loop()
-// {
+// void loop() {
 //     // Manually roll the vehicle for one meter
 //     // and note down the printed out value. That is the
 //     // correct pulses:centimeters ratio for your odometer
 //     // that you should use when initializing the odometer
 //     // in its constructor
-//     Serial.println(odometer.getDistance());
+//     Serial.print("Left: ");
+//     Serial.println(leftOdometer.getDistance());
+//     Serial.print("Right: ");
+//     Serial.println(rightOdometer.getDistance());
+
 //     delay(100);
 // }
 
-const unsigned long LEFT_PULSES_PER_METER  = 600;
-const unsigned long RIGHT_PULSES_PER_METER = 740;
+const unsigned long LEFT_PULSES_PER_METER  = 943;
+const unsigned long RIGHT_PULSES_PER_METER = 972;
 DirectionalOdometer leftOdometer(smartcarlib::pins::v2::leftOdometerPins, []() {
   leftOdometer.update(); }, LEFT_PULSES_PER_METER);
 DirectionalOdometer rightOdometer(smartcarlib::pins::v2::rightOdometerPins, []() {
   rightOdometer.update(); }, RIGHT_PULSES_PER_METER);
-unsigned long lastSpeedCheck = millis();
 
 void setSpeed(int speed) {
   car.setSpeed(speed);
@@ -62,11 +70,19 @@ void setAngle(int angle) {
 }
 
 int getCarCurrentSpeed() {
-  unsigned long currentTime = millis();
+  auto left = leftOdometer.getSpeed();
+  auto right = rightOdometer.getSpeed();
 
+  // Serial.println("Speed:");
+  // Serial.print("Left: ");
+  // Serial.println(left);
+  // Serial.print("Right: ");
+  // Serial.println(right);
+  // Serial.print("Combined: ");
+  // Serial.println((left+right)/2);
+  
 
-  lastSpeedCheck = millis();
-  return 21;
+  return (((left+right)/2)*100);
 }
 
 void blink(int toBlink){

@@ -42,7 +42,7 @@ void loop() {
     // Serial.println("-----------------------");
     // delay(1000);
 
-    // Serial.println("loop");
+    // Serial.println(getCarCurrentSpeed());
 
     syncWithServer();
 }
