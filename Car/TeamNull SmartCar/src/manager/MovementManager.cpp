@@ -27,7 +27,7 @@ void collisionAvoidance() {
     } else {
         distanceFromObstacle = getRearDistance();
     }
-    if(distanceFromObstacle < 275 && distanceFromObstacle != 0) {
+    if(distanceFromObstacle < 300 && distanceFromObstacle != 0) {
         setSpeed(0);
         carSpeedActual = 0;
         Serial.print("COLLISION AVOIDANCE: distance from obstacle: ");
@@ -39,16 +39,32 @@ void collisionAvoidance() {
     }
 }
 
-void obstacleAvoidance(int safeDistance) {
-if (checkFront == false){
-if( checkRight(safeDistance)){
-        turnRight();
-    }
-    else if (checkLeft(safeDistance)==false){
-        turnLeft();
-    }
-    else collisionAvoidance();
+int getActualCarSpeed() {
+    return getCarCurrentSpeed();
 }
+
+
+String getActualCarStatus() {
+    String result = "carId=";
+    result += "1";
+    result += "&carActualSpeed=";
+    result += getActualCarSpeed();
+    result += "&carActualAngle=";
+    result += turnAngleActual;
+
+    return result;
+}
+
+void obstacleAvoidance(int safeDistance) {
+    if (checkFront == false ){
+        if( checkRight(safeDistance)) {
+            turnRight();
+        }
+        else if (checkLeft(safeDistance)==false){
+            turnLeft();
+        }
+        else collisionAvoidance();
+    }
 }
 
 //returns false if the obstacle in front is closer than safeFrontDistance
