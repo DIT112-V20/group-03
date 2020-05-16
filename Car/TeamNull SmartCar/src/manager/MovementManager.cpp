@@ -38,6 +38,7 @@ void setDesireTurnAngle(int heading)
 
 void collisionAvoidance()
 {
+    logging("*-- CollisionAvoidance ACTIVATED--*");
     int distanceFromObstacle = 0;
     if (carSpeedSet >= 0)
     {
@@ -60,6 +61,7 @@ void collisionAvoidance()
         setSpeed(carSpeedSet);
         carSpeedActual = carSpeedSet;
     }
+    logging("*-- CollisionAvoidance DECTIVATED--*");
 }
 
 int getActualCarSpeed()
@@ -81,27 +83,38 @@ String getActualCarStatus()
 
 void obstacleAvoidance(int safeDistance)
 {
+    logging("!**obstacleAvoidance Activated **!");
+
     if (carSpeedActual > 0)
     {
+        logging("Car is going forward");
         logging("checkFront output =" + booleanToString(checkFront(safeDistance)));
         if (checkFront(safeDistance) == false)
         {
+            logging("* FRONT OBSTACLE  *");
             if (checkRight(safeDistance))
             {
+                logging("* RIGHT IS SAFE *");
                 turnRight();
             }
-            else if (checkLeft(safeDistance) == false)
+            else if (checkLeft(safeDistance))
             {
+                logging("* LEFT IS SAFE *");
+
                 turnLeft();
             }
             else
-                collisionAvoidance();
+                logging("* No safe way to turn! CollisionAvoidance");
+            collisionAvoidance();
         }
     }
     else
     {
+        logging("Car is going backward");
+
         if (checkRear(safeDistance) == false)
         {
+            logging("* REAR OBSTACLE *");
             collisionAvoidance();
         }
     }
@@ -169,11 +182,14 @@ boolean checkRear(int safeDistance)
 
 void turnRight()
 {
+    logging(" Turning right ");
     setAngle(90);
 }
 
 void turnLeft()
 {
+    logging(" Turning Left ");
+
     setAngle(-45);
 }
 
