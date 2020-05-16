@@ -110,15 +110,18 @@ void connectToWiFi() {
 
 void logging (String message){
    
-    // data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
-
   if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
-    String url = "https://quar.online:8443/carLog?" + (String)"carId=1" + (String)",message=" + message; //&carActualSpeed=20&carActualAngle=10";
+    String url = "https://quar.online:8443/carLog?" + (String)"carId=1" + (String)"&message=" + message; //&carActualSpeed=20&carActualAngle=10";
     // http.begin(url, root_ca);
     // Serial.println(url);
     http.begin(url);
     int httpCode = http.GET();  //Make the request
     // int httpCode = http.POST(data);  //Make the request
+
+        if (!(httpCode > 0)) { //Check for the returning code
+              Serial.println("Error on HTTP LOG request");
+        }
+
     http.end(); //Free the resources
     Serial.println(message);
   }
