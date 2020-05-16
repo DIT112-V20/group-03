@@ -31,8 +31,9 @@ public class RestfulController {
 
     @RequestMapping(path= "/carLog")
     public String processCarLogRequest( @RequestParam long carId, String message ) {
-       logger.d(message);
-       return ("Good Job!");
+        String timestamp = ""; //TODO: Create timestamp for logging
+        logger.d(timestamp + "|Log entry from car " + carId + ": " + message);
+        return ("Good Job!");
     }
 
 }
