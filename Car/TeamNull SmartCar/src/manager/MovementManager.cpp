@@ -5,6 +5,7 @@ int carSpeedSet = 0;
 int carSpeedActual = 0;
 int turnAngleSet = 0;
 int turnAngleActual = 0;
+int classSafeDistance = 0 ;
 
 //TODO: Calculate gyroscope offset
 int gyroscopeOffset = 0;
@@ -38,7 +39,7 @@ void setDesireTurnAngle(int heading)
 
 void collisionAvoidance()
 {
-    logging("*-- CollisionAvoidance ACTIVATED--*");
+      logging("*-- CollisionAvoidance ACTIVATED--*");
     int distanceFromObstacle = 0;
     if (carSpeedSet >= 0)
     {
@@ -83,11 +84,12 @@ String getActualCarStatus()
 
 void obstacleAvoidance(int safeDistance)
 {
-    logging("!**obstacleAvoidance Activated **!");
+classSafeDistance= safeDistance;
+                        logging("!**obstacleAvoidance Activated **!");
 
     if (carSpeedActual > 0)
     {
-        logging("Car is going forward");
+                    logging("Car is going forward");
         logging("checkFront output =" + booleanToString(checkFront(safeDistance)));
         if (checkFront(safeDistance) == false)
         {
@@ -95,7 +97,9 @@ void obstacleAvoidance(int safeDistance)
             if (checkRight(safeDistance))
             {
                 logging("* RIGHT IS SAFE *");
+              
                 turnRight();
+            
             }
             else if (checkLeft(safeDistance))
             {
@@ -109,12 +113,11 @@ void obstacleAvoidance(int safeDistance)
         }
     }
     else
-    {
-        logging("Car is going backward");
+    {                    logging("Car is going backward");
 
         if (checkRear(safeDistance) == false)
         {
-            logging("* REAR OBSTACLE *");
+              logging("* REAR OBSTACLE *");
             collisionAvoidance();
         }
     }
@@ -182,15 +185,17 @@ boolean checkRear(int safeDistance)
 
 void turnRight()
 {
-    logging(" Turning right ");
-    setAngle(90);
+  
+    while(checkFront(classSafeDistance)==false){
+  logging(" Turning right "); 
+    setAngle(45);}
 }
 
 void turnLeft()
 {
-    logging(" Turning Left ");
-
-    setAngle(-45);
+     while(checkFront(classSafeDistance)==false){
+  logging(" Turning left "); 
+    setAngle(-45);}
 }
 
 void chooseNewDirection()
