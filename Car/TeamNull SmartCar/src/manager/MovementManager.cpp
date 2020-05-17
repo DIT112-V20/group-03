@@ -84,7 +84,6 @@ String getActualCarStatus()
 
 void obstacleAvoidance(int safeDistance) {
 classSafeDistance = safeDistance;
-logging("___obstacleAvoidance%20Entered___");
 
     if (carSpeedActual > 0) {
         logging("Car%20is%20going%20forward");
