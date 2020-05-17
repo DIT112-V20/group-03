@@ -15,9 +15,9 @@ long timeObstacleWasAvoided = millis();
 long timereturnToRouteBegan = millis();
 
 //This is a helper method for logging purposes only
-String booleanToString(boolean boolean)
+String booleanToString(boolean b)
 {
-    if (boolean)
+    if (b)
     {
         return "true";
     }
@@ -34,11 +34,13 @@ void setDesiredVehicleSpeed(int speed)
     // carSpeedActual = carSpeedSet;
 }
 
-void setDesireTurnAngle(int heading)
+void setDesiredTurnAngle(int heading)
 {
     turnAngleSet = heading;
-    setAngle(turnAngleSet);
-    turnAngleActual = turnAngleSet;
+    if(!obstacleBeingAvoided) {
+        setAngle(turnAngleSet);
+        turnAngleActual = turnAngleSet;
+    }
 }
 
 void collisionAvoidance()
@@ -87,10 +89,10 @@ classSafeDistance = safeDistance;
 
     if (carSpeedActual > 0) {
         logging("Car%20is%20going%20forward");
-        logging("checkFront%20output_" + booleanToString(checkFront(safeDistance)));
-        if (checkFront(safeDistance) == false) {
+        boolean frontIsSafe = checkFront(safeDistance);
+        logging("checkFront%20output_" + booleanToString(frontIsSafe));
+        if (!frontIsSafe) {
             logging("__FRONT%20OBSTACLE__");
-            logging("___obstacleAvoidance%20Activated___");
             if (checkRight(safeDistance)) {
                 logging("__RIGHT%20IS%20SAFE__");
                 if(!obstacleAvoidanceTurnedRight){
@@ -118,6 +120,7 @@ classSafeDistance = safeDistance;
                 turnLeft();
             }
             obstacleAvoidanceTurnedRight = false;
+            obstacleBeingAvoided = false;
         } else if (obstacleAvoidanceTurnedLeft) {
             //TODO: This should be temporary, and then set back to user direction...
             if (checkRight(safeDistance)) {
@@ -125,14 +128,29 @@ classSafeDistance = safeDistance;
                 turnRight();
             }
             obstacleAvoidanceTurnedLeft = false;
+            obstacleBeingAvoided = false;
         }
-    }
-    else if (carSpeedActual < 0) {
+    } else if (carSpeedActual < 0) {
         logging("Car%20is%20going%20backward");
 
         if (checkRear(safeDistance) == false) {
-              logging("__REAR%20OBSTACLE__");
+            logging("__REAR%20OBSTACLE__");
+            obstacleBeingAvoided = true;
             collisionAvoidance();
+        } else {
+            obstacleBeingAvoided = false;
+        }
+        
+
+        if (obstacleAvoidanceTurnedRight) {
+            obstacleAvoidanceTurnedRight = false;
+        } else if (obstacleAvoidanceTurnedLeft) {
+            obstacleAvoidanceTurnedLeft = false;
+        }
+
+        if(turnAngleActual != turnAngleSet) {
+            setAngle(turnAngleActual);
+            turnAngleSet = turnAngleActual;
         }
     }
     collisionAvoidance();

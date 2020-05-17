@@ -4,7 +4,7 @@
 #include "util/HardwareUtil.hpp"
 
 void setDesiredVehicleSpeed (int speed);
-void setDesireTurnAngle (int heading);
+void setDesiredTurnAngle (int heading);
 void collisionAvoidance();
 int getActualCarSpeed();
 String getActualCarStatus();
