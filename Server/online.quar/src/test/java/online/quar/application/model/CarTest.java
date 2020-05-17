@@ -17,10 +17,10 @@ class CarTest {
     }
 
     @Test
-    void getId() {
+    void getIdTestCase() {
     }
 
     @Test
-    void setId() {
+    void setIdTestCase() {
     }
 }
