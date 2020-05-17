@@ -1,6 +1,7 @@
 package online.quar.application.manager;
 
 import online.quar.application.Singleton;
+import online.quar.application.model.Car;
 import online.quar.application.model.User;
 
 import java.util.ArrayList;
@@ -8,8 +9,7 @@ import java.util.ArrayList;
 public class UserManager {
     ArrayList<User> users = new ArrayList<>();
 
-    public User addUser(User user) {
-        User userToAdd = findUser(user);
+    public User addUser(User userToAdd) {
         users.add(userToAdd);
 
         //Save the user that was just added
@@ -18,29 +18,36 @@ public class UserManager {
     }
 
 
-    public boolean removeUser(User user) {
-        User userToRemove = findUser(user);
+    public boolean removeUser(User userToRemove) {
         users.remove(userToRemove);
 
         //to "remove" from saved
         userToRemove.setActive(false);
         Singleton.getApplicationManager().getDatabaseManager().save(userToRemove);
 
-        if (findUser(userToRemove) == null) {
+        if (findUser(userToRemove.getId()) == null) {
             return true;
         }
         return false;
     }
 
-    public User findUser(User user) {
-        Long userId = user.getId();
-
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getId() == userId) {
-                return users.get(i);
+    public User findUser(long userId) {
+        //First check for user in cache
+        for (User user : users) {
+            if (user.getId() == userId && user.isActive()) {
+                return user;
             }
         }
-        return null;
+
+        //User was not found in memory, check database
+        DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
+        User user = databaseManager.getUser(userId, true);
+
+        users.add(user);
+
+        //If the user is not found in the database, null will be returned
+        return user;
     }
+
 
 }

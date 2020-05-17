@@ -1,4 +1,4 @@
-package online.quar.application;
+package online.quar.application.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -13,6 +13,10 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("pages/home");
         registry.addViewController("/hello").setViewName("pages/hello");
         registry.addViewController("/login").setViewName("pages/login");
+        registry.addViewController("/carController").setViewName("pages/carController");
+        registry.addViewController("/webSocketOrgTest").setViewName("pages/webSocketOrgTest");
+        registry.addViewController("/webSocketTest").setViewName("pages/webSocketTest");
+
     }
 
 }

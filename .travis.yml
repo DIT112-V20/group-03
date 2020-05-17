@@ -9,7 +9,7 @@ matrix:
       - sudo -u postgres psql -c 'grant all privileges on database quaronline to quaronline;'
       - mvn clean test
       # run unit test here
-      - mvn spring-boot:run
+      # mvn spring-boot:run
     # java jobs here
   - language: c
     before_install:
