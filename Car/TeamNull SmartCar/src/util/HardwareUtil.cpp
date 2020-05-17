@@ -191,11 +191,11 @@ int getFrontDistance() {
 }
 
 int getLeftFrontDistance() {
-  return frontLeft.getMedianDistance(2);
+  return frontLeft.getMedianDistance(2)*10;
 }
 
 int getRightFrontDistance() {
-  return frontRight.getMedianDistance(2);
+  return frontRight.getMedianDistance(3)*10;
 }
 
 int getRearDistance() {
