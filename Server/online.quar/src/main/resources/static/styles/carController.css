@@ -9,6 +9,13 @@ body {
     background-color: black;
 }
 
+#speedometer{
+    width: 100%;
+    padding-right: 20px;
+    text-align: right;
+    font-size: x-large;
+}
+
 #buttons {
     position: relative;
     /*border: solid 1px #aaa;*/

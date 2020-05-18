@@ -81,6 +81,6 @@ function sendJoystickInput(data) {
 
 function showCarStatus(carStatus) {
     console.log(carStatus);
-    $("#speedometer").html("<p>" + carStatus.carActualSpeed + "</p>");
+    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "</p>");
 
 }
