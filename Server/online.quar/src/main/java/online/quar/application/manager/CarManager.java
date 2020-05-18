@@ -56,8 +56,6 @@ public class CarManager {
 
     public CarControlInput processCarControlInput(CarControlInput controlInput) {
 
-//        log.d(controlInput.toString());
-
         Car car = findCar(controlInput.getCarId());
 
         if(car == null || !car.isOnline()) {
@@ -69,8 +67,6 @@ public class CarManager {
 
         controlInput.setCarActualSpeed(car.getActualSpeed());
         controlInput.setCarActualAngle(car.getActualAngle());
-
-//        log.d(car.toString());
 
         return controlInput;
     }
