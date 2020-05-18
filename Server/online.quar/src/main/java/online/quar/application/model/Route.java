@@ -1,8 +1,12 @@
 package online.quar.application.model;
 
-public class Route {
+import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
 
-    /*  potato prototype outline
+import java.util.ArrayList;
+
+public class Route extends CarControlInput{
+
+    /*  potato prototype outline ----TEMPORARY NOTES ---- IGNORE ---------------------------------------------
 
         notes:      TODO create a "Record this rout" button in UI
                         TODO have a failsafe to make sure user cant record something like driving against a wall - simple MSG that outputs to user: "your driving is silly - rout recording canceled"   - see line 11 for prototype suggestion
@@ -19,10 +23,20 @@ public class Route {
 
 
         class methods
-            setNewMovement(direction/speed, timeStamp)
-                calculate time spent after last command ( depending on how we pass the time either: [from epoch] or [ms since creation of timer] )
-                add new arrayList item to 2D array[dir/spd][ms]
 
+
+                        getMovmentDirAt(int index)
+                            return array[x][0]
+
+                        getMovmentTimeAt(int index)
+                            return array[x][1]
+
+                        public void clearArray()
+                            for(DELETE EVERYTHING AHHHHH
+
+            TODO i got confused :D
+
+            ((INSIDE CALLER METHOD))
             getAllMovement()
                 while(done == false)
                     call car movments array[x][0]
@@ -30,35 +44,36 @@ public class Route {
                     if(x==array.size())
                         done = true
 
-            getMovmentDirAt(int index)
-                return array[x][0]
 
-            getMovmentTimeAt(int index)
-                return array[x][1]
-
-            clearArray()
-                for(DELETE EVERYTHING AHHHHH
-
-            cleanArray() //takes out repetition
-                create duplicateArray
-                for(array.size() -1)
-                    if not the same as next in direction/speed (time doesnt matter)
-                        copy over to duplicateArray + addup time
-                        addUpTime = 0;
-                    else
-                        addUpTime =+ next items time (? basicly compile the array so we dont have 2milion neutral commands....)
-
-            TODO i got confused :D
+----------------------------IGNORE!!-------------------------IGNORE!!----------------------------
+*/
 
 
+    ArrayList<CarControlInput> dirAry = new ArrayList<>();
+    ArrayList<Long> durAry = new ArrayList<>();
+    long routStartEpoch;
 
+    public Route(Long routStartEpoch){
+        this.routStartEpoch = routStartEpoch;
+    }
 
-     */
+    public void setNewMove(CarControlInput newDir, Long newDur){
+        dirAry.add(newDir);
+        durAry.add(newDur - routStartEpoch);        //converts to ms
+    }
 
+    public CarControlInput getDirAt(int indx){
+        return dirAry.get(indx);
+    }
+    public long getDurAt(int indx) {
+        return durAry.get(indx);
+    }
 
+    public void clearArray(){
+        for(int x=durAry.size()-1;x>=0;x--){        //ladida removeAll is better than Clear - screw NULL! (also removeAll is something to look into)
+            durAry.remove(x);
+            dirAry.remove(x);
+        }
 
-
-
-
-
+    }
 }
