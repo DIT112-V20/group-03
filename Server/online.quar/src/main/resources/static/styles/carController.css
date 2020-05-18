@@ -9,10 +9,36 @@ body {
     background-color: black;
 }
 
+.sensorDistance{
+    background-color: white;
+    display: inline-block;
+    height: 5%;
+}
+
+#middleDistance{
+    width: 30%;
+}
+#rightDistance{
+    width: 10%;
+    right: 0;
+}
+#leftDistance{
+    width: 10%;
+    left: 0;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+}
+
 #speedometer{
     width: 100%;
-    padding-right: 20px;
-    text-align: right;
+    right: 0;
     font-size: x-large;
 }
 
@@ -102,6 +128,10 @@ body {
     width: 100%;
     height: 100%;
     left: 0;
+}
+
+#zone_joystick{
+    position: absolute;
 }
 
 .zone.active {
