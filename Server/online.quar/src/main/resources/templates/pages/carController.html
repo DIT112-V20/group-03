@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8">
     <title>Quar Online</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -31,6 +32,7 @@
     <!--            <li class="direction">-->
     <!--            </li>-->
     <!--        </ul>-->
+            <div id="speedometer"></div>
         </div>
         <div class="zone dynamic active"><h1>Quar.Online</h1></div>
         <div class="zone semi"><h1>Quar.Online</h1></div>
@@ -48,6 +50,7 @@
     <div data-type="semi" class="button semi">semi</div>
     <div data-type="static" class="button static">static</div>
 </div>
+
 <br/>
 
 <script src="/webjars/sockjs-client/sockjs.min.js"></script>
@@ -55,6 +58,7 @@
 <script src="/script/joystick.js"></script>
 <script src="/script/carControlApp.js"></script>
 <script src="/dist/nipplejs.js"></script>
+<script src="/webjars/jquery/jquery.min.js"></script>
 <script>
     var s = function (sel) { return document.querySelector(sel); };
     var sId = function (sel) { return document.getElementById(sel); };
