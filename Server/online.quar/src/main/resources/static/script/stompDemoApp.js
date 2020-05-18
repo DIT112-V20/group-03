@@ -40,6 +40,12 @@ function showGreeting(message) {
     $("#greetings").append("<tr><td>" + message + "</td></tr>");
 }
 
+function showCarStatus(carStatus) {
+    console.log(carStatus);
+    $("#speedometer").append("<tr><td>" + carStatus + "</td></tr>");
+
+}
+
 $(function () {
     $("form").on('submit', function (e) {
         e.preventDefault();
