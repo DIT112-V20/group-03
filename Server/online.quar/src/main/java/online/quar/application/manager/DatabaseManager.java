@@ -5,7 +5,6 @@ import online.quar.application.helper.QueryHelper;
 import online.quar.application.model.Car;
 import online.quar.application.model.User;
 import online.quar.application.util.Logger;
-import org.postgresql.util.PSQLException;
 
 import java.sql.*;
 
@@ -25,7 +24,8 @@ public class DatabaseManager {
     private final static String insertCarScript = sqlPath + "sql_insertCar.sql";
     private final static String updateCarScript = sqlPath + "sql_updateCar.sql";
     private final static String getCarScript = sqlPath + "sql_getCar.sql";
-    private final static String getUserScript = sqlPath + "sql_getUser.sql";
+    private final static String getUserByIdScript = sqlPath + "sql_getUserById.sql";
+    private final static String getUserByUserNameScript = sqlPath + "sql_getUserByUserName.sql";
 
 
     public ResultSet executeQuery(Connection c, String queryToExecute) {
@@ -198,10 +198,45 @@ public class DatabaseManager {
             PreparedStatement statement;
             Connection connection = getConnection();
 
-            query = QueryHelper.sqlQuery(getUserScript);
+            query = QueryHelper.sqlQuery(getUserByIdScript);
             assert connection != null;
             statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
+
+            statement.execute();
+
+            try (ResultSet r = statement.getResultSet()) {
+                if (r.next()) {
+                    user = new User(r.getLong("id"), r.getString("username"), r.getBytes("password"), r.getString("fullname"), r.getBoolean("active"));
+                }
+            }
+            statement.close();
+            connection.close();
+        } catch (SQLException e) {
+            log.c(e.getMessage());
+        }
+        if(user != null) {
+            if(activeOnly && !user.isActive()){
+                user = null;
+            }
+        }
+        return user;
+    }
+
+        public User getUserByUsername(String userName, boolean activeOnly) {
+        if(userName.strip().isEmpty()){
+            return null;
+        }
+        User user = null;
+        try {
+            String query;
+            PreparedStatement statement;
+            Connection connection = getConnection();
+
+            query = QueryHelper.sqlQuery(getUserByUserNameScript);
+            assert connection != null;
+            statement = connection.prepareStatement(query);
+            statement.setString(1, userName);
 
             statement.execute();
 
