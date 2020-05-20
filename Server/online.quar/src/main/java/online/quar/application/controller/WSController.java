@@ -36,4 +36,16 @@ public class WSController {
 //        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
 //    }
 
+    @MessageMapping("/startRecRoute")
+    @SendTo("/topic/userInterface")
+    public CarControlInput startRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getCarManager().processCarControlInput(carControlInput);
+    }
+
+    @MessageMapping("/stopRecRoute")
+    @SendTo("/topic/userInterface")
+    public CarControlInput stopRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getCarManager().processCarControlInput(carControlInput);
+    }
+
 }
