@@ -429,18 +429,20 @@
             marginLeft: -this.options.size / 2 + 'px',
             marginTop: -this.options.size / 2 + 'px',
             background: this.options.color,
-            'opacity': '.5'
+            'opacity': '.4'
         };
 
         styles.front = {
-            width: this.options.size / 2 + 'px',
-            height: this.options.size / 2 + 'px',
+            // width: this.options.size / 2 + 'px',
+            // height: this.options.size / 2 + 'px',
+            width: this.options.size / 3 + 'px',
+            height: this.options.size / 3 + 'px',
             position: 'absolute',
             display: 'block',
-            marginLeft: -this.options.size / 4 + 'px',
-            marginTop: -this.options.size / 4 + 'px',
+            marginLeft: -this.options.size / 6 + 'px',
+            marginTop: -this.options.size / 6 + 'px',
             background: this.options.color,
-            'opacity': '.5'
+            'opacity': '.15'
         };
 
         u.extend(styles.el, transitStyle);

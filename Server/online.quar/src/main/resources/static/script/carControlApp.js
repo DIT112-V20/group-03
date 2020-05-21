@@ -22,8 +22,8 @@ function connect() {
             showGreeting(JSON.parse(greeting.body).content);
         });
         //TODO: Implement car control object
-        stompClient.subscribe('/topic/car', function (greeting) {
-            showGreeting(JSON.parse(greeting.body).content);
+        stompClient.subscribe('/topic/car', function (carStatus) {
+            showCarStatus(JSON.parse(carStatus.body));
         });
     });
 }
@@ -64,7 +64,7 @@ function sendJoystickInput(data) {
         carId = 1;
         carSetAngle = data.angle.degree > 270? ( - data.angle.degree + 450) : (- data.angle.degree + 90);
 
-        carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? data.distance * 2 : -(data.distance * 2);
+        carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? data.distance / 1.5 : -(data.distance / 1.5);
 
         if(carSetSpeed <= 0){
             if(carSetAngle <= 0) {
@@ -77,4 +77,10 @@ function sendJoystickInput(data) {
     }
 
     stompClient.send("/app/carControl", {}, JSON.stringify({'carId': carId, 'carSetSpeed': carSetSpeed, 'carSetAngle': carSetAngle}));
+}
+
+function showCarStatus(carStatus) {
+    console.log(carStatus);
+    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "</p>");
+
 }

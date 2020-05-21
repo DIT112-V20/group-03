@@ -172,7 +172,7 @@ void setup() {
     config.fb_count = 2;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12;
+    config.jpeg_quality = 10;
     config.fb_count = 1;
   }
   
@@ -190,8 +190,8 @@ void setup() {
   s->set_hmirror(s, 1);
 
   //Initialise Flash LED
-  // ledcSetup(7, 5000, 8);
-  // ledcAttachPin(4, 7);  //pin4 is LED
+  ledcSetup(7, 5000, 8);
+  ledcAttachPin(4, 7);  //pin4 is LED
 
   // Wi-Fi connection
   WiFi.begin(WiFiSSID, WiFiPassword);
@@ -222,15 +222,15 @@ void setup() {
   // Start streaming web server
   startCameraServer();
 
-/* Flash flash to show initialised
-    for (int i=0;i<5;i++) 
-  {
+//  Flash flash to show initialised
+ for (int i=0;i<1;i++) {
     ledcWrite(7,10);  // flash led
     delay(200);
     ledcWrite(7,0);
     delay(200);    
   }
-  */
+
+  ledcWrite(7,75);  // enable led
 }
 
 void loop() {

@@ -7,8 +7,13 @@ void setDesiredVehicleSpeed (int speed);
 void setDesireTurnAngle (int heading);
 void collisionAvoidance();
 int getActualCarSpeed();
-int getActualCarAngle();
 String getActualCarStatus();
-
-
+boolean checkFront(int safeDistance);
+boolean checkRight(int safeDistance);
+boolean checkLeft(int safeDistance);
+boolean checkRear(int safeDistance);
+void turnRight();
+void turnLeft();
+void chooseNewDirection();
+void obstacleAvoidance(int safeDistance);
 #endif // movementManager_H_

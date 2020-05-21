@@ -7,6 +7,8 @@
 
 void setSpeed(int speed);
 void setAngle(int angle);
+int getCarCurrentSpeed();
+int getCarCurrentAngle();
 void blink(int blinkCount);
 void blink(int blinkCount, unsigned long blinkDuration);
 void initialiseSensors();

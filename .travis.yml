@@ -1,0 +1,35 @@
+matrix:
+  include:
+  - language: java
+    jdk: openjdk13
+    script:
+      - cd Server/online.quar/
+      - sudo -u postgres psql -c 'create database quaronline;'
+      - sudo -u postgres psql -c "create user quaronline with encrypted password '\x00\x21\x00\x23.~A_f8gLEBM5p8';"
+      - sudo -u postgres psql -c 'grant all privileges on database quaronline to quaronline;'
+      - mvn clean test
+      # run unit test here
+      # mvn spring-boot:run
+    # java jobs here
+  - language: c
+    before_install:
+      - source <(curl -SLs https://raw.githubusercontent.com/adafruit/travis-ci-arduino/master/install.sh)
+    install:
+      - arduino --install-library "ESP32 AnalogWrite"
+      - arduino --install-library "ServoESP32"
+      - arduino --install-library "Smartcar shield"
+    script:
+      - build_platform esp32
+os:
+ - linux
+dist: bionic
+addons:
+  apt:
+    sources:
+#      - ppa:chris-lea/redis-server
+    packages:
+#      - redis-tools
+#      - redis-server
+services:
+  - postgresql
+
