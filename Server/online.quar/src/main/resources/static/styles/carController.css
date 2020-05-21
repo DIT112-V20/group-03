@@ -11,20 +11,37 @@ body {
 
 .sensorDistance{
     background-color: white;
-    display: inline-block;
-    height: 5%;
+    height: 20px;
+    vertical-align: top;
+}
+
+.blockParent{
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
 }
 
 #middleDistance{
-    width: 30%;
+    width: 200px;
+    margin: auto;
+    display: inline-block;
 }
 #rightDistance{
-    width: 10%;
+    width: 100px;
     right: 0;
+    position: absolute;
+    display: inline-block;
 }
 #leftDistance{
-    width: 10%;
+    width: 100px;
     left: 0;
+    position: absolute;
+    display: inline-block;
+}
+#backDistance{
+    width: 200px;
+    margin: 0 auto;
 }
 
 .container{
