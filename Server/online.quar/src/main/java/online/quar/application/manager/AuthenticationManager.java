@@ -14,6 +14,22 @@ import java.security.SecureRandom;
 public class AuthenticationManager {
     private Logger log = Singleton.getLogger();
 
+    public User authenticateUser(String uName, String pass) {
+        if(uName == null || pass == null) {
+            return null;
+        }
+        uName = uName.strip();
+        if(uName.isEmpty()) {
+            return null;
+        }
+        User u = Singleton.getApplicationManager().getUserManager().findUser(uName);
+        if (authenticateUser(u, pass)) {
+            return u;
+        } else {
+            return null;
+        }
+    }
+
     public boolean authenticateUser(User u, String pass) {
         byte[] testedPass = getPasswordHash(pass, Constants.PASSWORD_SALT);
         if (testedPass == null)

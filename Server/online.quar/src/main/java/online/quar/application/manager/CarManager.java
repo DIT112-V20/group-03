@@ -46,7 +46,10 @@ public class CarManager {
         //Car was not found in memory, check database
         DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
         Car car = databaseManager.getCar(carId, true);
-        cars.add(car);
+
+        if(car != null) {
+            cars.add(car);
+        }
 
         log.d("Found car: " + car.toString());
 
