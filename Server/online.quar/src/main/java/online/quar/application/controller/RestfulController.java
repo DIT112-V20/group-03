@@ -17,11 +17,6 @@ public class RestfulController {
         return "Hello World, We are TeamNull!";
     }
 
-//    @RequestMapping("/carClient")
-//    public CarControlInput carClientOutput(CarControlInput carClientControlRequest) throws Exception {
-//        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
-//    }
-
     @RequestMapping(path= "/carClient")
     public String processCarRequest( @RequestParam long carId, int carActualSpeed, int carActualAngle) {
         CarControlInput carClientRequest = new CarControlInput(carId, 0, 0, carActualSpeed, carActualAngle);
