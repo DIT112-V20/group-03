@@ -94,7 +94,7 @@ function showCarStatus(carStatus) {
 function showNotification(notificationText) {
     let notificationDiv = $("#notification");
     notificationDiv.html(notificationText);
-    if (notificationText == "") {
+    if (notificationText === "") {
         notificationDiv.css("display", "none");
     } else {
         notificationDiv.css("display", "block");
