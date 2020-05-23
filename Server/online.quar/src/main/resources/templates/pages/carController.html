@@ -22,6 +22,13 @@
       charset="utf-8"
     />
     <link
+            rel="stylesheet"
+            href="styles/general.css"
+            media="screen"
+            title="no title"
+            charset="utf-8"
+    />
+    <link
       rel="stylesheet"
       href="styles/github-light.css"
       media="screen"
@@ -47,24 +54,12 @@
         "
       >
         <div id="debug">
-          <!--        <ul>-->
-          <!--            <li class="position">-->
-          <!--            </li>-->
-          <!--            <li class="force">force : <span class='data'></span></li>-->
-          <!--            <li class="pressure">pressure : <span class='data'></span></li>-->
-          <!--            <li class="distance">distance : <span class='data'></span></li>-->
-          <!--            <li class="angle">-->
-          <!--                angle :-->
-          <!--                <ul>-->
-          <!--                    <li class="radian">radian : <span class='data'></span></li>-->
-          <!--                    <li class="degree">degree : <span class='data'></span></li>-->
-          <!--                </ul>-->
-          <!--            </li>-->
-          <!--            <li class="direction">-->
-          <!--            </li>-->
-          <!--        </ul>-->
           <div id="speedometer"><p>Car speed: </p></div>
         </div>
+        <div style="margin-left: 1rem; margin-top: 0.5rem; ">
+        <div id="notification" class="alert alert-warning" role="alert" style="width: max-content; display: none">the car have just avoided an obstacle</div>
+        </div>
+
         <div class="zone dynamic active"><h1>Quar.Online</h1></div>
         <div class="zone semi"><h1>Quar.Online</h1></div>
         <div class="zone static"><h1>Quar.Online</h1></div>
@@ -80,7 +75,6 @@
       <div data-type="semi" class="button semi">semi</div>
       <div data-type="static" class="button static">static</div>
     </div>
-
     <br />
 
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>

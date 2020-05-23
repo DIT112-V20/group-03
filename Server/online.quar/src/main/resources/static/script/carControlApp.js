@@ -81,6 +81,22 @@ function sendJoystickInput(data) {
 
 function showCarStatus(carStatus) {
     console.log(carStatus);
-    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "</p>");
+    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "m/s</p>");
+    if (carStatus.carCollisionAvoidance) {
+        showNotification("The car is avoiding a collision!");
+    } else if (carStatus.carObstacleAvoidance) {
+        showNotification("The car is avoiding an obstacle!");
+    } else {
+        showNotification("");
+    }
+}
 
+function showNotification(notificationText) {
+    let notificationDiv = $("#notification");
+    notificationDiv.html(notificationText);
+    if (notificationText == "") {
+        notificationDiv.css("display", "none");
+    } else {
+        notificationDiv.css("display", "block");
+    }
 }

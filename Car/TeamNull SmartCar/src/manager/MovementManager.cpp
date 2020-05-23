@@ -74,12 +74,28 @@ int getActualCarSpeed()
 
 String getActualCarStatus()
 {
+//TODO: += is inefficient and can be improved!
+
     String result = "carId=";
     result += "1";
     result += "&carActualSpeed=";
     result += getActualCarSpeed();
     result += "&carActualAngle=";
     result += turnAngleActual;
+    result += "&carObstacleAvoidance=";
+    result += booleanToString(obstacleBeingAvoided);
+    result += "&carCollisionAvoidance=";
+    result += booleanToString(colisionBeingAvoided);
+    result += "&frontDistance=";
+    result += getFrontDistance();
+    result += "&leftFrontDistance=";
+    result += getLeftFrontDistance();
+    result += "&rightFrontDistance=";
+    result += getRightFrontDistance();
+    result += "&rearDistance=";
+    result += getRearDistance();
+
+
 
     return result;
 }
