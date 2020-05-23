@@ -71,6 +71,13 @@ public class CarManager {
         controlInput.setCarActualSpeed(car.getActualSpeed());
         controlInput.setCarActualAngle(car.getActualAngle());
 
+        controlInput.setCarObstacleAvoidance(car.isCarObstacleAvoidance());
+        controlInput.setCarCollisionAvoidance(car.isCarCollisionAvoidance());
+        controlInput.setFrontDistance(car.getFrontDistance());
+        controlInput.setLeftFrontDistance(car.getLeftFrontDistance());
+        controlInput.setRightFrontDistance(car.getRightFrontDistance());
+        controlInput.setRearDistance(car.getRearDistance());
+
         return controlInput;
     }
 
@@ -94,6 +101,13 @@ public class CarManager {
 
         car.setActualSpeed(carClientControlRequest.getCarActualSpeed());
         car.setActualAngle(carClientControlRequest.getCarActualAngle());
+
+        car.setCarObstacleAvoidance(carClientControlRequest.isCarObstacleAvoidance());
+        car.setCarCollisionAvoidance(carClientControlRequest.isCarCollisionAvoidance());
+        car.setFrontDistance(carClientControlRequest.getFrontDistance());
+        car.setLeftFrontDistance(carClientControlRequest.getLeftFrontDistance());
+        car.setRightFrontDistance(carClientControlRequest.getRightFrontDistance());
+        car.setRearDistance(carClientControlRequest.getRearDistance());
 
         log.d(car.toString());
         log.d(carClientControlRequest.toString());
