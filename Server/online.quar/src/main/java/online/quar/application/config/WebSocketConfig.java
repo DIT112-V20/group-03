@@ -18,7 +18,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/test-websocket").withSockJS();
         registry.addEndpoint("/carWebControl").withSockJS();
         registry.addEndpoint("/carClient").withSockJS();
     }

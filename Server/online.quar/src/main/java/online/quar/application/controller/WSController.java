@@ -19,12 +19,4 @@ public class WSController {
         return applicationManager.getCarManager().processCarControlInput(carControlInput);
     }
 
-//            return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
-
-//    @MessageMapping("/carClient")
-//    @SendTo("/topic/carClient")
-//    public CarControlInput carClientOutput(CarControlInput carClientControlRequest) throws Exception {
-//        return applicationManager.getCarManager().processCarClientControlRequest(carClientControlRequest);
-//    }
-
 }
