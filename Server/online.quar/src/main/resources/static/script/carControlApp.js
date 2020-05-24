@@ -89,6 +89,26 @@ function showCarStatus(carStatus) {
     } else {
         showNotification("");
     }
+    $("#leftDistance").css("backgroundColor", convertDistanceToColor(carStatus.leftFrontDistance));
+    $("#rightDistance").css("backgroundColor", convertDistanceToColor(carStatus.rightFrontDistance));
+    $("#frontDistance").css("backgroundColor", convertDistanceToColor(carStatus.frontDistance));
+    $("#backDistance").css("backgroundColor", convertDistanceToColor(carStatus.rearDistance));
+}
+
+function  convertDistanceToColor(distance) {
+    let green = "green";
+    let red = "red";
+    let orange = "orange";
+    let safeDistance = 1000;
+    let warningDistance = 400;
+
+    if (distance === 0 || distance > safeDistance) {
+        return green;
+    } else if (distance <= safeDistance && distance >= warningDistance) {
+        return orange;
+    } else {
+        return red;
+    }
 }
 
 function showNotification(notificationText) {
