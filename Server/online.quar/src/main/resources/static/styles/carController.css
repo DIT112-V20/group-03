@@ -9,6 +9,56 @@ body {
     background-color: black;
 }
 
+.sensorDistance{
+    background-color: white;
+    height: 20px;
+    vertical-align: top;
+}
+
+.blockParent{
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#middleDistance{
+    width: 200px;
+    margin: auto;
+    display: inline-block;
+}
+#rightDistance{
+    width: 100px;
+    right: 0;
+    position: absolute;
+    display: inline-block;
+}
+#leftDistance{
+    width: 100px;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+}
+#backDistance{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+}
+
+#speedometer{
+    width: 100%;
+    right: 0;
+    font-size: x-large;
+}
+
 #buttons {
     position: relative;
     /*border: solid 1px #aaa;*/
@@ -95,6 +145,10 @@ body {
     width: 100%;
     height: 100%;
     left: 0;
+}
+
+#zone_joystick{
+    position: absolute;
 }
 
 .zone.active {
