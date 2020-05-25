@@ -176,7 +176,7 @@ void syncWithServer() {
           Serial.print(F("deserializeJson() failed: "));
           Serial.println(error.c_str());
           setDesiredVehicleSpeed(setSpeed);
-          setDesireTurnAngle(setAngle);
+          setDesiredTurnAngle(setAngle);
           return;
         }
 
@@ -193,7 +193,7 @@ void syncWithServer() {
           setAngle = doc["setAngle"];
 
           setDesiredVehicleSpeed(setSpeed);
-          setDesireTurnAngle(setAngle);
+          setDesiredTurnAngle(setAngle);
 
           // DEBUG: Print values.
           // Serial.print("setSpeed: ");

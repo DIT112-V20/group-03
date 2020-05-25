@@ -81,6 +81,42 @@ function sendJoystickInput(data) {
 
 function showCarStatus(carStatus) {
     console.log(carStatus);
-    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "</p>");
+    $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "m/s</p>");
+    if (carStatus.carCollisionAvoidance) {
+        showNotification("The car is avoiding a collision!");
+    } else if (carStatus.carObstacleAvoidance) {
+        showNotification("The car is avoiding an obstacle!");
+    } else {
+        showNotification("");
+    }
+    $("#leftDistance").css("backgroundColor", convertDistanceToColor(carStatus.leftFrontDistance));
+    $("#rightDistance").css("backgroundColor", convertDistanceToColor(carStatus.rightFrontDistance));
+    $("#frontDistance").css("backgroundColor", convertDistanceToColor(carStatus.frontDistance));
+    $("#backDistance").css("backgroundColor", convertDistanceToColor(carStatus.rearDistance));
+}
 
+function  convertDistanceToColor(distance) {
+    let green = "green";
+    let red = "red";
+    let orange = "orange";
+    let safeDistance = 1000;
+    let warningDistance = 400;
+
+    if (distance === 0 || distance > safeDistance) {
+        return green;
+    } else if (distance <= safeDistance && distance >= warningDistance) {
+        return orange;
+    } else {
+        return red;
+    }
+}
+
+function showNotification(notificationText) {
+    let notificationDiv = $("#notification");
+    notificationDiv.html(notificationText);
+    if (notificationText === "") {
+        notificationDiv.css("display", "none");
+    } else {
+        notificationDiv.css("display", "block");
+    }
 }
