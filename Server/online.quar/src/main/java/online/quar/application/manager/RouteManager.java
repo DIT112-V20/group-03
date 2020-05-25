@@ -1,6 +1,5 @@
 package online.quar.application.manager;
 
-import com.github.javafaker.Bool;
 import online.quar.application.Singleton;
 import online.quar.application.model.CarControlInput;
 import online.quar.application.model.Route;
@@ -12,7 +11,6 @@ public class RouteManager {
     CarManager carMngr = Singleton.getApplicationManager().getCarManager();
     Route newRout;
 
-
     public Boolean startRec(long id){
         carMngr.findCar(id).setPlzRec(true);
         newRout = new Route(System.currentTimeMillis(),id);
@@ -21,7 +19,7 @@ public class RouteManager {
 
     public Boolean stopRec(long id){
         carMngr.findCar(id).setPlzRec(false);
-        return false;
+        return true;
     }
 
     public Boolean playRec(long id) throws InterruptedException {
@@ -29,7 +27,7 @@ public class RouteManager {
             TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x));           //LIETH: "IM SURE THIS GOES ON TOP!"
             carMngr.processCarControlInput(newRout.getDirAt(x));
         }
-        return false;
+        return true;
     }
 
     public void catchInput(CarControlInput imp){
