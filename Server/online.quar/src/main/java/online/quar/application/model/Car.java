@@ -13,6 +13,10 @@ public class Car {
     //TODO: online should be set correctly, for now, assume car always online.
     private boolean online = true;
 
+
+
+    private boolean plzRec = false;
+
     public Car() {
     }
 
@@ -99,6 +103,10 @@ public class Car {
     public void setOnline(boolean online) {
         this.online = online;
     }
+
+    public boolean isPlzRec() { return plzRec;}
+
+    public void setPlzRec(boolean plzRec) { this.plzRec = plzRec; }
 
     @Override
     public boolean equals(Object o) {

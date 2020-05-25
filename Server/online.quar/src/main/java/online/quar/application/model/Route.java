@@ -49,11 +49,11 @@ public class Route extends CarControlInput{
 */
 
 
-    ArrayList<CarControlInput> dirAry = new ArrayList<>();
-    ArrayList<Long> durAry = new ArrayList<>();
+    ArrayList<CarControlInput> dirAry = new ArrayList<CarControlInput>();
+    ArrayList<Long> durAry = new ArrayList<Long>();
     long routStartEpoch;
 
-    public Route(Long routStartEpoch){
+    public Route(Long routStartEpoch, long carID){
         this.routStartEpoch = routStartEpoch;
     }
 
@@ -67,6 +67,14 @@ public class Route extends CarControlInput{
     }
     public long getDurAt(int indx) {
         return durAry.get(indx);
+    }
+
+    public ArrayList<CarControlInput> getDirAry() {
+        return dirAry;
+    }
+
+    public ArrayList<Long> getDurAry() {
+        return durAry;
     }
 
     public void clearArray(){

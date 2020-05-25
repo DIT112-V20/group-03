@@ -1,5 +1,6 @@
 package online.quar.application.manager;
 
+import com.github.javafaker.App;
 import online.quar.application.Singleton;
 import online.quar.application.model.Car;
 import online.quar.application.model.CarControlInput;
@@ -71,6 +72,8 @@ public class CarManager {
         controlInput.setCarActualAngle(car.getActualAngle());
 
 //        log.d(car.toString());
+
+        Singleton.getApplicationManager().getRouteManager().catchInput(controlInput);
 
         return controlInput;
     }
