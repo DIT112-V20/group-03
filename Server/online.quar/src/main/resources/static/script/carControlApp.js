@@ -87,7 +87,7 @@ function showCarStatus(carStatus) {
     } else if (carStatus.carObstacleAvoidance) {
         showNotification("The car is avoiding an obstacle!");
     } else {
-        showNotification("");
+        showNotification("..");
     }
     $("#leftDistance").css("backgroundColor", convertDistanceToColor(carStatus.leftFrontDistance));
     $("#rightDistance").css("backgroundColor", convertDistanceToColor(carStatus.rightFrontDistance));

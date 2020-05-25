@@ -14,6 +14,10 @@ body {
     position: absolute;
 }
 
+#notification{
+    text-align: center;
+}
+
 .sensorDistance{
     background-color: white;
     height: 20px;
