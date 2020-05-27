@@ -45,12 +45,7 @@
       <br />
       <div><button class="glow-on-hover" type="submit" value="Play Recorded Route">Play Recorded Route</button></div>
     </div>
-    <div data-gr-c-s-loaded="true" class="container">
-      <div class="blockParent">
-        <div id="leftDistance" class="sensorDistance"></div>
-        <div id="frontDistance" class="sensorDistance"></div>
-        <div id="rightDistance" class="sensorDistance"></div>
-      </div>
+
       <div
         id="zone_joystick"
         style="
@@ -59,17 +54,26 @@
           background-size: cover;
         "
       >
-        <div id="debug">
-          <div id="speedometer"><p>Car speed: </p></div>
+        <div class="zone dynamic active" style="width: 1024px; height: 800px;">
+          <div data-gr-c-s-loaded="true" class="container">
+            <div class="blockParent">
+              <div id="leftDistance" class="sensorDistance"></div>
+              <div id="frontDistance" class="sensorDistance"></div>
+              <div id="rightDistance" class="sensorDistance"></div>
+            </div>
+            <div style="margin-left: 1rem; margin-top: 0.5rem; height: 20px; width: 100%">
+              <div id="notification" class="alert alert-warning" role="alert" style="width: max-content; display: none">the car have just avoided an obstacle</div>
+            </div>
+            <div id="debug">
+              <div id="speedometer"><p>Car speed: </p></div>
+            </div>
+            <div style="position: relative; width: 10rem; height: 20rem; bottom:-52%; right:-82%;" ><h1 style="color:white; position: absolute; bottom:0; right:0;">Quar.Online</h1></div></div>
+          <div class="zone semi"><h1>Quar.Online</h1></div>
+          <div class="zone static"><h1>Quar.Online</h1></div>
         </div>
-        <div style="margin-left: 1rem; margin-top: 0.5rem; ">
-        <div id="notification" class="alert alert-warning" role="alert" style="width: max-content; display: none">the car have just avoided an obstacle</div>
         </div>
 
-        <div class="zone dynamic active"><h1>Quar.Online</h1></div>
-        <div class="zone semi"><h1>Quar.Online</h1></div>
-        <div class="zone static"><h1>Quar.Online</h1></div>
-      </div>
+
       <div id="backDistance" class="sensorDistance"></div>
     </div>
 
