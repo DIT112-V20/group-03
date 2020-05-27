@@ -6,6 +6,7 @@ int carSpeedActual = 0;
 int turnAngleSet = 0;
 int turnAngleActual = 0;
 int classSafeDistance = 0 ;
+int scaleAngle= 0;
 
 boolean colisionBeingAvoided = false;
 boolean obstacleBeingAvoided = false;
@@ -209,6 +210,29 @@ boolean checkRear(int safeDistance)
     else
     {
         return true;
+    }
+}
+
+void setScaleAngle(){
+    scaleAngle = getHeading();
+}
+
+void turn(int angle) {
+    
+    int endAngle = angle;
+    
+    if (endAngle<getHeading()-scaleAngle-2){
+        setAngle(-90);
+        turn(angle);
+    }
+    
+    if (endAngle>getHeading()-scaleAngle+2){
+        setAngle(90);
+        turn(angle);
+    }
+
+    else {
+        scaleAngle=getHeading();
     }
 }
 
