@@ -269,13 +269,13 @@ void turn(int angle)
     if (endAngle < getHeading() - scaleAngle - 2)
     {
         setAngle(-90);
-        turn(angle);
+
     }
 
     if (endAngle > getHeading() - scaleAngle + 2)
     {
         setAngle(90);
-        turn(angle);
+  
     }
 
     else
