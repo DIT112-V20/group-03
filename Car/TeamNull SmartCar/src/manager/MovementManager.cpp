@@ -105,7 +105,7 @@ void obstacleAvoidance(int safeDistance)
                 if (!obstacleAvoidanceTurnedRight)
                 {
                     obstacleAvoidanceTurnedRight = true;
-                    obstacleBeingAvoided = true;
+                  obstacleBeingAvoided = true;
                     // timeObstacleWasAvoided = millis();
                     setScaleAngle();
                 }
@@ -121,11 +121,10 @@ void obstacleAvoidance(int safeDistance)
                 {
                     obstacleAvoidanceTurnedLeft = true;
                     obstacleBeingAvoided = true;
-                    //    timeObstacleWasAvoided = millis();
-                    setScaleAngle();
+                //    timeObstacleWasAvoided = millis();
+                   setScaleAngle();
                 }
-                else
-                {
+                else{
                     turn(-45);
                 }
             }
@@ -137,15 +136,14 @@ void obstacleAvoidance(int safeDistance)
         }
         else if (obstacleAvoidanceTurnedRight)
         {
-            if (obstacleBeingAvoided)
-            {
-                setScaleAngle();
-                obstacleBeingAvoided = false;
-            }
+           if(obstacleBeingAvoided){
+               setScaleAngle();
+               obstacleBeingAvoided=false;
+           }
             //TODO: This should be temporary, and then set back to user direction...
             if (checkLeft(safeDistance))
             {
-
+                
                 //timereturnToRouteBegan = millis();
                 //turnLeft();
                 turn(-90);
