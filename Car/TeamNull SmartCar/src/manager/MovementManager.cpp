@@ -64,7 +64,7 @@ void collisionAvoidance()
         carSpeedActual = carSpeedSet;
         colisionBeingAvoided = false;
     }
-    // logging("___CollisionAvoidance%20LEFT___");
+    // logging("___CollisionAvoidance%20LEFT___");  
 }
 
 int getActualCarSpeed()
@@ -76,27 +76,11 @@ String getActualCarStatus()
 {
 //TODO: += is inefficient and can be improved!
 
-    String result = "carId=";
-    result += "1";
-    result += "&carActualSpeed=";
-    result += getActualCarSpeed();
-    result += "&carActualAngle=";
-    result += turnAngleActual;
-    result += "&carObstacleAvoidance=";
-    result += booleanToString(obstacleBeingAvoided);
-    result += "&carCollisionAvoidance=";
-    result += booleanToString(colisionBeingAvoided);
-    result += "&frontDistance=";
-    result += getFrontDistance();
-    result += "&leftFrontDistance=";
-    result += getLeftFrontDistance();
-    result += "&rightFrontDistance=";
-    result += getRightFrontDistance();
-    result += "&rearDistance=";
-    result += getRearDistance();
-
-
-
+    String result = (String)"carId=" + (String)"1" + (String)"&carActualSpeed=" + (String)getActualCarSpeed() + (String)"&carActualAngle=" + (String)turnAngleActual \
+    + (String)"&carObstacleAvoidance=" + booleanToString(obstacleBeingAvoided) + (String)"&carCollisionAvoidance=" + booleanToString(colisionBeingAvoided) \
+    + (String)"&frontDistance=" + (String)getFrontDistance() + (String)"&leftFrontDistance=" + (String)getLeftFrontDistance() + (String)"&rightFrontDistance=" + (String)getRightFrontDistance() \
+    + (String)"&rearDistance=" + (String)getRearDistance() + (String) "&c=7" + getFrontDistance();
+    
     return result;
 }
 
