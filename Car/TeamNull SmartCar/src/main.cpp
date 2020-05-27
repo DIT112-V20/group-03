@@ -30,21 +30,6 @@ void setup() {
 void loop() {
     //collisionAvoidance();
     obstacleAvoidance(safeDistance);
-    // // Sensor debugging
-    // String logLine = "Front:_" + (String) getFrontDistance() + "_FL:_" + (String) getLeftFrontDistance() + "_FR:_" + (String) getRightFrontDistance() + "_Rear:_" + (String) getRearDistance();
-    // logging(logLine);
-    // Serial.print("Front: ");
-    // Serial.print(getFrontDistance());
-    // Serial.print(" FL: ");
-    // Serial.print(getLeftFrontDistance());
-    // Serial.print(" FR: ");
-    // Serial.print(getRightFrontDistance());
-    // Serial.print(" Rear: ");
-    // Serial.println(getRearDistance());
-    // Serial.println("-----------------------");
-    // // delay(1000);
-
-    // Serial.println(getCarCurrentSpeed());
 
     syncWithServer();
 }

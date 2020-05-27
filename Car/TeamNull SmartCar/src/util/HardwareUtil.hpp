@@ -7,6 +7,7 @@
 
 void setSpeed(int speed);
 void setAngle(int angle);
+int getHeading();
 int getCarCurrentSpeed();
 int getCarCurrentAngle();
 void blink(int blinkCount);

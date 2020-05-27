@@ -17,42 +17,15 @@ const unsigned int MAX_DISTANCE = 300;
 
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
 BrushedMotor rightMotor(smartcarlib::pins::v2::rightMotorPins);
+
 DifferentialControl control(leftMotor, rightMotor);
 
 SR04 frontRight(FR_TRIGGER_PIN, FR_ECHO_PIN, MAX_DISTANCE);
 SR04 frontLeft(FL_TRIGGER_PIN, FL_ECHO_PIN, MAX_DISTANCE);
 
 SimpleCar car(control);
+GY50 gyro(12);
 
-// //To find pulses per meter...
-// #include <Smartcar.h>
-
-// const unsigned long LEFT_PULSES_PER_METER  = 100;
-// const unsigned long RIGHT_PULSES_PER_METER = 100;
-// DirectionlessOdometer leftOdometer(
-//     smartcarlib::pins::v2::leftOdometerPin,
-//     []() { leftOdometer.update(); },
-//     LEFT_PULSES_PER_METER);
-// DirectionlessOdometer rightOdometer(
-//     smartcarlib::pins::v2::rightOdometerPin,
-//     []() { rightOdometer.update(); },
-//     RIGHT_PULSES_PER_METER);
-// void setup() {
-//     Serial.begin(9600);
-// }
-// void loop() {
-//     // Manually roll the vehicle for one meter
-//     // and note down the printed out value. That is the
-//     // correct pulses:centimeters ratio for your odometer
-//     // that you should use when initializing the odometer
-//     // in its constructor
-//     Serial.print("Left: ");
-//     Serial.println(leftOdometer.getDistance());
-//     Serial.print("Right: ");
-//     Serial.println(rightOdometer.getDistance());
-
-//     delay(100);
-// }
 
 const unsigned long LEFT_PULSES_PER_METER  = 943;
 const unsigned long RIGHT_PULSES_PER_METER = 972;
@@ -67,6 +40,11 @@ void setSpeed(int speed) {
 
 void setAngle(int angle) {
   car.setAngle(angle);
+}
+
+int getHeading() {
+  gyro.update();
+  return gyro.getHeading();
 }
 
 int getCarCurrentSpeed() {
@@ -112,17 +90,6 @@ void initialiseSensors() {
 
   setSpeed(0);
   setAngle(0);
-
-  //Gyro pre-calibrated
-  // GY50 gyro(0); // Provide the gyroscope with a random offset
-  // Serial.println("Calibrating gyroscope, this might take some seconds");
-  // int offset = gyro.getOffset();
-  // Serial.print("This gyro's offset value is: ");
-  // Serial.println(offset);
-  // Serial.print("Please initialize Gyroscope with the above value as: GY50 gyro(");
-  // Serial.print(offset);
-  // Serial.println("); or another similar value that works better according to your experimentation.");
-  GY50 gyro(12);
 
   pinMode(rearSensorPin, OUTPUT);
   pinMode(frontSensorPin, OUTPUT);
