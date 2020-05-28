@@ -105,12 +105,13 @@ void obstacleAvoidance(int safeDistance)
                 if (!obstacleAvoidanceTurnedRight)
                 {
                     obstacleAvoidanceTurnedRight = true;
-                  obstacleBeingAvoided = true;
+                    obstacleBeingAvoided = true;
                     // timeObstacleWasAvoided = millis();
                     setScaleAngle();
                 }
                 else
                 {
+                    logging("scale%20is:->" + (String)scaleAngle);
                     turn(45);
                 }
             }
@@ -121,10 +122,11 @@ void obstacleAvoidance(int safeDistance)
                 {
                     obstacleAvoidanceTurnedLeft = true;
                     obstacleBeingAvoided = true;
-                //    timeObstacleWasAvoided = millis();
-                   setScaleAngle();
+                    //    timeObstacleWasAvoided = millis();
+                    setScaleAngle();
                 }
-                else{
+                else
+                {
                     turn(-45);
                 }
             }
@@ -136,14 +138,15 @@ void obstacleAvoidance(int safeDistance)
         }
         else if (obstacleAvoidanceTurnedRight)
         {
-           if(obstacleBeingAvoided){
-               setScaleAngle();
-               obstacleBeingAvoided=false;
-           }
+            if (obstacleBeingAvoided)
+            {
+                setScaleAngle();
+                obstacleBeingAvoided = false;
+            }
             //TODO: This should be temporary, and then set back to user direction...
             if (checkLeft(safeDistance))
             {
-                
+
                 //timereturnToRouteBegan = millis();
                 //turnLeft();
                 turn(-90);
@@ -269,49 +272,50 @@ void turn(int angle)
     if (endAngle < getHeading() - scaleAngle - 2)
     {
         setAngle(-90);
-
+        logging("turning_lef-endAngle:" + (String)endAngle + "%20-currentAngle:" + (String)(getHeading() - scaleAngle));
     }
 
     if (endAngle > getHeading() - scaleAngle + 2)
     {
         setAngle(90);
-  
+        logging("turning_lef-endAngle:" + (String)endAngle + "%20-currentAngle:" + (String)(getHeading() - scaleAngle));
     }
 
     else
     {
+        logging("the_angle_is_settled_scaleAngle_is:"+(String)scaleAngle);
         scaleAngle = getHeading();
     }
 }
 
-void turnRight()
+/*void turnRight()
 {
 
-    /*No, the user should still be able to stop the car, or reverse,
+    No, the user should still be able to stop the car, or reverse,
     also, this does not consider if an obstacle apears on the right
     at a later stage, or if the car does in fact NOT turn in time
-    to avoid the obstacle.*/
-    //Further, this stops the entire system from functioning, logging etc
+    to avoid the obstacle.
+    Further, this stops the entire system from functioning, logging etc
 
-    // while(checkFront(classSafeDistance)==false){
+    while(checkFront(classSafeDistance)==false){
     logging(" Turning right ");
     setAngle(45);
-    // }
-}
+     }
+}*/
 
-void turnLeft()
+/*void turnLeft()
 {
-    /*No, the user should still be able to stop the car, or reverse,
+    No, the user should still be able to stop the car, or reverse,
     also, this does not consider if an obstacle apears on the left
     at a later stage, or if the car does in fact NOT turn in time
-    to avoid the obstacle.*/
-    //Further, this stops the entire system from functioning, logging etc
+    to avoid the obstacle.
+    Further, this stops the entire system from functioning, logging etc
 
-    //  while(checkFront(classSafeDistance)==false){
+      while(checkFront(classSafeDistance)==false){
     logging(" Turning left ");
     setAngle(-45);
-    // }
-}
+     }
+}*/
 
 void chooseNewDirection()
 {
