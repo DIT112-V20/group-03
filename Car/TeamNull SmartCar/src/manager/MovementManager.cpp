@@ -89,13 +89,13 @@ String getActualCarStatus()
 
 void obstacleAvoidance(int safeDistance)
 {
-    classSafeDistance = safeDistance;
+    //classSafeDistance = safeDistance;
 
     if (carSpeedActual > 0)
     {
         logging("Car%20is%20going%20forward");
         boolean frontIsSafe = checkFront(safeDistance);
-        logging("checkFront%20output_" + booleanToString(frontIsSafe));
+        logging("FrontisSafe%20output_" + booleanToString(frontIsSafe));
         if (!frontIsSafe)
         {
             logging("__FRONT%20OBSTACLE__");
@@ -216,6 +216,7 @@ void obstacleAvoidance(int safeDistance)
             turnAngleSet = turnAngleActual;
         }
     }
+    
     collisionAvoidance();
 }
 
