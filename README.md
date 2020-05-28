@@ -1,4 +1,4 @@
-# group-03 - TeamNull
+# group-03 - TeamNull [![Build Status](https://travis-ci.com/DIT112-V20/group-03.svg?branch=master)](https://travis-ci.com/DIT112-V20/group-03)
 
 ## What are we making?
 

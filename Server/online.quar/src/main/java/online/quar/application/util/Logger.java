@@ -13,9 +13,6 @@ public class Logger {
     Level logLevel;
     IO io;
 
-
-
-
     public Logger(){
         io = Singleton.getIO();
         logLevel = Level.TEMPORARY;

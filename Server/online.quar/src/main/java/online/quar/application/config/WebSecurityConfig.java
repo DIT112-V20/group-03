@@ -1,4 +1,4 @@
-package online.quar.application;
+package online.quar.application.config;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
@@ -23,7 +23,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/styles/**", "/images/NoAuth/**").permitAll()
+                .antMatchers("/", "/home", "/styles/**", "/images/NoAuth/**", "/carClient", "/controllerTest","/carLog").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         .password("password")
                         .roles("USER")
                         .build();
+
 
         return new InMemoryUserDetailsManager(user);
     }

@@ -1,0 +1,236 @@
+body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: black;
+}
+
+.threeButtons{
+    right:50px;
+    position: absolute;
+}
+
+#notification{
+    text-align: center;
+}
+
+.sensorDistance{
+    background-color: white;
+    height: 20px;
+    vertical-align: top;
+}
+
+.blockParent{
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+    text-align: center;
+}
+
+#frontDistance{
+    width: 200px;
+    margin: auto;
+    display: inline-block;
+}
+#rightDistance{
+    width: 100px;
+    right: 0;
+    position: absolute;
+    display: inline-block;
+}
+#leftDistance{
+    width: 100px;
+    left: 0;
+    position: absolute;
+    display: inline-block;
+}
+#backDistance{
+    width: 200px;
+    margin: 0 auto;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    border-width: 2px;
+    border-color: white;
+    border-style: solid;
+}
+
+#speedometer{
+    width: 100%;
+    right: 0;
+    font-size: x-large;
+}
+
+#buttons {
+    position: relative;
+    /*border: solid 1px #aaa;*/
+    border: none !important;
+    display: inline-block;
+    width: 100%;
+    border-radius: 10px;
+    height: 50px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.button {
+    /*display: inline-block;
+    background: #ccc;
+    color: black;
+    height: 50px;
+    width: 33%;
+    margin: 0;
+    margin-right: -3px;
+    text-align: center;
+    line-height: 45px;
+    font-size: 25px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;*/
+    display: inline-block;
+    border: none !important;
+    font-size: 0;
+    background: transparent;
+    height: 50px;
+    width: 33%;
+    margin: 0;
+    margin-right: -3px;
+    text-align: center;
+    line-height: 45px;
+    cursor: pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.button:hover {
+    /*background: #eee;*/
+    background: transparent;
+}
+
+.button:active {
+    /*background: #ddd;*/
+    background: transparent;
+}
+
+.button.active {
+    /*color: white;
+    background: #888;*/
+    background: transparent;
+}
+
+.button:nth-child(2) {
+    width: 34%;
+    border-left: solid 1px #aaa;
+    border-right: solid 1px #aaa;
+}
+
+.highlight {
+    display: none;
+}
+
+.highlight.active {
+    display: block;
+}
+
+.zone {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+
+#zone_joystick{
+    position: absolute;
+}
+
+.zone.active {
+    display: block;
+}
+
+.zone > h1 {
+    position: absolute;
+    padding: 10px 10px;
+    margin: 0;
+    color: white;
+    right: 0;
+    bottom: 0;
+}
+
+.zone.dynamic {
+    /*background: rgba(0, 0, 255, 0.1);*/
+}
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}

@@ -4,14 +4,28 @@ import online.quar.application.Singleton;
 
 public class Car {
     private long id;
-    private int setSpeed;
-    private int actualSpeed;
-    private int setAngle;
-    private int actualAngle;
+    private int setSpeed = 0;
+    private int actualSpeed = 0;
+    private int setAngle = 0;
+    private int actualAngle = 0;
     private String description;
     private boolean active = true;
+    //TODO: online should be set correctly, for now, assume car always online.
+    private boolean online = true;
+    private boolean carObstacleAvoidance = false;
+    private boolean carCollisionAvoidance = false;
+    private int frontDistance = 0;
+    private int leftFrontDistance = 0;
+    private int rightFrontDistance = 0;
+    private int rearDistance = 0;
 
     public Car() {
+    }
+
+    public Car(long id, String description, boolean active) {
+        this.id = id;
+        this.description = description;
+        this.active = active;
     }
 
     public Car(long id, int setSpeed, int actualSpeed, int setAngle, int actualAngle, String description, boolean active) {
@@ -84,6 +98,62 @@ public class Car {
         this.active = active;
     }
 
+    public boolean isOnline() {
+        return online;
+    }
+
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public boolean isCarObstacleAvoidance() {
+        return carObstacleAvoidance;
+    }
+
+    public void setCarObstacleAvoidance(boolean carObstacleAvoidance) {
+        this.carObstacleAvoidance = carObstacleAvoidance;
+    }
+
+    public boolean isCarCollisionAvoidance() {
+        return carCollisionAvoidance;
+    }
+
+    public void setCarCollisionAvoidance(boolean carCollisionAvoidance) {
+        this.carCollisionAvoidance = carCollisionAvoidance;
+    }
+
+    public int getFrontDistance() {
+        return frontDistance;
+    }
+
+    public void setFrontDistance(int frontDistance) {
+        this.frontDistance = frontDistance;
+    }
+
+    public int getLeftFrontDistance() {
+        return leftFrontDistance;
+    }
+
+    public void setLeftFrontDistance(int leftFrontDistance) {
+        this.leftFrontDistance = leftFrontDistance;
+    }
+
+    public int getRightFrontDistance() {
+        return rightFrontDistance;
+    }
+
+    public void setRightFrontDistance(int rightFrontDistance) {
+        this.rightFrontDistance = rightFrontDistance;
+    }
+
+    public int getRearDistance() {
+        return rearDistance;
+    }
+
+    public void setRearDistance(int rearDistance) {
+        this.rearDistance = rearDistance;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -97,5 +167,19 @@ public class Car {
     @Override
     public int hashCode() {
         return (int) (getId() ^ (getId() >>> 32));
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", setSpeed=" + setSpeed +
+                ", actualSpeed=" + actualSpeed +
+                ", setAngle=" + setAngle +
+                ", actualAngle=" + actualAngle +
+                ", description='" + description + '\'' +
+                ", active=" + active +
+                ", online=" + online +
+                '}';
     }
 }
