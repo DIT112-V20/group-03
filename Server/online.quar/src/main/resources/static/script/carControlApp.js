@@ -64,7 +64,7 @@ function sendJoystickInput(data) {
         carId = 1;
         carSetAngle = data.angle.degree > 270? ( - data.angle.degree + 450) : (- data.angle.degree + 90);
 
-        carSetSpeed = carSetSpeed === 0? 1: (20*Math.log(data.distance/1.5));
+        carSetSpeed = data.distance === 0? 1 : (20*Math.log(data.distance/1.5));
         carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? carSetSpeed : -(carSetSpeed);
 
         if(carSetSpeed <= 0){
