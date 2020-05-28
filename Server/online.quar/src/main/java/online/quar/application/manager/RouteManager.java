@@ -3,12 +3,14 @@ package online.quar.application.manager;
 import online.quar.application.Singleton;
 import online.quar.application.model.CarControlInput;
 import online.quar.application.model.Route;
+import online.quar.application.util.Logger;
 
 import java.util.concurrent.TimeUnit;
 
 public class RouteManager {
 
     CarManager carMngr = Singleton.getApplicationManager().getCarManager();
+    Logger logger = Singleton.getLogger();
     Route newRout;
 
     public Boolean startRec(long id){
@@ -31,6 +33,7 @@ public class RouteManager {
                 lastDur = newRout.getDurAt(x);
             }
         }
+        logger.d("---------------- DONE PLAYING RECORDING ---------------- DONE PLAYING RECORDING ----------------");
         return true;
     }
 
