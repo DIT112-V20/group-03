@@ -21,20 +21,20 @@ public class WSController {
 
     @MessageMapping("/startRecRoute")
     @SendTo("/topic/userInterface")
-    public Boolean startRecRoute(long id) throws Exception {
-        return applicationManager.getRouteManager().startRec(id);
+    public Boolean startRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().startRec(carControlInput.getCarId());
     }
 
     @MessageMapping("/stopRecRoute")
     @SendTo("/topic/userInterface")
-    public Boolean stopRecRoute(long id) throws Exception {
-        return applicationManager.getRouteManager().stopRec(id);
+    public Boolean stopRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().stopRec(carControlInput.getCarId());
     }
 
     @MessageMapping("/playRecRoute")
     @SendTo("/topic/userInterface")
-    public Boolean playRecRoute(long id) throws Exception {
-        return applicationManager.getRouteManager().playRec(id);
+    public Boolean playRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().playRec(carControlInput.getCarId());
     }
 
 }

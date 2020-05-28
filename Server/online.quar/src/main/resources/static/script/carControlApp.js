@@ -1,4 +1,5 @@
 var stompClient = null;
+var carId = 1;
 
 function setConnected(connected) {
     // $("#connect").prop("disabled", connected);
@@ -56,7 +57,6 @@ function disconnect() {
 function sendJoystickInput(data) {
 
     //TODO: Real car ID
-    var carId = 1;
     var carSetSpeed = 0;
     var carSetAngle = 0;
 
@@ -80,16 +80,16 @@ function sendJoystickInput(data) {
     stompClient.send("/app/carControl", {}, JSON.stringify({'carId': carId, 'carSetSpeed': carSetSpeed, 'carSetAngle': carSetAngle}));
 }
 
-function recordRoute(data) {
-    stompClient.send("/app/startRecRoute", {}, JSON.stringify({'carId': data}));
+function recordRoute() {
+    stompClient.send("/app/startRecRoute", {}, JSON.stringify({'carId': carId}));
 }
 
-function stopRecordRoute(data) {
-    stompClient.send("/app/stopRecRoute", {}, JSON.stringify({'carId': data}));
+function stopRecordRoute() {
+    stompClient.send("/app/stopRecRoute", {}, JSON.stringify({'carId': carId}));
 }
 
-function replayRoute(data) {
-    stompClient.send("/app/playRecRoute", {}, JSON.stringify({'carId': data}));
+function replayRoute() {
+    stompClient.send("/app/playRecRoute", {}, JSON.stringify({'carId': carId}));
 }
 
     function showCarStatus(carStatus) {
