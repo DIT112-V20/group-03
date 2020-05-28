@@ -10,10 +10,18 @@ import java.util.concurrent.TimeUnit;
 public class RouteManager {
     Logger log = Singleton.getLogger();
 
-    CarManager carMngr = Singleton.getApplicationManager().getCarManager();
+    CarManager carMngr = null;
     Route newRout;
 
+    //TODO: this should be called in Application Manager on load
+    private void getCarManagerIfNeeded() {
+        if(carMngr == null) {
+            carMngr = Singleton.getApplicationManager().getCarManager();
+        }
+    }
+
     public Boolean startRec(long id){
+        getCarManagerIfNeeded();
         log.d("Started recording route");
         carMngr.findCar(id).setPlzRec(true);
         newRout = new Route(System.currentTimeMillis(),id);
@@ -21,12 +29,14 @@ public class RouteManager {
     }
 
     public Boolean stopRec(long id){
+        getCarManagerIfNeeded();
         log.d("Stop recording route");
         carMngr.findCar(id).setPlzRec(false);
         return true;
     }
 
     public Boolean playRec(long id) throws InterruptedException {
+        getCarManagerIfNeeded();
         log.d("Started replaying recorded route");
         for(int x=0;x<newRout.getDurAry().size();x++) {
             TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x));
@@ -36,6 +46,7 @@ public class RouteManager {
     }
 
     public void catchInput(CarControlInput imp){
+        getCarManagerIfNeeded();
         if(carMngr.findCar(imp.getCarId()).isPlzRec()){     //if bool to record == true
             newRout.setNewMove(imp, System.currentTimeMillis());
         }
