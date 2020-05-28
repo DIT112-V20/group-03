@@ -1,5 +1,6 @@
 package online.quar.application.manager;
 
+import com.github.javafaker.App;
 import online.quar.application.Singleton;
 import online.quar.application.model.Car;
 import online.quar.application.model.CarControlInput;
@@ -77,6 +78,8 @@ public class CarManager {
         controlInput.setLeftFrontDistance(car.getLeftFrontDistance());
         controlInput.setRightFrontDistance(car.getRightFrontDistance());
         controlInput.setRearDistance(car.getRearDistance());
+
+        Singleton.getApplicationManager().getRouteManager().catchInput(controlInput);
 
         return controlInput;
     }

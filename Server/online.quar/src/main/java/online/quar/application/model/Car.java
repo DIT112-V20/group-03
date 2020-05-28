@@ -19,6 +19,10 @@ public class Car {
     private int rightFrontDistance = 0;
     private int rearDistance = 0;
 
+
+
+    private boolean plzRec = false;
+
     public Car() {
     }
 
@@ -105,6 +109,10 @@ public class Car {
     public void setOnline(boolean online) {
         this.online = online;
     }
+
+    public boolean isPlzRec() { return plzRec;}
+
+    public void setPlzRec(boolean plzRec) { this.plzRec = plzRec; }
 
     public boolean isCarObstacleAvoidance() {
         return carObstacleAvoidance;
