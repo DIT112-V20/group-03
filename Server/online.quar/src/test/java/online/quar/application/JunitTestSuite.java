@@ -1,5 +1,6 @@
 package online.quar.application;
 
+import org.junit.jupiter.api.Test;
 import online.quar.application.controller.TestRestfulController;
 import online.quar.application.model.TestCar;
 import org.junit.runner.RunWith;

@@ -31,6 +31,26 @@ public class UserManager {
         return false;
     }
 
+    public User findUser(String userName) {
+        //First check for user in cache
+        for (User user : users) {
+            if (user.getUsername() == userName && user.isActive()) {
+                return user;
+            }
+        }
+
+        //User was not found in memory, check database
+        DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
+        User user = databaseManager.getUserByUsername(userName, true);
+
+        if(user != null) {
+            users.add(user);
+        }
+
+        //If the user is not found in the database, null will be returned
+        return user;
+    }
+
     public User findUser(long userId) {
         //First check for user in cache
         for (User user : users) {
@@ -43,7 +63,9 @@ public class UserManager {
         DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
         User user = databaseManager.getUser(userId, true);
 
-        users.add(user);
+        if(user != null) {
+            users.add(user);
+        }
 
         //If the user is not found in the database, null will be returned
         return user;

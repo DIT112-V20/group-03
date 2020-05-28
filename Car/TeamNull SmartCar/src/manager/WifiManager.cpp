@@ -1,6 +1,9 @@
 #include "WifiManager.hpp" // ESP32 WiFi include
 #include <HTTPClient.h>
 #include "manager/MovementManager.hpp"
+#include <ArduinoJson.h>
+
+
 
 char* WiFiSSID = "TheMancave";
 char* WiFiPassword = "tagedirtybumpaberra";
@@ -100,6 +103,28 @@ void connectToWiFi() {
     Serial.println(WiFi.localIP());
 
     // http.begin("https://quar.online:8443/carClient?json=", root_ca); //Specify the URL and certificate
+    String url = "https://quar.online:8443/carClient?" + getActualCarStatus();//carId=1&carActualSpeed=20&carActualAngle=10";
+    http.begin(url, root_ca);
+
+}
+
+void logging (String message){
+   
+  if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
+    String url = "https://quar.online:8443/carLog?" + (String)"carId=1" + (String)"&message=" + message; //&carActualSpeed=20&carActualAngle=10";
+    // http.begin(url, root_ca);
+    // Serial.println(url);
+    http.begin(url);
+    int httpCode = http.GET();  //Make the request
+    // int httpCode = http.POST(data);  //Make the request
+
+        if (!(httpCode > 0)) { //Check for the returning code
+              Serial.println("Error on HTTP LOG request");
+        }
+
+    http.end(); //Free the resources
+    Serial.println(message);
+  }
 
 }
 
@@ -110,35 +135,79 @@ void connectToWiFi(char* SSID, char* password) {
     connectToWiFi();
 }
 
-void getInstructionsFromServer() {
+void syncWithServer() {
 
-    String data;
-    data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
-    
-
+    // String data;
+    // data = "{\"carId\":1,\"carSetSpeed\":0,\"carSetAngle\":0,\"carActualSpeed\":45,\"carActualAngle\":168}";
 
   if ((WiFi.status() == WL_CONNECTED)) { //Check the current connection status
-    // String url = "https://quar.online:8443/carClient?json=" + data;
-    // String url = "https://quar.online:8443/carClient?json={\\\"carId\\\":1,\\\"carSetSpeed\\\":0,\\\"carSetAngle\\\":0,\\\"carActualSpeed\\\":45,\\\"carActualAngle\\\":168}";
     String url = "https://quar.online:8443/carClient?" + getActualCarStatus();//carId=1&carActualSpeed=20&carActualAngle=10";
-    http.begin(url, root_ca);
+    // http.begin(url, root_ca);
+    // Serial.println(url);
+    http.begin(url);
     int httpCode = http.GET();  //Make the request
     // int httpCode = http.POST(data);  //Make the request
  
     if (httpCode > 0) { //Check for the returning code
  
+        // String payload = http.getString();
+
+        StaticJsonDocument<200> doc;
         String payload = http.getString();
-        Serial.println(httpCode);
-        Serial.println(payload);
-      }
- 
-    else {
+
+        // Serial.println("payload: " + payload);
+
+        char json[payload.length() + 1];
+
+        std::copy(payload.begin(), payload.end(), json);
+        json[payload.length()] = '\0';
+        
+        // char json[] = "{\"id\":1,\"setSpeed\":15,\"setAngle\":15,\"actualSpeed\":20,\"actualAngle\":10}";
+
+        // Serial.println(json);
+        
+        // Deserialize the JSON document
+        DeserializationError error = deserializeJson(doc, json);
+
+        long setSpeed = 0;
+        long setAngle = 0;
+        // Test if parsing succeeds.
+        if (error) {
+          Serial.print(F("deserializeJson() failed: "));
+          Serial.println(error.c_str());
+          setDesiredVehicleSpeed(setSpeed);
+          setDesiredTurnAngle(setAngle);
+          return;
+        }
+
+          // Fetch values.
+          //
+          // Most of the time, you can rely on the implicit casts.
+          // In other case, you can do doc["time"].as<long>();
+          // const char* sensor = doc["sensor"];
+          // long time = doc["time"];
+          // double latitude = doc["data"][0];
+          // double longitude = doc["data"][1];
+
+          setSpeed = doc["setSpeed"];
+          setAngle = doc["setAngle"];
+
+          setDesiredVehicleSpeed(setSpeed);
+          setDesiredTurnAngle(setAngle);
+
+          // DEBUG: Print values.
+          // Serial.print("setSpeed: ");
+          // Serial.println(setSpeed);
+          // Serial.print("setAngle: ");
+          // Serial.println(setAngle);
+
+  } else {
       Serial.println("Error on HTTP request");
+      ESP.restart();
     }
  
     http.end(); //Free the resources
   }
  
-  delay(300);
 }
 

@@ -47,7 +47,10 @@ public class CarManager {
         //Car was not found in memory, check database
         DatabaseManager databaseManager = Singleton.getApplicationManager().getDatabaseManager();
         Car car = databaseManager.getCar(carId, true);
-        cars.add(car);
+
+        if(car != null) {
+            cars.add(car);
+        }
 
         log.d("Found car: " + car.toString());
 
@@ -56,8 +59,6 @@ public class CarManager {
     }
 
     public CarControlInput processCarControlInput(CarControlInput controlInput) {
-
-//        log.d(controlInput.toString());
 
         Car car = findCar(controlInput.getCarId());
 
@@ -71,7 +72,12 @@ public class CarManager {
         controlInput.setCarActualSpeed(car.getActualSpeed());
         controlInput.setCarActualAngle(car.getActualAngle());
 
-//        log.d(car.toString());
+        controlInput.setCarObstacleAvoidance(car.isCarObstacleAvoidance());
+        controlInput.setCarCollisionAvoidance(car.isCarCollisionAvoidance());
+        controlInput.setFrontDistance(car.getFrontDistance());
+        controlInput.setLeftFrontDistance(car.getLeftFrontDistance());
+        controlInput.setRightFrontDistance(car.getRightFrontDistance());
+        controlInput.setRearDistance(car.getRearDistance());
 
         Singleton.getApplicationManager().getRouteManager().catchInput(controlInput);
 
@@ -99,10 +105,16 @@ public class CarManager {
         car.setActualSpeed(carClientControlRequest.getCarActualSpeed());
         car.setActualAngle(carClientControlRequest.getCarActualAngle());
 
+        car.setCarObstacleAvoidance(carClientControlRequest.isCarObstacleAvoidance());
+        car.setCarCollisionAvoidance(carClientControlRequest.isCarCollisionAvoidance());
+        car.setFrontDistance(carClientControlRequest.getFrontDistance());
+        car.setLeftFrontDistance(carClientControlRequest.getLeftFrontDistance());
+        car.setRightFrontDistance(carClientControlRequest.getRightFrontDistance());
+        car.setRearDistance(carClientControlRequest.getRearDistance());
+
         log.d(car.toString());
         log.d(carClientControlRequest.toString());
 
         return carClientControlRequest;
-
     }
 }

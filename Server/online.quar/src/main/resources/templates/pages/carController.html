@@ -1,180 +1,227 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Quar Online</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="styles/carController.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="styles/carStyles.css" media="screen" title="no title" charset="utf-8">
-    <link rel="stylesheet" href="styles/github-light.css" media="screen" title="no title" charset="utf-8">
-<!--    <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
-</head>
-<body>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="styles/carController.css"
+      media="screen"
+      title="no title"
+      charset="utf-8"
+    />
+    <link
+      rel="stylesheet"
+      href="styles/carStyles.css"
+      media="screen"
+      title="no title"
+      charset="utf-8"
+    />
+    <link
+            rel="stylesheet"
+            href="styles/general.css"
+            media="screen"
+            title="no title"
+            charset="utf-8"
+    />
+    <link
+      rel="stylesheet"
+      href="styles/github-light.css"
+      media="screen"
+      title="no title"
+      charset="utf-8"
+    />
 
-<div id="zone_joystick">
-    <div id="debug">
-<!--        <ul>-->
-<!--            <li class="position">-->
-<!--            </li>-->
-<!--            <li class="force">force : <span class='data'></span></li>-->
-<!--            <li class="pressure">pressure : <span class='data'></span></li>-->
-<!--            <li class="distance">distance : <span class='data'></span></li>-->
-<!--            <li class="angle">-->
-<!--                angle :-->
-<!--                <ul>-->
-<!--                    <li class="radian">radian : <span class='data'></span></li>-->
-<!--                    <li class="degree">degree : <span class='data'></span></li>-->
-<!--                </ul>-->
-<!--            </li>-->
-<!--            <li class="direction">-->
-<!--            </li>-->
-<!--        </ul>-->
+  </head>
+  <body>
+    <div class="threeButtons">
+      <div><button class="glow-on-hover" type="submit" value="Record Route">Record Route</button></div>
+      <br />
+      <div><button class="glow-on-hover" type="submit" value="Stop Recording Route">Stop Recording Route</button></div>
+      <br />
+      <div><button class="glow-on-hover" type="submit" value="Play Recorded Route">Play Recorded Route</button></div>
     </div>
-    <div class="zone dynamic active"><h1>Quar.Online</h1></div>
-    <div class="zone semi"><h1>Quar.Online</h1></div>
-    <div class="zone static"><h1>Quar.Online</h1></div>
-</div>
-<div class="dynamic active highlight highlight-javascript">
-</div>
-<div class="semi highlight highlight-javascript">
-</div>
-<div class="static highlight highlight-javascript">
-</div>
-<div id="buttons">
-    <div data-type="dynamic" class="active button dynamic">dynamic</div>
-    <div data-type="semi" class="button semi">semi</div>
-    <div data-type="static" class="button static">static</div>
-</div>
-<br/>
 
-<script src="/webjars/sockjs-client/sockjs.min.js"></script>
-<script src="/webjars/stomp-websocket/stomp.min.js"></script>
-<script src="/script/carControlApp.js"></script>
-<script src="/dist/nipplejs.js"></script>
-<script>
-    var s = function (sel) { return document.querySelector(sel); };
-    var sId = function (sel) { return document.getElementById(sel); };
-    var removeClass = function (el, clss) {
-        el.className = el.className.replace(new RegExp('\\b' + clss + ' ?\\b', 'g'), '');
-    }
-    var joysticks = {
+      <div
+        id="zone_joystick"
+        style="
+          background-image: url('http://cam.quar.online:88/');
+          background-repeat: no-repeat;
+          background-size: cover;
+        "
+      >
+        <div class="zone dynamic active" style="width: 1024px; height: 800px;">
+          <div data-gr-c-s-loaded="true" class="container">
+            <div class="blockParent">
+              <div id="leftDistance" class="sensorDistance"></div>
+              <div id="frontDistance" class="sensorDistance"></div>
+              <div id="rightDistance" class="sensorDistance"></div>
+            </div>
+            <div style="margin-left: 1rem; margin-top: 0.5rem; height: 20px; width: 100%">
+              <div id="notification" class="alert alert-warning" role="alert" style="width: max-content; display: none">the car have just avoided an obstacle</div>
+            </div>
+            <div id="debug">
+              <div id="speedometer"><p>Car speed: </p></div>
+            </div>
+            <div style="position: relative; width: 10rem; height: 20rem; bottom:-52%; right:-82%;" ><h1 style="color:white; position: absolute; bottom:0; right:0;">Quar.Online</h1></div></div>
+          <div class="zone semi"><h1>Quar.Online</h1></div>
+          <div class="zone static"><h1>Quar.Online</h1></div>
+        </div>
+        </div>
+
+
+      <div id="backDistance" class="sensorDistance"></div>
+    </div>
+
+    <div class="dynamic active highlight highlight-javascript"></div>
+    <div class="semi highlight highlight-javascript"></div>
+    <div class="static highlight highlight-javascript"></div>
+    <div id="buttons">
+      <div data-type="dynamic" class="active button dynamic">dynamic</div>
+      <div data-type="semi" class="button semi">semi</div>
+      <div data-type="static" class="button static">static</div>
+    </div>
+    <br />
+
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="/script/joystick.js"></script>
+    <script src="/script/carControlApp.js"></script>
+    <script src="/dist/nipplejs.js"></script>
+    <script src="/webjars/jquery/jquery.min.js"></script>
+
+    <script>
+      var s = function (sel) {
+        return document.querySelector(sel);
+      };
+      var sId = function (sel) {
+        return document.getElementById(sel);
+      };
+      var removeClass = function (el, clss) {
+        el.className = el.className.replace(
+          new RegExp("\\b" + clss + " ?\\b", "g"),
+          ""
+        );
+      };
+      var joysticks = {
         dynamic: {
-            zone: s('.zone.dynamic'),
-            color: 'blue',
-            multitouch: true
-        }
-    };
-    var joystick;
-    var carControlApp;
-
-    // Get debug elements and map them
-    var elDebug = sId('debug');
-    // var elDump = elDebug.querySelector('.dump');
-    var els = {
-        position: {
-            x: elDebug.querySelector('.position .x .data'),
-            y: elDebug.querySelector('.position .y .data')
+          zone: s(".zone.dynamic"),
+          color: "blue",
+          multitouch: true,
+          size: 300,
         },
-        force: elDebug.querySelector('.force .data'),
-        pressure: elDebug.querySelector('.pressure .data'),
-        distance: elDebug.querySelector('.distance .data'),
+      };
+      var joystick;
+      var carControlApp;
+
+      // Get debug elements and map them
+      var elDebug = sId("debug");
+      // var elDump = elDebug.querySelector('.dump');
+      var els = {
+        position: {
+          x: elDebug.querySelector(".position .x .data"),
+          y: elDebug.querySelector(".position .y .data"),
+        },
+        force: elDebug.querySelector(".force .data"),
+        pressure: elDebug.querySelector(".pressure .data"),
+        distance: elDebug.querySelector(".distance .data"),
         angle: {
-            radian: elDebug.querySelector('.angle .radian .data'),
-            degree: elDebug.querySelector('.angle .degree .data')
+          radian: elDebug.querySelector(".angle .radian .data"),
+          degree: elDebug.querySelector(".angle .degree .data"),
         },
         direction: {
-            x: elDebug.querySelector('.direction .x .data'),
-            y: elDebug.querySelector('.direction .y .data'),
-            angle: elDebug.querySelector('.direction .angle .data')
-        }
-    };
+          x: elDebug.querySelector(".direction .x .data"),
+          y: elDebug.querySelector(".direction .y .data"),
+          angle: elDebug.querySelector(".direction .angle .data"),
+        },
+      };
 
-    var timeoutCreate;
-    function createThrottle (evt) {
+      var timeoutCreate;
+      function createThrottle(evt) {
         clearTimeout(timeoutCreate);
         timeoutCreate = setTimeout(() => {
-            createNipple(evt);
+          createNipple(evt);
         }, 100);
-    }
+      }
 
-    sId('buttons').onclick = sId('buttons').ontouchend = createThrottle;
+      sId("buttons").onclick = sId("buttons").ontouchend = createThrottle;
 
-    createNipple('dynamic');
+      createNipple("dynamic");
 
-    function bindNipple () {
-        joystick.on('start', function (evt, data) {
+      function bindNipple() {
+        joystick
+          .on("start", function (evt, data) {
             dump(evt.type);
             debug(data);
-        }).on('end', function (evt, data) {
+          })
+          .on("end", function (evt, data) {
             dump(evt.type);
             debug(data);
             sendJoystickInput(null);
-        }).on('move', function (evt, data) {
+            //Sometimes these messages seem to get lost =D
+            sendJoystickInput(null);
+            sendJoystickInput(null);
+          })
+          .on("move", function (evt, data) {
             debug(data);
             sendJoystickInput(data);
-        }).on('dir:up plain:up dir:left plain:left dir:down ' +
-            'plain:down dir:right plain:right',
+          })
+          .on(
+            "dir:up plain:up dir:left plain:left dir:down " +
+              "plain:down dir:right plain:right",
             function (evt, data) {
-                dump(evt.type);
+              dump(evt.type);
             }
-        ).on('pressure', function (evt, data) {
-            debug({pressure: data});
-        // }).on('end', function (evt, data) {
-        //     sendJoystickInput(null)
-        // }).on('move', function (evt, data) {
-        //     sendJoystickInput(data);
-        });
-    }
+          )
+          .on("pressure", function (evt, data) {
+            debug({ pressure: data });
+            // }).on('end', function (evt, data) {
+            //     sendJoystickInput(null)
+            // }).on('move', function (evt, data) {
+            //     sendJoystickInput(data);
+          });
+      }
 
-    function createNipple (evt) {
-        var type = typeof evt === 'string' ?
-            evt : evt.target.getAttribute('data-type');
+      function createNipple(evt) {
+        var type =
+          typeof evt === "string" ? evt : evt.target.getAttribute("data-type");
         if (joystick) {
-            joystick.destroy();
+          joystick.destroy();
         }
 
-        removeClass(s('.zone.active'), 'active');
-        removeClass(s('.button.active'), 'active');
-        removeClass(s('.highlight.active'), 'active');
-        s('.highlight.' + type).className += ' active';
-        s('.button.' + type).className += ' active';
-        s('.zone.' + type).className += ' active';
-        joystick = nipplejs.create(joysticks['dynamic']);
+        removeClass(s(".zone.active"), "active");
+        removeClass(s(".button.active"), "active");
+        removeClass(s(".highlight.active"), "active");
+        s(".highlight." + type).className += " active";
+        s(".button." + type).className += " active";
+        s(".zone." + type).className += " active";
+        joystick = nipplejs.create(joysticks["dynamic"]);
         connect();
         bindNipple();
-    }
+      }
 
-    // Print data into elements
-    function debug (obj) {
+      // Print data into elements
+      function debug(obj) {
         function parseObj(sub, el) {
-            for (var i in sub) {
-                if (typeof sub[i] === 'object' && el) {
-                    parseObj(sub[i], el[i]);
-                } else if (el && el[i]) {
-                    el[i].innerHTML = sub[i];
-                }
+          for (var i in sub) {
+            if (typeof sub[i] === "object" && el) {
+              parseObj(sub[i], el[i]);
+            } else if (el && el[i]) {
+              el[i].innerHTML = sub[i];
             }
+          }
         }
         setTimeout(function () {
-            parseObj(obj, els);
+          parseObj(obj, els);
         }, 0);
-    }
+      }
 
-    var nbEvents = 0;
+      var nbEvents = 0;
 
-    // // Dump data
-    // function dump (evt) {
-    //     setTimeout(function () {
-    //         if (elDump.children.length > 4) {
-    //             elDump.removeChild(elDump.firstChild);
-    //         }
-    //         var newEvent = document.createElement('div');
-    //         newEvent.innerHTML = '#' + nbEvents + ' : <span class="data">' +
-    //             evt + '</span>';
-    //         elDump.appendChild(newEvent);
-    //         nbEvents += 1;
-    //     }, 0);
-    // }
-</script>
-</body>
+    </script>
+  </body>
 </html>

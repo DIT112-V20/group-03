@@ -26,7 +26,6 @@ public class ServerConfig {
             }
         };
         tomcat.addAdditionalTomcatConnectors(getHttpConnector(8080, 8443));
-//        tomcat.addAdditionalTomcatConnectors(getHttpConnector(80, 443));
 
         return tomcat;
     }

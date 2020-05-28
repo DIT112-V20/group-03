@@ -1,15 +1,15 @@
 #include "main.hpp"
 
 unsigned long loadTime = 0;
-
+int safeDistance = 1000;
 void setup() {
 
     // Open Serial Connection
-    Serial.begin(9600);
+    Serial.begin(115200);
     Wire.begin();
     pinMode(LED_BUILTIN, OUTPUT);
 
-    blink(2);
+    blink(1);
 
     initialiseSensors();
 
@@ -18,7 +18,7 @@ void setup() {
     char* WiFiSSID = "TheMancave";
     char* WiFiPassword = "tagedirtybumpaberra";
     connectToWiFi(WiFiSSID, WiFiPassword);
-    blink(3);
+    blink(1);
 
     Serial.println("Returned from connectToWiFi");
 
@@ -28,9 +28,8 @@ void setup() {
 }
 
 void loop() {
-    // collisionAvoidance();
+    //collisionAvoidance();
+    obstacleAvoidance(safeDistance);
 
-    Serial.println("loop");
-
-    getInstructionsFromServer();
+    syncWithServer();
 }

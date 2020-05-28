@@ -1,5 +1,6 @@
 package online.quar.application.model;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -18,13 +19,13 @@ public class TestCar {
     public void tearDown() {
     }
 
-    @org.junit.Test
+    @org.junit.jupiter.api.Test
     public void getId() {
         System.out.println("Inside getId");
         assertEquals(1,1);
     }
 
-    @org.junit.Test
+    @org.junit.jupiter.api.Test
     public void setId() {
         assertEquals(2,2);
     }

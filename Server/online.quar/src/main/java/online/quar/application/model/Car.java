@@ -12,6 +12,12 @@ public class Car {
     private boolean active = true;
     //TODO: online should be set correctly, for now, assume car always online.
     private boolean online = true;
+    private boolean carObstacleAvoidance = false;
+    private boolean carCollisionAvoidance = false;
+    private int frontDistance = 0;
+    private int leftFrontDistance = 0;
+    private int rightFrontDistance = 0;
+    private int rearDistance = 0;
 
 
 
@@ -107,6 +113,54 @@ public class Car {
     public boolean isPlzRec() { return plzRec;}
 
     public void setPlzRec(boolean plzRec) { this.plzRec = plzRec; }
+
+    public boolean isCarObstacleAvoidance() {
+        return carObstacleAvoidance;
+    }
+
+    public void setCarObstacleAvoidance(boolean carObstacleAvoidance) {
+        this.carObstacleAvoidance = carObstacleAvoidance;
+    }
+
+    public boolean isCarCollisionAvoidance() {
+        return carCollisionAvoidance;
+    }
+
+    public void setCarCollisionAvoidance(boolean carCollisionAvoidance) {
+        this.carCollisionAvoidance = carCollisionAvoidance;
+    }
+
+    public int getFrontDistance() {
+        return frontDistance;
+    }
+
+    public void setFrontDistance(int frontDistance) {
+        this.frontDistance = frontDistance;
+    }
+
+    public int getLeftFrontDistance() {
+        return leftFrontDistance;
+    }
+
+    public void setLeftFrontDistance(int leftFrontDistance) {
+        this.leftFrontDistance = leftFrontDistance;
+    }
+
+    public int getRightFrontDistance() {
+        return rightFrontDistance;
+    }
+
+    public void setRightFrontDistance(int rightFrontDistance) {
+        this.rightFrontDistance = rightFrontDistance;
+    }
+
+    public int getRearDistance() {
+        return rearDistance;
+    }
+
+    public void setRearDistance(int rearDistance) {
+        this.rearDistance = rearDistance;
+    }
 
     @Override
     public boolean equals(Object o) {
