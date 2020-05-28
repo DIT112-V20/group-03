@@ -111,7 +111,7 @@ void obstacleAvoidance(int safeDistance)
                 }
                 else
                 {
-                    logging("scale%20is:->" + (String)scaleAngle);
+                    // logging("scale%20is:->" + (String)scaleAngle);
                     turn(45);
                 }
             }
@@ -138,12 +138,12 @@ void obstacleAvoidance(int safeDistance)
         }
         else if (obstacleAvoidanceTurnedRight)
         {
+            logging("obstacleAvoidanceTurnedRight");
             if (obstacleBeingAvoided)
             {
                 setScaleAngle();
                 obstacleBeingAvoided = false;
             }
-            //TODO: This should be temporary, and then set back to user direction...
             if (checkLeft(safeDistance))
             {
 
@@ -156,11 +156,18 @@ void obstacleAvoidance(int safeDistance)
         }
         else if (obstacleAvoidanceTurnedLeft)
         {
-            //TODO: This should be temporary, and then set back to user direction...
+            logging("obstacleAvoidanceTurnedLeft");
+            if (obstacleBeingAvoided)
+            {
+                setScaleAngle();
+                obstacleBeingAvoided = false;
+            }
             if (checkRight(safeDistance))
             {
-                timereturnToRouteBegan = millis();
-                //turnRight();
+
+                //timereturnToRouteBegan = millis();
+                //turnLeft();
+                turn(90);
             }
             obstacleAvoidanceTurnedLeft = false;
             obstacleBeingAvoided = false;
@@ -283,7 +290,7 @@ void turn(int angle)
 
     else
     {
-        logging("the_angle_is_settled_scaleAngle_is:"+(String)scaleAngle);
+        logging("the_angle_is_settled_scaleAngle_is:" + (String)scaleAngle);
         scaleAngle = getHeading();
     }
 }
@@ -316,7 +323,3 @@ void turn(int angle)
     setAngle(-45);
      }
 }*/
-
-void chooseNewDirection()
-{
-}
