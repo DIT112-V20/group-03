@@ -25,6 +25,25 @@ We will further use the Arduino IDE to develop the application that runs on the 
 In order for the application running on the car, and the user-facing application to communicate with one another, we will develop the java application to be run on a server, 
 which the car can reach, so long as it has a WiFi connection.
  
+## Set-up: User
+
+Any authorized user can acces and control the car by entering the URL https://quar.online and log in with an authorized username and password.
+
+## Set-up: Developer
+
+## User Manual
+
+#### The Welcome-page
+- This page welcomes the user to the website. Simply click the link to move on to the login-page.
+
+#### The Login-page
+- Enter a valid username and password in their respective field and then hit the SIGN IN-button to proceed.
+
+#### The Car Controller-page
+- As long as the power switch is on for the car, the user should now see a camera feed in the middle of the screen. The user can steer the car by clicking on the camera stream. When clicking, a blue joystick appears which can be used for steering the car freely. The four colored boxes represents the cars sensors, and turns orange and then red, the closer to an obstacle the car gets.
+- Record Route-button: after clicking this button, the car starts to record the route given by the user. 
+- Stop Recording-button: immediately stops the recording of the route. 
+- Play Recorded Route-button: by pressing this button, the car starts driving acording to the last recorded route.
 
 ## Technical Summary
 
