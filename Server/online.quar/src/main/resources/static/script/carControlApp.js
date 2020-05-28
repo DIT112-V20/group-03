@@ -67,7 +67,6 @@ function sendJoystickInput(data) {
         carSetSpeed = carSetSpeed === 0? 1: (20*Math.log(data.distance/1.5));
         carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? carSetSpeed : -(carSetSpeed);
 
-
         if(carSetSpeed <= 0){
             if(carSetAngle <= 0) {
                 carSetAngle = - (carSetAngle + 180);
@@ -81,7 +80,19 @@ function sendJoystickInput(data) {
     stompClient.send("/app/carControl", {}, JSON.stringify({'carId': carId, 'carSetSpeed': carSetSpeed, 'carSetAngle': carSetAngle}));
 }
 
-function showCarStatus(carStatus) {
+function recordRoute(data) {
+    stompClient.send("/app/startRecRoute", {}, JSON.stringify({'carId': data}));
+}
+
+function stopRecordRoute(data) {
+    stompClient.send("/app/stopRecRoute", {}, JSON.stringify({'carId': data}));
+}
+
+function replayRoute(data) {
+    stompClient.send("/app/playRecRoute", {}, JSON.stringify({'carId': data}));
+}
+
+    function showCarStatus(carStatus) {
     console.log(carStatus);
     $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "m/s</p>");
     if (carStatus.carCollisionAvoidance) {
