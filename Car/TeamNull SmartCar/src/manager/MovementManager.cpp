@@ -112,7 +112,7 @@ void obstacleAvoidance(int safeDistance)
                 }
                 else
                 {
-                   logging("turningRightAfterObstacle:" + (String)scaleAngle);
+                    logging("turningRightAfterObstacle:" + (String)scaleAngle);
                     turn(45);
                 }
             }
@@ -128,6 +128,8 @@ void obstacleAvoidance(int safeDistance)
                 }
                 else
                 {
+                    logging("turningLeftAfterObstacle:" + (String)scaleAngle);
+
                     turn(-45);
                 }
             }
@@ -140,35 +142,44 @@ void obstacleAvoidance(int safeDistance)
         else if (obstacleAvoidanceTurnedRight)
         {
             logging("obstacleAvoidanceTurnedRight");
-            if (obstacleBeingAvoided)
+            /* if (obstacleBeingAvoided)
             {
                 setScaleAngle();
-               // obstacleBeingAvoided = false;
-            }
+                // obstacleBeingAvoided = false;
+            }*/
             if (checkLeft(safeDistance))
             {
 
                 //timereturnToRouteBegan = millis();
                 //turnLeft();
+                logging("turninnBackLeftAfterAvoidance");
                 turn(-90);
             }
-            obstacleAvoidanceTurnedRight = false;
+            if (scaleAngle - getHeading() < 5 && scaleAngle - getHeading() > 0)
+            {
+                obstacleAvoidanceTurnedRight = false;
+            }
+
             //obstacleBeingAvoided = false;
         }
         else if (obstacleAvoidanceTurnedLeft)
         {
             logging("obstacleAvoidanceTurnedLeft");
-            if (obstacleBeingAvoided)
+           /* if (obstacleBeingAvoided)
             {
                 setScaleAngle();
                 obstacleBeingAvoided = false;
-            }
+            }*/
             if (checkRight(safeDistance))
             {
 
                 //timereturnToRouteBegan = millis();
                 //turnLeft();
                 turn(90);
+            }
+            if (scaleAngle - getHeading() < 5 && scaleAngle - getHeading() > 0)
+            {
+                obstacleAvoidanceTurnedLeft = false;
             }
             obstacleAvoidanceTurnedLeft = false;
             obstacleBeingAvoided = false;
@@ -274,7 +285,7 @@ void setScaleAngle()
 
 void turn(int angle)
 {
-logging("insideTurnFunction");
+    logging("insideTurnFunction");
     int endAngle = angle;
 
     if (endAngle < getHeading() - scaleAngle - 2)
@@ -293,7 +304,7 @@ logging("insideTurnFunction");
     {
         logging("the_angle_is_settled_scaleAngle_is:" + (String)scaleAngle);
         scaleAngle = getHeading();
-        obstacleBeingAvoided=false;
+        obstacleBeingAvoided = false;
     }
 }
 
