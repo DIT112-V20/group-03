@@ -23,9 +23,13 @@ public class RouteManager {
     }
 
     public Boolean playRec(long id) throws InterruptedException {
-        for(int x=0;x<newRout.getDurAry().size();x++) {
-            TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x));           //LIETH: "IM SURE THIS GOES ON TOP!"
-            carMngr.processCarControlInput(newRout.getDirAt(x));
+        if(newRout.getDurAry().size() > 0) {
+            Long lastDur = 0l;
+            for (int x = 0; x < newRout.getDurAry().size(); x++) {
+                TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x)-lastDur);           //LIETH: "IM SURE THIS GOES ON TOP!"
+                carMngr.processCarControlInput(newRout.getDirAt(x));
+                lastDur = newRout.getDurAt(x);
+            }
         }
         return true;
     }

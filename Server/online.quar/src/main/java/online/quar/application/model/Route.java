@@ -15,6 +15,7 @@ public class Route extends CarControlInput{
     public void setNewMove(CarControlInput newDir, Long newDur){
         dirAry.add(newDir);
         durAry.add(newDur - routStartEpoch);        //converts to ms
+        //routStartEpoch = System.currentTimeMillis();
     }
 
     public CarControlInput getDirAt(int indx){
