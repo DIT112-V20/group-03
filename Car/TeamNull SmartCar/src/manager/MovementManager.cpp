@@ -160,7 +160,7 @@ void obstacleAvoidance(int safeDistance)
             if (checkRight(safeDistance))
             {
                 timereturnToRouteBegan = millis();
-                turnRight();
+                //turnRight();
             }
             obstacleAvoidanceTurnedLeft = false;
             obstacleBeingAvoided = false;
