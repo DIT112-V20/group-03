@@ -104,6 +104,7 @@ void obstacleAvoidance(int safeDistance)
                 logging("__RIGHT%20IS%20SAFE__");
                 if (!obstacleAvoidanceTurnedRight)
                 {
+                    logging("startToAvoid");
                     obstacleAvoidanceTurnedRight = true;
                     obstacleBeingAvoided = true;
                     // timeObstacleWasAvoided = millis();
@@ -111,7 +112,7 @@ void obstacleAvoidance(int safeDistance)
                 }
                 else
                 {
-                    // logging("scale%20is:->" + (String)scaleAngle);
+                   logging("turningRightAfterObstacle:" + (String)scaleAngle);
                     turn(45);
                 }
             }
@@ -273,7 +274,7 @@ void setScaleAngle()
 
 void turn(int angle)
 {
-
+logging("insideTurnFunction");
     int endAngle = angle;
 
     if (endAngle < getHeading() - scaleAngle - 2)
