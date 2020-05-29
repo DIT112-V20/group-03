@@ -118,12 +118,12 @@ public class DatabaseManager {
             Connection connection = getConnection();
 
             if (car.getId() != -1) {
-                //If the user id does not exist, insert one.
+                //If the car id does not exist, insert one.
                 query = QueryHelper.sqlQuery(insertCarScript);
                 statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
             } else {
-                //If the user id does exist, update it.
+                //If the car id does exist, update it.
                 query = QueryHelper.sqlQuery(updateCarScript);
                 statement = connection.prepareStatement(query);
 
