@@ -17,4 +17,5 @@ void turnRight();
 void turnLeft();
 void chooseNewDirection();
 void obstacleAvoidance(int safeDistance);
+
 #endif // movementManager_H_

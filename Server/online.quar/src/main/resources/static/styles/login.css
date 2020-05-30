@@ -29,7 +29,7 @@ p{
     width: 400px;
     height: 100px;
     background-color: rgba(0,0,0, 0.5);
-    padding-radius: 15px;
+    border-radius: 15px;
 }
 .username{
     text-align: center;

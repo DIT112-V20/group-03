@@ -1,4 +1,5 @@
 var stompClient = null;
+var carId = 1;
 
 function setConnected(connected) {
     // $("#connect").prop("disabled", connected);
@@ -56,7 +57,6 @@ function disconnect() {
 function sendJoystickInput(data) {
 
     //TODO: Real car ID
-    var carId = 1;
     var carSetSpeed = 0;
     var carSetAngle = 0;
 
@@ -64,9 +64,8 @@ function sendJoystickInput(data) {
         carId = 1;
         carSetAngle = data.angle.degree > 270? ( - data.angle.degree + 450) : (- data.angle.degree + 90);
 
-        carSetSpeed = carSetSpeed === 0? 1: (20*Math.log(data.distance/1.5));
+        carSetSpeed = data.distance === 0? 1 : (20*Math.log(data.distance/1.5));
         carSetSpeed = ((-90 < carSetAngle) && (carSetAngle < 90))? carSetSpeed : -(carSetSpeed);
-
 
         if(carSetSpeed <= 0){
             if(carSetAngle <= 0) {
@@ -81,7 +80,19 @@ function sendJoystickInput(data) {
     stompClient.send("/app/carControl", {}, JSON.stringify({'carId': carId, 'carSetSpeed': carSetSpeed, 'carSetAngle': carSetAngle}));
 }
 
-function showCarStatus(carStatus) {
+function recordRoute() {
+    stompClient.send("/app/startRecRoute", {}, JSON.stringify({'carId': carId}));
+}
+
+function stopRecordRoute() {
+    stompClient.send("/app/stopRecRoute", {}, JSON.stringify({'carId': carId}));
+}
+
+function replayRoute() {
+    stompClient.send("/app/playRecRoute", {}, JSON.stringify({'carId': carId}));
+}
+
+    function showCarStatus(carStatus) {
     console.log(carStatus);
     $("#speedometer").html("<p>" + "Car speed: " + carStatus.carActualSpeed + "m/s</p>");
     if (carStatus.carCollisionAvoidance) {
