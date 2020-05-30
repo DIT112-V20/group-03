@@ -38,10 +38,15 @@ public class RouteManager {
     public Boolean playRec(long id) throws InterruptedException {
         getCarManagerIfNeeded();
         log.d("Started replaying recorded route");
-        for(int x=0;x<newRout.getDurAry().size();x++) {
-            TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x));
-            carMngr.processCarControlInput(newRout.getDirAt(x));
+        if(newRout.getDurAry().size() > 0) {
+            Long lastDur = 0l;
+            for (int x = 0; x < newRout.getDurAry().size(); x++) {
+                TimeUnit.MILLISECONDS.sleep(newRout.getDurAt(x)-lastDur);
+                carMngr.processCarControlInput(newRout.getDirAt(x));
+                lastDur = newRout.getDurAt(x);
+            }
         }
+        logger.d("---------------- DONE PLAYING RECORDING ---------------- DONE PLAYING RECORDING ----------------");
         return true;
     }
 

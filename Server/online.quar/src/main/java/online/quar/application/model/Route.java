@@ -33,7 +33,7 @@ public class Route extends CarControlInput{
     }
 
     public void clearArray(){
-        for(int x=0;x<durAry.size();x++){        //ladida removeAll is better than Clear - screw NULL! (also removeAll is something to look into)
+        for(int x=0;x<durAry.size();x++){
             durAry.remove(x);
             dirAry.remove(x);
         }
