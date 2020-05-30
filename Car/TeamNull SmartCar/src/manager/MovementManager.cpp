@@ -16,8 +16,7 @@ long timeObstacleWasAvoided = millis();
 long timereturnToRouteBegan = millis();
 
 //This is a helper method for logging purposes only
-String booleanToString(boolean b)
-{
+String booleanToString(boolean b) {
     if (b)
     {
         return "true";
@@ -28,82 +27,60 @@ String booleanToString(boolean b)
     }
 }
 
-void setDesiredVehicleSpeed(int speed)
-{
+void setDesiredVehicleSpeed(int speed) {
     carSpeedSet = speed;
-    // setSpeed(carSpeedSet);
-    // carSpeedActual = carSpeedSet;
 }
 
-void setDesiredTurnAngle(int heading)
-{
+void setDesiredTurnAngle(int heading) {
     turnAngleSet = heading;
-    if (!obstacleBeingAvoided)
-    {
+    if (!obstacleBeingAvoided) {
         setAngle(turnAngleSet);
         turnAngleActual = turnAngleSet;
     }
 }
 
-void collisionAvoidance()
-{
-    // logging("___CollisionAvoidance%20ENTERED___");
+void collisionAvoidance() {
     int distanceFromObstacle = 0;
-    if (carSpeedSet >= 0)
-    {
+    if (carSpeedSet >= 0) {
         distanceFromObstacle = getFrontDistance();
     }
-    else
-    {
+    else {
         distanceFromObstacle = getRearDistance();
     }
-    if (distanceFromObstacle < 400 && distanceFromObstacle != 0)
-    {
+    if (distanceFromObstacle < 400 && distanceFromObstacle != 0) {
         setSpeed(0);
         carSpeedActual = 0;
         logging("COLLISION%20AVOIDANCE%20distance%20from%20obstacle%20" + (String)distanceFromObstacle + "mm");
         colisionBeingAvoided = true;
     }
-    else if (carSpeedActual != carSpeedSet)
-    {
+    else if (carSpeedActual != carSpeedSet) {
         setSpeed(carSpeedSet);
         carSpeedActual = carSpeedSet;
         colisionBeingAvoided = false;
     }
-    // logging("___CollisionAvoidance%20LEFT___");
 }
 
-int getActualCarSpeed()
-{
+int getActualCarSpeed() {
     return getCarCurrentSpeed();
 }
 
-String getActualCarStatus()
-{
-    //TODO: += is inefficient and can be improved!
-
+String getActualCarStatus() {
     String result = (String) "carId=" + (String) "1" + (String) "&carActualSpeed=" + (String)getActualCarSpeed() + (String) "&carActualAngle=" + (String)turnAngleActual + (String) "&carObstacleAvoidance=" + booleanToString(obstacleBeingAvoided) + (String) "&carCollisionAvoidance=" + booleanToString(colisionBeingAvoided) + (String) "&frontDistance=" + (String)getFrontDistance() + (String) "&leftFrontDistance=" + (String)getLeftFrontDistance() + (String) "&rightFrontDistance=" + (String)getRightFrontDistance() + (String) "&rearDistance=" + (String)getRearDistance() + (String) "&c=7" + getFrontDistance();
 
     return result;
 }
 
-void obstacleAvoidance(int safeDistance)
-{
-    //classSafeDistance = safeDistance;
+void obstacleAvoidance(int safeDistance) {
 
-    if (carSpeedActual > 0)
-    {
+    if (carSpeedActual > 0) {
         logging("Car%20is%20going%20forward");
         boolean frontIsSafe = checkFront(safeDistance);
         logging("FrontisSafe%20output_" + booleanToString(frontIsSafe));
-        if (!frontIsSafe)
-        {
+        if (!frontIsSafe) {
             logging("__FRONT%20OBSTACLE__");
-            if (checkRight(safeDistance))
-            {
+            if (checkRight(safeDistance)) {
                 logging("__RIGHT%20IS%20SAFE__");
-                if (!obstacleAvoidanceTurnedRight)
-                {
+                if (!obstacleAvoidanceTurnedRight) {
                     logging("startToAvoid");
                     obstacleAvoidanceTurnedRight = true;
                     obstacleBeingAvoided = true;
@@ -112,17 +89,14 @@ void obstacleAvoidance(int safeDistance)
                     logging("turningRightAfterObstacle:" + (String)scaleAngle);
                     turn(45);
                 }
-                else
-                {
+                else {
                     logging("turningRightAfterObstacle:" + (String)scaleAngle);
                     turn(45);
                 }
             }
-            else if (checkLeft(safeDistance))
-            {
+            else if (checkLeft(safeDistance)) {
                 logging("__LEFT%20IS%20SAFE__");
-                if (!obstacleAvoidanceTurnedLeft)
-                {
+                if (!obstacleAvoidanceTurnedLeft) {
                     obstacleAvoidanceTurnedLeft = true;
                     obstacleBeingAvoided = true;
                     //    timeObstacleWasAvoided = millis();
@@ -130,14 +104,12 @@ void obstacleAvoidance(int safeDistance)
                     logging("turningLeftAfterObstacle:" + (String)scaleAngle);
                     turn(-45);
                 }
-                else
-                {
+                else {
                     logging("turningLeftAfterObstacle:" + (String)scaleAngle);
                     turn(-45);
                 }
             }
-            else
-            {
+            else {
                 logging("__No%20safe%20way%20to%20turn%20CollisionAvoidance");
                 obstacleBeingAvoided = false;
                 obstacleAvoidanceTurnedRight = false;
@@ -145,85 +117,52 @@ void obstacleAvoidance(int safeDistance)
                 collisionAvoidance();
             }
         }
-        else if (obstacleAvoidanceTurnedRight)
-        {
+        else if (obstacleAvoidanceTurnedRight) {
             logging("obstacleAvoidanceTurnedRight");
-            /* if (obstacleBeingAvoided)
-            {
-                setScaleAngle();
-                // obstacleBeingAvoided = false;
-            }*/
-            if (checkLeft(safeDistance))
-            {
 
-                //timereturnToRouteBegan = millis();
-                //turnLeft();
+            if (checkLeft(safeDistance)) {
                 setScaleAngle();
                 logging("turninnBackLeftAfterAvoidance");
                 turn(-90);
                 obstacleAvoidanceTurnedRight = false;
 
             }
-            // if (scaleAngle - getHeading() < 5 && scaleAngle - getHeading() > 0)
-            // {
-            //     obstacleAvoidanceTurnedRight = false;
-            // }
 
             obstacleBeingAvoided = false;
         }
-        else if (obstacleAvoidanceTurnedLeft)
-        {
+        else if (obstacleAvoidanceTurnedLeft) {
             logging("obstacleAvoidanceTurnedLeft");
-           /* if (obstacleBeingAvoided)
-            {
-                setScaleAngle();
-                obstacleBeingAvoided = false;
-            }*/
-            if (checkRight(safeDistance))
-            {
 
-                //timereturnToRouteBegan = millis();
-                //turnLeft();
+            if (checkRight(safeDistance)) {
                 setScaleAngle();
                 logging("turninnBackRightAfterAvoidance");
                 turn(90);
                 obstacleAvoidanceTurnedLeft = false;
             }
-            // if (scaleAngle - getHeading() < 5 && scaleAngle - getHeading() > 0)
-            // {
-            //     obstacleAvoidanceTurnedLeft = false;
-            // }
-            // obstacleAvoidanceTurnedLeft = false;
             obstacleBeingAvoided = false;
         }
     }
 
-    else if (carSpeedActual < 0)
-    {
+    else if (carSpeedActual < 0) {
         logging("Car%20is%20going%20backward");
 
-        if (checkRear(safeDistance) == false)
-        {
+        if (checkRear(safeDistance) == false) {
             logging("__REAR%20OBSTACLE__");
             obstacleBeingAvoided = true;
             collisionAvoidance();
         }
-        else
-        {
+        else {
             obstacleBeingAvoided = false;
         }
 
-        if (obstacleAvoidanceTurnedRight)
-        {
+        if (obstacleAvoidanceTurnedRight) {
             obstacleAvoidanceTurnedRight = false;
         }
-        else if (obstacleAvoidanceTurnedLeft)
-        {
+        else if (obstacleAvoidanceTurnedLeft) {
             obstacleAvoidanceTurnedLeft = false;
         }
 
-        if (turnAngleActual != turnAngleSet)
-        {
+        if (turnAngleActual != turnAngleSet) {
             setAngle(turnAngleActual);
             turnAngleSet = turnAngleActual;
         }
@@ -235,75 +174,60 @@ void obstacleAvoidance(int safeDistance)
 }
 
 //returns false if the obstacle in front is closer than safeFrontDistance
-boolean checkFront(int safeDistance)
-{
+boolean checkFront(int safeDistance) {
     int distanceFromObstacle = getFrontDistance();
-    if (distanceFromObstacle < safeDistance)
-    {
+    if (distanceFromObstacle < safeDistance) {
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
 
 //returns false if the obstacle on right is closer than safeFrontDistance
-boolean checkRight(int safeDistance)
-{
+boolean checkRight(int safeDistance) {
     int distanceFromObstacle = 0;
     distanceFromObstacle = getRightFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0)
-    {
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0) {
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
 
 //returns false if the obstacle on left is closer than safeFrontDistance
-boolean checkLeft(int safeDistance)
-{
+boolean checkLeft(int safeDistance) {
     int distanceFromObstacle = 0;
     distanceFromObstacle = getLeftFrontDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0)
-    {
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0) {
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
 
 //returns false if the obstacle on rear is closer than safeFrontDistance
-boolean checkRear(int safeDistance)
-{
+boolean checkRear(int safeDistance) {
     int distanceFromObstacle = 0;
     distanceFromObstacle = getRearDistance();
-    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0)
-    {
+    if (distanceFromObstacle < safeDistance && distanceFromObstacle != 0) {
         return false;
     }
-    else
-    {
+    else {
         return true;
     }
 }
 
-void setScaleAngle()
-{
+void setScaleAngle() {
     scaleAngle = getHeading();
 }
 
-void turn(int endAngle)
-{
+void turn(int endAngle) {
     logging("insideTurnFunction%20endAngle:" + (String)endAngle + "%20-currentAngle:" + (String)(getHeading() - scaleAngle));
 
-    if (endAngle < 0 && endAngle < getHeading() - scaleAngle - 2)
-    {
+    if (endAngle < 0 && endAngle < getHeading() - scaleAngle - 2) {
         setAngle(-90);
         logging("turning_left-endAngle:" + (String)endAngle + "%20-currentAngle:" + (String)(getHeading() - scaleAngle));
     } else if (endAngle > 0 && endAngle > getHeading() - scaleAngle + 2) {
@@ -315,32 +239,3 @@ void turn(int endAngle)
         obstacleBeingAvoided = false;
     }
 }
-
-/*void turnRight()
-{
-
-    No, the user should still be able to stop the car, or reverse,
-    also, this does not consider if an obstacle apears on the right
-    at a later stage, or if the car does in fact NOT turn in time
-    to avoid the obstacle.
-    Further, this stops the entire system from functioning, logging etc
-
-    while(checkFront(classSafeDistance)==false){
-    logging(" Turning right ");
-    setAngle(45);
-     }
-}*/
-
-/*void turnLeft()
-{
-    No, the user should still be able to stop the car, or reverse,
-    also, this does not consider if an obstacle apears on the left
-    at a later stage, or if the car does in fact NOT turn in time
-    to avoid the obstacle.
-    Further, this stops the entire system from functioning, logging etc
-
-      while(checkFront(classSafeDistance)==false){
-    logging(" Turning left ");
-    setAngle(-45);
-     }
-}*/

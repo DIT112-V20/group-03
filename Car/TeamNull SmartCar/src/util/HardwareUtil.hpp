@@ -2,7 +2,6 @@
 #define hardwareUtil_H_
 
 #include <Arduino.h>
-// #include <Wire.h>
 #include <VL53L0X.h>
 
 void setSpeed(int speed);
