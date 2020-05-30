@@ -44,7 +44,8 @@ void setAngle(int angle) {
 
 int getHeading() {
   gyro.update();
-  return gyro.getHeading();
+  int heading = gyro.getHeading();
+  return heading > 180 ? heading-360 : heading;
 }
 
 int getCarCurrentSpeed() {
