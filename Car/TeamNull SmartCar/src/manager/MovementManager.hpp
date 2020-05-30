@@ -2,7 +2,8 @@
 #define movementManager_H_
 
 #include "util/HardwareUtil.hpp"
-
+void setScaleAngle();
+void turn(int angle);
 void setDesiredVehicleSpeed (int speed);
 void setDesiredTurnAngle (int heading);
 void collisionAvoidance();
@@ -16,4 +17,5 @@ void turnRight();
 void turnLeft();
 void chooseNewDirection();
 void obstacleAvoidance(int safeDistance);
+
 #endif // movementManager_H_

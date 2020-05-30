@@ -6,4 +6,6 @@
 void connectToWiFi(char* SSID, char* password);
 void syncWithServer();
 void logging (String message);
+void enableLogging(boolean enabled);
+
 #endif // WiFiManager_H_

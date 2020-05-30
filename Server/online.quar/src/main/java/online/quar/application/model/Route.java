@@ -1,64 +1,42 @@
 package online.quar.application.model;
 
-public class Route {
+import java.util.ArrayList;
 
-    /*  potato prototype outline
+public class Route extends CarControlInput{
 
-        notes:      TODO create a "Record this rout" button in UI
-                        TODO have a failsafe to make sure user cant record something like driving against a wall - simple MSG that outputs to user: "your driving is silly - rout recording canceled"   - see line 11 for prototype suggestion
-                    TODO implement a method that records the movments of the joystick (inside the class that controlls the car somewhere)
-                    AND  bundels them with a time stamp - whatever our refresh rate on the joystick is - is probobly good enough (wouldnt want a rout to have milions of miniture ajustments - but wouldnt want it to only go in 30° turns - looking 'challenged')
-                        TODO create a new rout when clicked (save somewhere? we can have a single "record rout" "play rout" save slot inside this class - to keep it simple or to prototype
-                        TODO have the integrated direction/speed and time stamp added to the 2d array
+    ArrayList<CarControlInput> dirAry = new ArrayList<CarControlInput>();
+    ArrayList<Long> durAry = new ArrayList<Long>();
+    long routStartEpoch;
 
-            TODO do we have a direction/speed object? should we have one? wouldnt that help?
+    public Route(Long routStartEpoch, long carID){
+        this.routStartEpoch = routStartEpoch;
+    }
 
-        init class
-            2D array [direction/speed][duration in ms?]
-            timer
+    public void setNewMove(CarControlInput newDir, Long newDur){
+        dirAry.add(newDir);
+        durAry.add(newDur - routStartEpoch);        //converts to ms
+    }
 
+    public CarControlInput getDirAt(int indx){
+        return dirAry.get(indx);
+    }
+    public long getDurAt(int indx) {
+        return durAry.get(indx);
+    }
 
-        class methods
-            setNewMovement(direction/speed, timeStamp)
-                calculate time spent after last command ( depending on how we pass the time either: [from epoch] or [ms since creation of timer] )
-                add new arrayList item to 2D array[dir/spd][ms]
+    public ArrayList<CarControlInput> getDirAry() {
+        return dirAry;
+    }
 
-            getAllMovement()
-                while(done == false)
-                    call car movments array[x][0]
-                    sleep for array[x][1]
-                    if(x==array.size())
-                        done = true
+    public ArrayList<Long> getDurAry() {
+        return durAry;
+    }
 
-            getMovmentDirAt(int index)
-                return array[x][0]
+    public void clearArray(){
+        for(int x=0;x<durAry.size();x++){        //ladida removeAll is better than Clear - screw NULL! (also removeAll is something to look into)
+            durAry.remove(x);
+            dirAry.remove(x);
+        }
 
-            getMovmentTimeAt(int index)
-                return array[x][1]
-
-            clearArray()
-                for(DELETE EVERYTHING AHHHHH
-
-            cleanArray() //takes out repetition
-                create duplicateArray
-                for(array.size() -1)
-                    if not the same as next in direction/speed (time doesnt matter)
-                        copy over to duplicateArray + addup time
-                        addUpTime = 0;
-                    else
-                        addUpTime =+ next items time (? basicly compile the array so we dont have 2milion neutral commands....)
-
-            TODO i got confused :D
-
-
-
-
-     */
-
-
-
-
-
-
-
+    }
 }

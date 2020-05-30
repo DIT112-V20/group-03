@@ -2,11 +2,11 @@
 #define hardwareUtil_H_
 
 #include <Arduino.h>
-// #include <Wire.h>
 #include <VL53L0X.h>
 
 void setSpeed(int speed);
 void setAngle(int angle);
+int getHeading();
 int getCarCurrentSpeed();
 int getCarCurrentAngle();
 void blink(int blinkCount);

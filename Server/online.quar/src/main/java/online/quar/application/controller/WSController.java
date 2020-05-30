@@ -19,4 +19,22 @@ public class WSController {
         return applicationManager.getCarManager().processCarControlInput(carControlInput);
     }
 
+    @MessageMapping("/startRecRoute")
+    @SendTo("/topic/userInterface")
+    public Boolean startRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().startRec(carControlInput.getCarId());
+    }
+
+    @MessageMapping("/stopRecRoute")
+    @SendTo("/topic/userInterface")
+    public Boolean stopRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().stopRec(carControlInput.getCarId());
+    }
+
+    @MessageMapping("/playRecRoute")
+    @SendTo("/topic/userInterface")
+    public Boolean playRecRoute(CarControlInput carControlInput) throws Exception {
+        return applicationManager.getRouteManager().playRec(carControlInput.getCarId());
+    }
+
 }

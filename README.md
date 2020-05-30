@@ -73,4 +73,4 @@ Any authorized user can acces and control the car by entering the URL https://qu
 - Filip Lewenhagen
 - Leith Hobson
 - Martin Esfahani
-- Max Remmiz
+- Max Zimmer

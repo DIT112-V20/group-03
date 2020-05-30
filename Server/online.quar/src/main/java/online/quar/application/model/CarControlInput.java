@@ -55,6 +55,10 @@ public class CarControlInput {
         this.carActualAngle = carActualAngle;
     }
 
+    public CarControlInput(long carId) {
+        this.carId = carId;
+    }
+
     public long getCarId() {
         return carId;
     }

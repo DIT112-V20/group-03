@@ -13,38 +13,23 @@ void setup() {
 
     initialiseSensors();
 
-    // Connect to WiFi - commented out do to location specific WiFi credentials
-    // - Yes, I am aware that I am giving out my Wifi details :p
+    // Connect to WiFi
+    // - Yes, I am aware that I am giving out my snakeoil Wifi details
     char* WiFiSSID = "TheMancave";
     char* WiFiPassword = "tagedirtybumpaberra";
     connectToWiFi(WiFiSSID, WiFiPassword);
     blink(1);
+    
+    // Configure if logging is enabled or disabled
+    enableLogging(false);
 
-    Serial.println("Returned from connectToWiFi");
-
-    //Test collision avoidance
-    // setDesiredVehicleSpeed(30);
     loadTime = millis();
+
 }
 
 void loop() {
     //collisionAvoidance();
     obstacleAvoidance(safeDistance);
-    // // Sensor debugging
-    // String logLine = "Front:_" + (String) getFrontDistance() + "_FL:_" + (String) getLeftFrontDistance() + "_FR:_" + (String) getRightFrontDistance() + "_Rear:_" + (String) getRearDistance();
-    // logging(logLine);
-    // Serial.print("Front: ");
-    // Serial.print(getFrontDistance());
-    // Serial.print(" FL: ");
-    // Serial.print(getLeftFrontDistance());
-    // Serial.print(" FR: ");
-    // Serial.print(getRightFrontDistance());
-    // Serial.print(" Rear: ");
-    // Serial.println(getRearDistance());
-    // Serial.println("-----------------------");
-    // // delay(1000);
-
-    // Serial.println(getCarCurrentSpeed());
 
     syncWithServer();
 }
