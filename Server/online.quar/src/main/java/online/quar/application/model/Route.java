@@ -15,7 +15,6 @@ public class Route extends CarControlInput{
     public void setNewMove(CarControlInput newDir, Long newDur){
         dirAry.add(newDir);
         durAry.add(newDur - routStartEpoch);        //converts to ms
-        //routStartEpoch = System.currentTimeMillis();
     }
 
     public CarControlInput getDirAt(int indx){
@@ -34,7 +33,7 @@ public class Route extends CarControlInput{
     }
 
     public void clearArray(){
-        for(int x=0;x<durAry.size();x++){        //ladida removeAll is better than Clear - screw NULL! (also removeAll is something to look into)
+        for(int x=0;x<durAry.size();x++){
             durAry.remove(x);
             dirAry.remove(x);
         }
