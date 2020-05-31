@@ -73,6 +73,7 @@ The car has two components
 - CarCam provides the live video stream from the car.
 
 #####Build instruction:
+
 - [Microsoft's Visual Studio Code and then the PlatformIO IDE](https://platformio.org/install/ide?install=vscode)
 - Open either the ```Car/TeamNull CarCam``` or ```Car/TeamNull SmartCar``` folder in Visual Studio Code.
 - Install required libraries:
@@ -91,23 +92,28 @@ The car has two components
 #####Code introduction:
 
 ######SmartCar
+
 ```manager/WiFiManager.cpp``` all logic for communicating with the server.<br>
 ```manager/WiFiManager.cpp``` all logic for controlling car behaviour.<br>
 ```util/HardwareUtil.cpp``` logic for communicating with car and sensor hardware.<br>
 ```main.cpp``` Boot setup then repeatedly polls server, and calls Movement Manager to make car respond accordingly.
 
 ######CarCam
+
 ```main.cpp``` Connects to WiFi and serves live video stream.
 
 ## User Manual
 
 #### The Welcome-page
+
 - This page welcomes the user to the website. Simply click the link to move on to the login-page.
 
 #### The Login-page
+
 - Enter a valid username and password in their respective field and then hit the SIGN IN-button to proceed.
 
 #### The Car Controller-page
+
 - As long as the power switch is on for the car, the user should now see a camera feed in the middle of the screen. The user can steer the car by clicking on the camera stream. When clicking, a blue joystick appears which can be used for steering the car freely. The four colored boxes represents the cars sensors, and turns orange and then red, the closer to an obstacle the car gets.
 - Record Route-button: after clicking this button, the car starts to record the route given by the user. 
 - Stop Recording-button: immediately stops the recording of the route. 
