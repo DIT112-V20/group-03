@@ -46,7 +46,7 @@ public class RouteManager {
                 lastDur = newRout.getDurAt(x);
             }
         }
-        logger.d("---------------- DONE PLAYING RECORDING ---------------- DONE PLAYING RECORDING ----------------");
+        log.d("---------------- DONE PLAYING RECORDING ---------------- DONE PLAYING RECORDING ----------------");
         return true;
     }
 
