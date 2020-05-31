@@ -27,9 +27,77 @@ which the car can reach, so long as it has a WiFi connection.
  
 ## Set-up: User
 
-Any authorized user can access and control the car by entering the URL https://quar.online and log in with an authorized username and password.
+Any authorized user can access and control their car by entering the URL https://quar.online and logging in with an authorized username and password.
 
 ## Set-up: Developer
+
+We assume that you will be building our server on a debian based OS such as Ubuntu
+####Server:
+
+#####Build instructions:
+```
+# install dependencies
+sudo apt install -y maven postgresql openjdk-13
+# clone the git repository
+git clone https://github.com/DIT112-V20/group-03.git
+# create a database 
+sudo -u postgres psql -c 'create database quaronline;'
+sudo -u postgres psql -c "create user quaronline with encrypted password '\x00\x21\x00\x23.~A_f8gLEBM5p8';"
+sudo -u postgres psql -c 'grant all privileges on database quaronline to quaronline;'
+cd group-03/Server/online.quar/
+# launch the web server
+mvn spring-boot:run
+```
+
+After running the above snippet, you will be able to connect to https://localhost:8443 and log in with demo/demo.
+
+You will then be able to either edit the hosts file on your client - ```nano /etc/hosts``` - or point a domain to your public IP address.
+
+We recommend that you configure your own SSL certificate in application.properties, or remove ours, to run on http. Further, we recommend that you configure internal port forwarding, to use standard ports:
+```
+iptables -A INPUT -i eth0 -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -i eth0 -p tcp --dport 443 -j ACCEPT
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+```
+
+#####Code introduction:
+
+In ```src/main/java/online/quar/application``` you will find the source code for the java server.<br>
+```src/resources``` is home to javascript, css, sql scripts other assets for the web interface.<br>
+Finally ```src/test/java/online/quar/application``` contains all the JUnit tests.
+
+####Car:
+The car has two components
+- SmartCar connects the car to the web application.
+- CarCam provides the live video stream from the car.
+
+#####Build instruction:
+- [Microsoft's Visual Studio Code and then the PlatformIO IDE](https://platformio.org/install/ide?install=vscode)
+- Open either the ```Car/TeamNull CarCam``` or ```Car/TeamNull SmartCar``` folder in Visual Studio Code.
+- Install required libraries:
+    - ArduinoJson by Benoit Blanchon
+    - ESP32 AnalogWrite by Abdelouahed ERROUAGUY
+    - ServoESP32 by Jaroslav Paral
+    - Servo by Michael Margolis
+    - Smartcar shield by Dimitris Platis
+    - VL53L0X by Pololu
+- Configure your WiFi credentials in ```main.cpp```
+    - char* WiFiSSID = "WiFiSSID";
+    - char* WiFiPassword = "WiFiPassword";
+- Configure your host details in ```manager/WiFiManager.cpp``` including your root_ca certificate, should you not use ours.
+- Upload respective code to your Car's ESP32 controller, and camera
+
+#####Code introduction:
+
+######SmartCar
+```manager/WiFiManager.cpp``` all logic for communicating with the server.<br>
+```manager/WiFiManager.cpp``` all logic for controlling car behaviour.<br>
+```util/HardwareUtil.cpp``` logic for communicating with car and sensor hardware.<br>
+```main.cpp``` Boot setup then repeatedly polls server, and calls Movement Manager to make car respond accordingly.
+
+######CarCam
+```main.cpp``` Connects to WiFi and serves live video stream.
 
 ## User Manual
 
@@ -43,7 +111,7 @@ Any authorized user can access and control the car by entering the URL https://q
 - As long as the power switch is on for the car, the user should now see a camera feed in the middle of the screen. The user can steer the car by clicking on the camera stream. When clicking, a blue joystick appears which can be used for steering the car freely. The four colored boxes represents the cars sensors, and turns orange and then red, the closer to an obstacle the car gets.
 - Record Route-button: after clicking this button, the car starts to record the route given by the user. 
 - Stop Recording-button: immediately stops the recording of the route. 
-- Play Recorded Route-button: by pressing this button, the car starts driving acording to the last recorded route.
+- Play Recorded Route-button: by pressing this button, the car starts driving according to the last recorded route.
 
 ## Technical Summary
 
