@@ -32,9 +32,9 @@ Any authorized user can access and control their car by entering the URL https:/
 ## Set-up: Developer
 
 We assume that you will be building our server on a debian based OS such as Ubuntu
-####Server:
+#### Server:
 
-#####Build instructions:
+##### Build instructions:
 ```
 # install dependencies
 sudo apt install -y maven postgresql openjdk-13
