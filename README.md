@@ -27,7 +27,7 @@ which the car can reach, so long as it has a WiFi connection.
  
 ## Set-up: User
 
-Any authorized user can acces and control the car by entering the URL https://quar.online and log in with an authorized username and password.
+Any authorized user can access and control the car by entering the URL https://quar.online and log in with an authorized username and password.
 
 ## Set-up: Developer
 
@@ -49,10 +49,10 @@ Any authorized user can acces and control the car by entering the URL https://qu
 
 ### Hardware:
 
-- [ESP32]()
+- [ESP32](https://www.espressif.com/en/products/devkits/esp32-devkitc/overview)
 - [Smart Car](https://www.hackster.io/platisd/getting-started-with-the-smartcar-platform-1648ad)
 - [Camera](https://www.electrokit.com/produkt/esp32-cam-utvecklingskort-med-wifi-bluetooth-och-kamera/)
-- [Server?]()
+- [Server](https://www.digitalocean.com/products/droplets/)
 
 ### Software:
 
@@ -67,10 +67,10 @@ Any authorized user can acces and control the car by entering the URL https://qu
 
 ### Developers:
 
-- Altug Altetmek
-- Dia Istanbuly
-- Emil Gustafsson
-- Filip Lewenhagen
-- Leith Hobson
-- Martin Esfahani
-- Max Zimmer
+- [Altug Altetmek](https://github.com/altetmek)
+- [Dia Istanbuly](https://github.com/istanbuly)
+- [Emil Gustafsson](https://github.com/Gustmill)
+- [Filip Lewenhagen](https://github.com/filiplew)
+- [Leith Hobson](https://github.com/leithhobson)
+- [Martin Esfahani](https://github.com/ma-esf)
+- [Max Zimmer](https://github.com/gusmaxzi)
