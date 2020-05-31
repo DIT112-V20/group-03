@@ -1,5 +1,8 @@
 # group-03 - TeamNull [![Build Status](https://travis-ci.com/DIT112-V20/group-03.svg?branch=master)](https://travis-ci.com/DIT112-V20/group-03)
 
+## Demo video:
+
+
 ## What are we making?
 
 We decided to build a remote control system for driving the car with the ability to detect and avoid hitting the obstacles on its way.
@@ -15,7 +18,6 @@ We would, therefore, like to develop an accessible and affordable remotely contr
 Further inspired by the lastest coronavirus situation, we are not being able to meet in person as a team to work on the car, and team members have different mobile and desktop OS,
 and software preferences, therefore, we have decided to build a web application, to ensure that our platform is accessible to as many as possible. 
 This platform for remotely driving a car can be further developed in future projects to be applied on larger cars or robots.
-
 
 
 ## How are we going make it?
@@ -110,8 +112,8 @@ The car has two components
 
 #### The Login-page
 
-- Enter a valid username and password in their respective field and then hit the SIGN IN-button to proceed.
-
+- Enter a valid username and password in their respective field and then hit the 'SIGN IN' button to proceed.
+    - You can use the username: demo and password: demo in the default configuration
 #### The Car Controller-page
 
 - As long as the power switch is on for the car, the user should now see a camera feed in the middle of the screen. The user can steer the car by clicking on the camera stream. When clicking, a blue joystick appears which can be used for steering the car freely. The four colored boxes represents the cars sensors, and turns orange and then red, the closer to an obstacle the car gets.
