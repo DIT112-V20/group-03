@@ -61,18 +61,18 @@ iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 80
 iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
 ```
 
-#####Code introduction:
+##### Code introduction:
 
 In ```src/main/java/online/quar/application``` you will find the source code for the java server.<br>
 ```src/resources``` is home to javascript, css, sql scripts other assets for the web interface.<br>
 Finally ```src/test/java/online/quar/application``` contains all the JUnit tests.
 
-####Car:
+#### Car:
 The car has two components
 - SmartCar connects the car to the web application.
 - CarCam provides the live video stream from the car.
 
-#####Build instruction:
+##### Build instruction:
 
 - [Microsoft's Visual Studio Code and then the PlatformIO IDE](https://platformio.org/install/ide?install=vscode)
 - Open either the ```Car/TeamNull CarCam``` or ```Car/TeamNull SmartCar``` folder in Visual Studio Code.
@@ -89,16 +89,16 @@ The car has two components
 - Configure your host details in ```manager/WiFiManager.cpp``` including your root_ca certificate, should you not use ours.
 - Upload respective code to your Car's ESP32 controller, and camera
 
-#####Code introduction:
+##### Code introduction:
 
-######SmartCar
+###### SmartCar
 
 ```manager/WiFiManager.cpp``` all logic for communicating with the server.<br>
 ```manager/WiFiManager.cpp``` all logic for controlling car behaviour.<br>
 ```util/HardwareUtil.cpp``` logic for communicating with car and sensor hardware.<br>
 ```main.cpp``` Boot setup then repeatedly polls server, and calls Movement Manager to make car respond accordingly.
 
-######CarCam
+###### CarCam
 
 ```main.cpp``` Connects to WiFi and serves live video stream.
 
