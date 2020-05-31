@@ -2,6 +2,7 @@
 
 ## Demo video:
 
+[![Demo Video](https://img.youtube.com/vi//0.jpg)](https://youtu.be/)
 
 ## What are we making?
 
